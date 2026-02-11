@@ -8,23 +8,24 @@ Veira is a modern retail intelligence platform designed specifically for the Ken
 ## Key Features
 - **Intelligent POS**: Fast counter sales, full offline mode, direct M-PESA integration, and live inventory tracking.
 - **AI Agents**:
-    - **Glenn (Operations)**: Streamlines day-to-day friction and customer inquiries.
-    - **Achi (Growth)**: Automates revenue generation through marketing and promotions.
-    - **Tiri (Oversight)**: Monitors transactions for anomalies and reports directly to owners.
-- **Compliance**: Built-in KRA eTIMS readiness and structured financial reporting.
+    - **Glenn (Operations)**: Streamlines day-to-day friction and customer inquiries via real-time data synthesis.
+    - **Achi (Growth)**: Automates revenue generation through proactive marketing and promotions.
+    - **Tiri (Oversight)**: Monitors transactions for anomalies and reports directly to owners on WhatsApp.
+- **Compliance**: Built-in KRA eTIMS readiness and structured financial reporting for audit protection.
 - **Accessibility**: Real-time sales summaries delivered via WhatsApp; cloud access from anywhere.
 
 ## Impact & Mission
-Veira is committed to structural social impact, dedicating 10% of annual net profit to organizations preventing gender-based violence and supporting survivors.
+Veira is committed to structural social impact, dedicating 10% of annual net profit to organizations preventing gender-based violence (GBV) and supporting survivors. This is a core part of our "Principles of Certainty".
 
 ## Case Studies
 1. **Small Retail**: Transitioned from verbal reports to daily sales clarity in Umoja.
 2. **Restaurants**: Stopped revenue leaks and improved billing speed in Westlands.
 3. **Multi-Branch**: Centralized management for electronics retailers with 3+ locations.
 4. **Pharmacies**: Reduced KRA audit anxiety through automated eTIMS compliance.
-5. **Remote Owners**: Enabled hands-off management for shops in Kitengela.
+5. **Remote Owners**: Enabled hands-off management for hardware shops in Kitengela via mobile monitoring.
 
 ## Contact
-- Location: Nairobi, Kenya
+- Location: Westlands, Nairobi, Kenya
 - Email: hello@veira.co
 - Website: https://veirahq.com/
+- Google Business: https://share.google/VhjFjdxSAxsw4ATSn
