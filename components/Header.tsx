@@ -30,12 +30,11 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
   }, [isMenuOpen]);
 
   const navItems = [
-    { label: 'TOOLS', id: 'pos' },
-    { label: 'HELPERS', id: 'agents' },
-    { label: 'STUDIO', id: 'studio' },
-    { label: 'ANYWHERE', id: 'cloud' },
-    { label: 'BIG BUSINESS', id: 'enterprise' },
-    { label: 'OUR STORY', id: 'our-story' }
+    { label: 'POS', id: 'pos' },
+    { label: 'Agents', id: 'agents' },
+    { label: 'Cloud', id: 'cloud' },
+    { label: 'Enterprise', id: 'enterprise' },
+    { label: 'Our Story', id: 'our-story' }
   ];
 
   return (
@@ -101,6 +100,13 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
               {item.label}
             </a>
           ))}
+          <a 
+            href="#contact" 
+            onClick={(e) => { e.preventDefault(); setIsMenuOpen(false); }} 
+            className="text-4xl font-bold serif text-black transition-all hover:italic"
+          >
+            Talk To Us
+          </a>
         </div>
         
         <div className="pt-8 border-t border-black/5 w-64 text-center">
