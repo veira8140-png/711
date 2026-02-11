@@ -20,7 +20,7 @@ const CaseStudyCard: React.FC<CaseStudyProps> = ({
   <div className="glass p-8 md:p-16 border-black/5 space-y-12 transition-all hover:border-black/10">
     <div className="space-y-4">
       <div className="flex items-center gap-4">
-        <span className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.4em]">Case Study 0{number}</span>
+        <span className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.4em]">Story 0{number}</span>
         <div className="h-px flex-1 bg-black/5"></div>
       </div>
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
@@ -50,7 +50,7 @@ const CaseStudyCard: React.FC<CaseStudyProps> = ({
       </div>
 
       <div className="space-y-6">
-        <h4 className="text-xs font-bold uppercase tracking-[0.3em] text-[#2D9B9B]">The Veira Solution</h4>
+        <h4 className="text-xs font-bold uppercase tracking-[0.3em] text-[#2D9B9B]">The Fix</h4>
         <ul className="space-y-4">
           {solution.map((item, i) => (
             <li key={i} className="flex items-start gap-3 text-black font-medium leading-relaxed">
@@ -61,7 +61,7 @@ const CaseStudyCard: React.FC<CaseStudyProps> = ({
         </ul>
         
         <div className="pt-8 space-y-6">
-          <h4 className="text-xs font-bold uppercase tracking-[0.3em] text-gray-400">Measured Results</h4>
+          <h4 className="text-xs font-bold uppercase tracking-[0.3em] text-gray-400">The Result</h4>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {results.map((item, i) => (
               <div key={i} className="flex items-center gap-2 bg-black/5 px-4 py-3 border border-black/5">
@@ -82,152 +82,71 @@ const CaseStudyCard: React.FC<CaseStudyProps> = ({
 export const CaseStudies: React.FC = () => {
   const cases = [
     {
-      title: "Daily Sales Clarity",
-      subtitle: "From Uncertainty to Absolute Visibility",
+      title: "Easy Sales Tracking",
+      subtitle: "Know exactly what you made every day",
       business: "Mini Market",
-      type: "Retail Shop",
+      type: "Shop",
       location: "Umoja, Nairobi",
       problem: [
-        "Owner relied on staff verbal reports",
-        "No accurate daily sales records",
-        "Frequent stock losses",
-        "Constant suspicion & stress"
+        "Did not know daily sales",
+        "Stock kept going missing",
+        "Staff reports were not clear",
+        "Owner felt stressed"
       ],
-      problemQuote: "Some days sales were 'low', but stock kept disappearing.",
+      problemQuote: "I never knew how much money was in the till.",
       solution: [
-        "Every sale recorded automatically",
-        "Live phone monitoring for owners",
-        "Clear daily totals and reconciliations",
-        "Increased staff accountability"
+        "All sales recorded automatically",
+        "Owner sees sales on their phone",
+        "Daily totals are always clear",
+        "Staff are more careful"
       ],
       results: [
-        "Daily Sales Visibility",
-        "Stock Losses Reduced",
-        "Owner Confidence Restored",
-        "Zero Staff Conflict"
+        "Sales are clear",
+        "Stock stays safe",
+        "Less stress for owner",
+        "No staff arguments"
       ],
-      resultQuote: "Now I know exactly what my shop makes every day."
+      resultQuote: "Now I know every cent my shop makes."
     },
     {
-      title: "Stopping Revenue Leaks",
-      subtitle: "Tightening Controls in a Fast-Paced Kitchen",
+      title: "No More Missing Food",
+      subtitle: "Better control in a busy kitchen",
       business: "Local Café",
       type: "Restaurant",
       location: "Westlands, Nairobi",
       problem: [
-        "Orders written manually on paper",
-        "Bills sometimes 'forgotten' or lost",
-        "Frequent end-of-day cash mismatches",
-        "No reliable audit trail for voids"
+        "Orders were on paper and got lost",
+        "Customers left without paying",
+        "Money at end of day was wrong",
+        "No way to check old sales"
       ],
-      problemQuote: "End-month numbers never made sense.",
+      problemQuote: "Food was leaving the kitchen but money was missing.",
       solution: [
-        "Every kitchen order captured digitally",
-        "Locked deletion permissions for sales",
-        "Granular cashier shift tracking",
-        "Accurate, uneditable reporting"
+        "All orders are digital now",
+        "Staff cannot delete sales",
+        "Track every shift easily",
+        "Clear reports every day"
       ],
       results: [
-        "Leakage Controlled",
-        "Faster Table Turnover",
-        "Cleaner Reconciliation",
-        "Peace of Mind"
+        "No more missing money",
+        "Customers pay faster",
+        "Easy to check records",
+        "Peace of mind"
       ],
-      resultQuote: "If food leaves the kitchen, it must be paid for."
-    },
-    {
-      title: "Managing Multiple Locations",
-      subtitle: "Centralized Power for a Scaling Business",
-      business: "Electronics Retailer",
-      type: "3 Branches",
-      location: "Growing Operation",
-      problem: [
-        "Separate, disconnected systems per branch",
-        "No centralized real-time visibility",
-        "Inconsistent manager reports",
-        "Hard to detect underperformance early"
-      ],
-      problemQuote: "I couldn't compare branches accurately.",
-      solution: [
-        "Unified centralized cloud dashboard",
-        "Consolidated group reporting",
-        "Remote real-time branch monitoring",
-        "Standardized operational controls"
-      ],
-      results: [
-        "Branch Comparison",
-        "Better Decision-Making",
-        "Unified Stock Tracking",
-        "Scalable Control"
-      ],
-      resultQuote: "Now I manage all branches from my phone."
-    },
-    {
-      title: "Compliance Confidence",
-      subtitle: "Removing the Anxiety of KRA Audits",
-      business: "Pharmacy",
-      type: "Compliance-Sensitive",
-      location: "Nakuru",
-      problem: [
-        "Constant fear of KRA penalties",
-        "Manual, error-prone records",
-        "Inconsistent documentation for meds",
-        "High stress levels during audits"
-      ],
-      problemQuote: "Compliance felt risky and confusing.",
-      solution: [
-        "Built-in eTIMS ready records",
-        "Immutable transaction logs",
-        "Clean, timestamped sales history",
-        "Structured financial reporting"
-      ],
-      results: [
-        "Reduced KRA Stress",
-        "Better Financial Health",
-        "Audit Readiness",
-        "Regulatory Peace"
-      ],
-      resultQuote: "Now I feel safer running my business."
-    },
-    {
-      title: "Hands-Off Ownership",
-      subtitle: "Running a Business Without Being There",
-      business: "Hardware Shop",
-      type: "Remote Management",
-      location: "Kitengela",
-      problem: [
-        "Total dependence on staff honesty",
-        "No way to verify daily sales remotely",
-        "Frequent uncertainty about cash flow",
-        "Constant worry while traveling"
-      ],
-      problemQuote: "I was always guessing what the shop made.",
-      solution: [
-        "Mobile-first phone monitoring app",
-        "Automatic daily sales summaries",
-        "Full transaction and void history",
-        "Real-time push notifications"
-      ],
-      results: [
-        "Full Remote Visibility",
-        "Drastically Reduced Stress",
-        "Tighter Financial Control",
-        "Freedom to Scale"
-      ],
-      resultQuote: "Even when I’m away, I know what’s happening."
+      resultQuote: "If food is cooked, it is paid for."
     }
   ];
 
   return (
     <div className="space-y-32">
       <div className="max-w-3xl space-y-6">
-        <span className="section-label">Evidence of Impact</span>
+        <span className="section-label">Happy Customers</span>
         <h2 className="text-4xl md:text-7xl font-bold serif text-black leading-tight">
-          Success <br/><span className="italic text-gray-400">Architecture.</span>
+          Success <br/><span className="italic text-gray-400">Stories.</span>
         </h2>
         <p className="text-lg md:text-xl text-gray-500 font-light leading-relaxed">
-          From retail shops in Umoja to restaurants in Westlands, we help 
-          Kenyan business owners gain absolute certainty over their money and time.
+          From shops in Umoja to restaurants in Westlands, we help owners 
+          know exactly where their money is.
         </p>
       </div>
 
@@ -238,13 +157,13 @@ export const CaseStudies: React.FC = () => {
       </div>
 
       <div className="bg-black text-white p-12 md:p-20 text-center space-y-8">
-        <h3 className="text-3xl md:text-5xl font-bold serif italic">Is your business next?</h3>
+        <h3 className="text-3xl md:text-5xl font-bold serif italic">Is your shop next?</h3>
         <p className="text-gray-400 max-w-xl mx-auto font-light leading-relaxed">
-          Don't wait until stock disappears or audits fail. Join the hundreds of 
-          Kenyan entrepreneurs who have built a foundation of certainty with Veira.
+          Don't wait until money goes missing. Join the hundreds of 
+          shop owners in Kenya using Veira.
         </p>
         <button className="cta-primary bg-white text-black px-12 py-5 font-bold uppercase tracking-widest text-xs">
-          Get Case Study Breakdown
+          Learn More
         </button>
       </div>
     </div>
