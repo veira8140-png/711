@@ -24,46 +24,32 @@ const URL_MAPPING: Record<string, string> = {
 };
 
 const App: React.FC = () => {
-  const navigateTo = (id: string, updateUrl = true) => {
+  const navigateTo = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
-      if (updateUrl) {
-        const hash = URL_MAPPING[id] || `#${id}`;
-        window.history.pushState({ id }, '', hash);
-      }
     }
   };
 
   useEffect(() => {
-    const currentHash = window.location.hash || '#';
-    const entry = Object.entries(URL_MAPPING).find(([id, hash]) => hash === currentHash);
-    const idToScroll = entry ? entry[0] : currentHash.replace('#', '');
-    if (idToScroll && idToScroll !== '') {
-      const timer = setTimeout(() => navigateTo(idToScroll, false), 500);
-      return () => clearTimeout(timer);
-    }
-  }, []);
-
-  useEffect(() => {
     const sections = Object.keys(URL_MAPPING);
     const observerOptions = { root: null, rootMargin: '-40% 0px -40% 0px', threshold: 0 };
+    
     const observerCallback = (entries: IntersectionObserverEntry[]) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          const id = entry.target.id;
-          const hash = URL_MAPPING[id] || `#${id}`;
-          if (window.location.hash !== hash) {
-            window.history.replaceState({ id }, '', hash);
-          }
+          // Logic for updating active state in a header could go here
+          // But we avoid window.history.replaceState to prevent SecurityErrors
         }
       });
     };
+
     const observer = new IntersectionObserver(observerCallback, observerOptions);
     sections.forEach((id) => {
       const el = document.getElementById(id);
       if (el) observer.observe(el);
     });
+
     return () => observer.disconnect();
   }, []);
 

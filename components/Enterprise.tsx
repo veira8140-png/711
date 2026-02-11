@@ -1,14 +1,10 @@
 
 import React from 'react';
-import { Orb } from './Orb.tsx';
 
 export const Enterprise: React.FC = () => {
   return (
     <div id="enterprise" className="space-y-60 py-20">
       <div className="max-w-4xl mx-auto text-center space-y-12">
-        <div className="flex justify-center mb-8">
-          <Orb size="lg" className="opacity-80" />
-        </div>
         <div className="space-y-6">
           <span className="text-[#8A3FA0] text-[10px] font-bold uppercase tracking-[0.4em]">Enterprise Grade</span>
           <h2 className="text-5xl md:text-7xl font-bold serif leading-tight text-black">
