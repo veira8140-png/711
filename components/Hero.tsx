@@ -1,5 +1,5 @@
-
 import React from 'react';
+import { Orb } from './Orb.tsx';
 
 interface HeroProps {
   onStart: () => void;
@@ -8,52 +8,51 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ onStart, onViewCaseStudy }) => {
   return (
-    <div className="relative pt-24 pb-32 px-6 flex flex-col items-center text-center max-w-5xl mx-auto">
-      <div className="space-y-8">
-        <p className="text-[#8A3FA0] text-sm font-bold uppercase tracking-[0.4em]">
-          #1 Best POS System for Small Business in Kenya
-        </p>
-        <h1 className="text-6xl md:text-8xl font-bold serif leading-[1.1] tracking-tight text-black">
+    <div className="relative pt-40 pb-24 md:pb-60 px-6 flex flex-col items-center text-center max-w-7xl mx-auto overflow-visible">
+      {/* Background Floating Orb (C4D Style) */}
+      <div className="absolute top-20 left-1/2 -translate-x-1/2 -z-10 opacity-80 scale-110">
+        <Orb size="hero" />
+      </div>
+
+      <div className="space-y-8 animate-in fade-in slide-in-from-bottom-8 duration-1000 relative z-10">
+        <span className="section-label drop-shadow-sm">Intelligent Commerce</span>
+        <h1 className="text-5xl md:text-[9rem] font-bold serif leading-[0.9] tracking-tight text-black max-w-6xl">
           Grow Your Business <br /> 
-          <span className="italic">Smarter.</span>
+          <span className="italic text-transparent bg-clip-text bg-gradient-to-r from-black via-gray-700 to-black">Smarter.</span>
         </h1>
-        <p className="text-xl text-gray-600 max-w-2xl mx-auto font-light leading-relaxed">
-          Veira gives you instant visibility into sales, stock, and cash flow so you can make smarter decisions and compete with the big guys.
+        <p className="text-lg md:text-2xl text-gray-500 max-w-2xl mx-auto font-light leading-relaxed mt-12">
+          Veira provides instant visibility into sales, stock, and cash flow. 
+          Make informed decisions. Compete with the giants.
         </p>
       </div>
       
-      <div className="mt-16 flex flex-col sm:flex-row items-center justify-center gap-6">
+      <div className="mt-20 flex flex-col sm:flex-row items-center justify-center gap-6 w-full sm:w-auto relative z-10">
         <button 
           onClick={onStart}
-          className="cta-button w-full sm:w-auto px-12 py-5 rounded-none font-bold text-sm uppercase tracking-widest shadow-xl shadow-[#2D9B9B]/20"
+          className="cta-primary w-full sm:w-auto px-12 py-6 text-xs font-bold uppercase tracking-widest"
         >
-          Get Free POS
+          Get Started
         </button>
         <button 
           onClick={onViewCaseStudy}
-          className="w-full sm:w-auto px-12 py-5 border border-black/10 hover:bg-black/5 transition-all font-bold text-sm uppercase tracking-widest text-black"
+          className="w-full sm:w-auto px-12 py-6 border border-black/10 backdrop-blur-sm bg-white/20 hover:bg-white/40 transition-all text-xs font-bold uppercase tracking-widest text-black"
         >
-          Case Study
+          Case Studies
         </button>
       </div>
 
-      <div className="mt-32 grid grid-cols-2 md:grid-cols-4 gap-12 border-t border-black/5 pt-12 w-full">
-        <div className="flex flex-col items-center">
-          <span className="text-4xl font-bold serif mb-2 text-black">eTIMS</span>
-          <span className="text-[10px] uppercase tracking-widest text-gray-500 font-semibold">KRA Compliant</span>
-        </div>
-        <div className="flex flex-col items-center">
-          <span className="text-4xl font-bold serif mb-2 text-black">MPESA</span>
-          <span className="text-[10px] uppercase tracking-widest text-gray-500 font-semibold">Direct Integration</span>
-        </div>
-        <div className="flex flex-col items-center">
-          <span className="text-4xl font-bold serif mb-2 text-black">Offline</span>
-          <span className="text-[10px] uppercase tracking-widest text-gray-500 font-semibold">Works Anywhere</span>
-        </div>
-        <div className="flex flex-col items-center">
-          <span className="text-4xl font-bold serif mb-2 text-black">Free</span>
-          <span className="text-[10px] uppercase tracking-widest text-gray-500 font-semibold">Setup & Training</span>
-        </div>
+      <div className="mt-40 grid grid-cols-2 md:grid-cols-4 gap-12 border-t border-black/5 pt-16 w-full opacity-60">
+        {[
+          ['eTIMS', 'Compliance'],
+          ['M-PESA', 'Integration'],
+          ['Offline', 'Reliability'],
+          ['Support', 'Local']
+        ].map(([title, subtitle]) => (
+          <div key={title} className="flex flex-col items-center">
+            <span className="text-2xl font-bold serif text-black">{title}</span>
+            <span className="text-[9px] uppercase tracking-widest text-gray-400 font-medium">{subtitle}</span>
+          </div>
+        ))}
       </div>
     </div>
   );

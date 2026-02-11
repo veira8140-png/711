@@ -21,19 +21,19 @@ export const VisualStudio: React.FC = () => {
   };
 
   return (
-    <div id="visual" className="glass rounded-none p-8 md:p-16 border-black/5">
-      <div className="grid md:grid-cols-2 gap-20 items-center">
-        <div>
-          <h2 className="text-4xl font-bold serif mb-4 text-black">Visual Synthesis</h2>
-          <p className="text-gray-500 font-light text-lg mb-12 leading-relaxed">
+    <div id="visual" className="glass rounded-none p-6 md:p-16 border-black/5">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 items-center">
+        <div className="order-2 md:order-1">
+          <h2 className="text-2xl md:text-4xl font-bold serif mb-3 text-black">Visual Synthesis</h2>
+          <p className="text-gray-500 font-light text-base md:text-lg mb-8 md:mb-12 leading-relaxed">
             Translate abstract operational data into high-fidelity brand assets. 
           </p>
           
-          <div className="mb-8">
+          <div className="mb-6 md:mb-8">
             <textarea 
-              rows={4}
+              rows={3}
               placeholder="Describe the visual essence..."
-              className="w-full bg-black/5 border border-black/10 px-6 py-6 focus:outline-none focus:border-[#8A3FA0] transition-colors resize-none text-lg font-light text-black"
+              className="w-full bg-black/5 border border-black/10 px-5 py-5 focus:outline-none focus:border-[#8A3FA0] transition-colors resize-none text-base md:text-lg font-light text-black"
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
             />
@@ -42,7 +42,7 @@ export const VisualStudio: React.FC = () => {
           <button 
             onClick={handleGenerate}
             disabled={loading}
-            className="cta-button w-full px-12 py-5 font-bold uppercase tracking-widest text-xs disabled:opacity-50 flex items-center justify-center gap-3"
+            className="cta-button w-full px-12 py-4 md:py-5 font-bold uppercase tracking-widest text-xs disabled:opacity-50 flex items-center justify-center gap-3"
           >
             {loading ? (
               <>
@@ -53,15 +53,15 @@ export const VisualStudio: React.FC = () => {
           </button>
         </div>
 
-        <div className="relative aspect-square bg-gray-100 flex items-center justify-center border border-black/5 group overflow-hidden">
+        <div className="order-1 md:order-2 relative aspect-square bg-gray-100 flex items-center justify-center border border-black/5 group overflow-hidden max-w-sm mx-auto md:max-w-none w-full">
           {image ? (
             <img src={image} alt="Generated visual asset" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
           ) : (
-            <div className="text-center p-8">
-              <div className="w-16 h-16 border border-black/10 rounded-full mx-auto mb-6 flex items-center justify-center opacity-20">
-                <div className="w-8 h-8 bg-black/20 rounded-full"></div>
+            <div className="text-center p-6 md:p-8">
+              <div className="w-12 h-12 md:w-16 md:h-16 border border-black/10 rounded-full mx-auto mb-4 md:mb-6 flex items-center justify-center opacity-20">
+                <div className="w-6 h-6 md:w-8 md:h-8 bg-black/20 rounded-full"></div>
               </div>
-              <p className="text-gray-400 text-[10px] uppercase tracking-[0.3em]">Waiting for Input</p>
+              <p className="text-gray-400 text-[8px] md:text-[10px] uppercase tracking-[0.3em]">Waiting for Input</p>
             </div>
           )}
           <div className="absolute top-4 left-4 w-4 h-[1px] bg-black/10"></div>

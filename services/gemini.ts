@@ -1,8 +1,8 @@
-
 import { GoogleGenAI, Type } from "@google/genai";
 import { BrandOutput, CopyOutput } from "../types";
 
-const getAI = () => new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
+// Always use const ai = new GoogleGenAI({apiKey: process.env.API_KEY});
+const getAI = () => new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 export const generateBrandIdentity = async (industry: string, vibe: string): Promise<BrandOutput> => {
   const ai = getAI();
@@ -24,7 +24,9 @@ export const generateBrandIdentity = async (industry: string, vibe: string): Pro
     },
   });
   
-  return JSON.parse(response.text || '{}');
+  // Directly access .text property
+  const text = response.text || '{}';
+  return JSON.parse(text);
 };
 
 export const generateImage = async (prompt: string): Promise<string> => {
@@ -41,6 +43,7 @@ export const generateImage = async (prompt: string): Promise<string> => {
     },
   });
 
+  // Find the image part in nano banana series models
   const part = response.candidates?.[0]?.content?.parts.find(p => p.inlineData);
   if (part?.inlineData) {
     return `data:image/png;base64,${part.inlineData.data}`;
@@ -66,5 +69,7 @@ export const generateCopy = async (topic: string, format: string): Promise<CopyO
     },
   });
 
-  return JSON.parse(response.text || '{}');
+  // Directly access .text property
+  const text = response.text || '{}';
+  return JSON.parse(text);
 };
