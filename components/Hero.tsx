@@ -27,13 +27,13 @@ export const Hero: React.FC<HeroProps> = ({ onStart, onViewCaseStudy }) => {
           onClick={onStart}
           className="cta-button w-full sm:w-auto px-12 py-5 rounded-none font-bold text-sm uppercase tracking-widest shadow-xl shadow-[#2D9B9B]/20"
         >
-          Buy POS System Kenya
+          Get Free POS
         </button>
         <button 
           onClick={onViewCaseStudy}
           className="w-full sm:w-auto px-12 py-5 border border-black/10 hover:bg-black/5 transition-all font-bold text-sm uppercase tracking-widest text-black"
         >
-          POS System Comparison
+          Case Study
         </button>
       </div>
 
