@@ -3,13 +3,12 @@ import React from 'react';
 
 interface HeroProps {
   onStart: () => void;
+  onViewCaseStudy?: () => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onStart }) => {
+export const Hero: React.FC<HeroProps> = ({ onStart, onViewCaseStudy }) => {
   return (
     <div className="relative pt-24 pb-32 px-6 flex flex-col items-center text-center max-w-5xl mx-auto">
-      {/* Orb removed as requested to streamline the entry experience */}
-      
       <div className="space-y-8">
         <p className="text-[#8A3FA0] text-sm font-bold uppercase tracking-[0.4em]">
           Certainty in every sale
@@ -30,8 +29,11 @@ export const Hero: React.FC<HeroProps> = ({ onStart }) => {
         >
           Explore Intelligence
         </button>
-        <button className="w-full sm:w-auto px-12 py-5 border border-black/10 hover:bg-black/5 transition-all font-bold text-sm uppercase tracking-widest text-black">
-          View Certainty
+        <button 
+          onClick={onViewCaseStudy}
+          className="w-full sm:w-auto px-12 py-5 border border-black/10 hover:bg-black/5 transition-all font-bold text-sm uppercase tracking-widest text-black"
+        >
+          Case Study
         </button>
       </div>
 

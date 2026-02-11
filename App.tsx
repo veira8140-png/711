@@ -9,12 +9,14 @@ import { Agents } from './components/Agents.tsx';
 import { Cloud } from './components/Cloud.tsx';
 import { Enterprise } from './components/Enterprise.tsx';
 import { OurStory } from './components/OurStory.tsx';
+import { CaseStudies } from './components/CaseStudies.tsx';
 import { WaveBackground } from './components/WaveBackground.tsx';
 
 // Mapping between section IDs and their SEO-friendly URL paths
 const URL_MAPPING: Record<string, string> = {
   'hero': '/',
   'pos': '/best-pos-system-for-small-business-in-kenya',
+  'case-study': '/case-study',
   'studio': '/studio',
   'agents': '/agents',
   'cloud': '/cloud',
@@ -37,7 +39,6 @@ const App: React.FC = () => {
   // Handle initial load and deep linking
   useEffect(() => {
     const currentPath = window.location.pathname;
-    // Find the ID associated with the current path
     const entry = Object.entries(URL_MAPPING).find(([id, path]) => path === currentPath);
     const idToScroll = entry ? entry[0] : currentPath.replace('/', '');
 
@@ -97,12 +98,16 @@ const App: React.FC = () => {
       
       <main className="pb-32">
         <section id="hero" className="bg-white w-full border-b border-black/5">
-          <Hero onStart={() => navigateTo('pos')} />
+          <Hero onStart={() => navigateTo('pos')} onViewCaseStudy={() => navigateTo('case-study')} />
         </section>
 
         <div className="container mx-auto px-6 mt-40 space-y-60">
           <section id="pos" className="scroll-mt-32">
             <POS />
+          </section>
+
+          <section id="case-study" className="scroll-mt-32">
+            <CaseStudies />
           </section>
 
           <section id="studio" className="scroll-mt-32">
