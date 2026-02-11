@@ -1,10 +1,10 @@
 
 import React from 'react';
-import { Header } from './components/Header';
-import { Hero } from './components/Hero';
-import { VisualStudio } from './components/VisualStudio';
-import { BrandArchitect } from './components/BrandArchitect';
-import { WaveBackground } from './components/WaveBackground';
+import { Header } from './components/Header.tsx';
+import { Hero } from './components/Hero.tsx';
+import { VisualStudio } from './components/VisualStudio.tsx';
+import { BrandArchitect } from './components/BrandArchitect.tsx';
+import { WaveBackground } from './components/WaveBackground.tsx';
 
 const App: React.FC = () => {
   const scrollIntoView = (id: string) => {
@@ -22,7 +22,7 @@ const App: React.FC = () => {
       
       <main className="pt-24 pb-32">
         {/* Full-width white hero section */}
-        <section id="hero" className="bg-white w-full border-b border-white/10">
+        <section id="hero" className="bg-white w-full border-b border-black/5">
           <Hero onStart={() => scrollIntoView('studio')} />
         </section>
 

@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { generateImage } from '../services/gemini';
+import { generateImage } from '../services/gemini.ts';
 
 export const VisualStudio: React.FC = () => {
   const [prompt, setPrompt] = useState('');

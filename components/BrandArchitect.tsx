@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
-import { generateBrandIdentity } from '../services/gemini';
-import { BrandOutput } from '../types';
+import { generateBrandIdentity } from '../services/gemini.ts';
+import { BrandOutput } from '../types.ts';
 
 export const BrandArchitect: React.FC = () => {
   const [industry, setIndustry] = useState('');
@@ -36,7 +36,7 @@ export const BrandArchitect: React.FC = () => {
             <input 
               type="text" 
               placeholder="e.g. Luxury Retail"
-              className="w-full bg-black/20 border-b border-white/10 px-0 py-4 focus:outline-none focus:border-[#8A3FA0] transition-colors text-xl font-light"
+              className="w-full bg-black/20 border-b border-white/10 px-0 py-4 focus:outline-none focus:border-[#8A3FA0] transition-colors text-xl font-light text-white"
               value={industry}
               onChange={(e) => setIndustry(e.target.value)}
             />
@@ -46,7 +46,7 @@ export const BrandArchitect: React.FC = () => {
             <input 
               type="text" 
               placeholder="e.g. Precise, Calm, Human"
-              className="w-full bg-black/20 border-b border-white/10 px-0 py-4 focus:outline-none focus:border-[#8A3FA0] transition-colors text-xl font-light"
+              className="w-full bg-black/20 border-b border-white/10 px-0 py-4 focus:outline-none focus:border-[#8A3FA0] transition-colors text-xl font-light text-white"
               value={vibe}
               onChange={(e) => setVibe(e.target.value)}
             />

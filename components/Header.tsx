@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Orb } from './Orb';
+import { Orb } from './Orb.tsx';
 
 interface HeaderProps {
   onNavigate: (id: string) => void;
