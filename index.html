@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veira | Certainty in every sale</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --veira-deep-plum: #2C0D36;
+            --veira-dark-purple: #531753;
+            --veira-wave-purple: #783D77;
+            --veira-highlight: #8A3FA0;
+            --veira-turquoise: #2D9B9B;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--veira-deep-plum);
+            color: #ffffff;
+            margin: 0;
+            overflow-x: hidden;
+        }
+        .serif {
+            font-family: 'Playfair Display', serif;
+        }
+        .cta-button {
+            background-color: var(--veira-turquoise);
+            color: white;
+            transition: all 0.2s ease;
+        }
+        .cta-button:hover {
+            filter: brightness(1.1);
+            transform: translateY(-1px);
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .orb-glow {
+            box-shadow: 0 0 60px 10px rgba(138, 63, 160, 0.4);
+        }
+        @keyframes orb-float {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-15px) scale(1.02); }
+        }
+        .animate-orb {
+            animation: orb-float 6s ease-in-out infinite;
+        }
+        @keyframes wave-flow {
+            from { stroke-dashoffset: 1000; }
+            to { stroke-dashoffset: 0; }
+        }
+        .wave-line {
+            stroke: var(--veira-wave-purple);
+            stroke-width: 0.5;
+            fill: none;
+            opacity: 0.3;
+            stroke-dasharray: 1000;
+            animation: wave-flow 30s linear infinite;
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.40.0"
+  }
+}
+</script>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+</html>

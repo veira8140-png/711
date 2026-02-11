@@ -1,0 +1,7 @@
+{
+  "name": "Veira POS Studio",
+  "description": "Certainty in every sale. A premium retail intelligence dashboard powered by Gemini.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
