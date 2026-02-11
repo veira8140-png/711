@@ -1,5 +1,4 @@
 import React from 'react';
-import { Orb } from './Orb.tsx';
 
 interface HeroProps {
   onStart: () => void;
@@ -9,11 +8,6 @@ interface HeroProps {
 export const Hero: React.FC<HeroProps> = ({ onStart, onViewCaseStudy }) => {
   return (
     <div className="relative pt-40 pb-24 md:pb-60 px-6 flex flex-col items-center text-center max-w-7xl mx-auto overflow-visible">
-      {/* Background Floating Orb (C4D Style) */}
-      <div className="absolute top-20 left-1/2 -translate-x-1/2 -z-10 opacity-80 scale-110">
-        <Orb size="hero" />
-      </div>
-
       <div className="space-y-8 animate-in fade-in slide-in-from-bottom-8 duration-1000 relative z-10">
         <span className="section-label drop-shadow-sm">Intelligent Commerce</span>
         <h1 className="text-5xl md:text-[9rem] font-bold serif leading-[0.9] tracking-tight text-black max-w-6xl">
