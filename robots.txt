@@ -2,3 +2,5 @@ User-agent: *
 Allow: /
 
 Sitemap: https://veirahq.com/sitemap.xml
+Sitemap: https://veirahq.com/sitemap.txt
+Sitemap: https://veirahq.com/llms.txt

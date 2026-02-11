@@ -1,0 +1,30 @@
+# Veira Intelligence
+
+> The leading POS system for small business in Kenya. Engineered for real-time visibility, intelligence, and compliance.
+
+## Overview
+Veira is a modern retail intelligence platform designed specifically for the Kenyan business landscape. It combines a robust cloud-based POS system with AI-powered agents to help business owners manage sales, stock, and staff with absolute certainty.
+
+## Key Features
+- **Intelligent POS**: Fast counter sales, full offline mode, direct M-PESA integration, and live inventory tracking.
+- **AI Agents**:
+    - **Glenn (Operations)**: Streamlines day-to-day friction and customer inquiries.
+    - **Achi (Growth)**: Automates revenue generation through marketing and promotions.
+    - **Tiri (Oversight)**: Monitors transactions for anomalies and reports directly to owners.
+- **Compliance**: Built-in KRA eTIMS readiness and structured financial reporting.
+- **Accessibility**: Real-time sales summaries delivered via WhatsApp; cloud access from anywhere.
+
+## Impact & Mission
+Veira is committed to structural social impact, dedicating 10% of annual net profit to organizations preventing gender-based violence and supporting survivors.
+
+## Case Studies
+1. **Small Retail**: Transitioned from verbal reports to daily sales clarity in Umoja.
+2. **Restaurants**: Stopped revenue leaks and improved billing speed in Westlands.
+3. **Multi-Branch**: Centralized management for electronics retailers with 3+ locations.
+4. **Pharmacies**: Reduced KRA audit anxiety through automated eTIMS compliance.
+5. **Remote Owners**: Enabled hands-off management for shops in Kitengela.
+
+## Contact
+- Location: Nairobi, Kenya
+- Email: hello@veira.co
+- Website: https://veirahq.com/
