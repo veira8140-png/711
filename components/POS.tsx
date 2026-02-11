@@ -39,7 +39,7 @@ export const POS: React.FC = () => {
           <h2 className="text-5xl md:text-7xl font-bold serif leading-tight text-black">Best POS Software Kenya. <br/><span className="italic">Certainty at the counter.</span></h2>
         </div>
         <p className="text-xl text-gray-600 font-light leading-relaxed">
-          Looking for an <strong className="text-black">affordable POS system in Nairobi</strong>? Veira provides the most reliable <strong className="text-black">retail POS system Kenya</strong> has to offer, featuring native <strong className="text-black">Mpesa integration</strong> and offline mode for consistent operations.
+          If you are looking for an affordable POS system in Nairobi, Veira provides the most reliable retail POS system Kenya has to offer, featuring native Mpesa integration and offline mode for consistent operations.
         </p>
       </div>
 
@@ -61,7 +61,7 @@ export const POS: React.FC = () => {
 
       <div className="glass p-12 text-center border-black/5">
         <h3 className="text-3xl font-bold serif mb-6 text-black">Transparent POS System Price Kenya</h3>
-        <p className="text-gray-500 mb-8 max-w-2xl mx-auto">From single shops to multi-branch supermarkets, we offer the most <strong className="text-black">cheap POS system for retail shops</strong> without compromising on enterprise-grade features.</p>
+        <p className="text-gray-500 mb-8 max-w-2xl mx-auto">From single shops to multi-branch supermarkets, we offer the most cheap POS system for retail shops without compromising on enterprise-grade features and local support.</p>
         <button className="cta-button px-12 py-5 font-bold uppercase tracking-widest text-xs">Get Price Quote →</button>
       </div>
 

@@ -18,7 +18,7 @@ export const Hero: React.FC<HeroProps> = ({ onStart, onViewCaseStudy }) => {
           <span className="italic">You'll Ever Need.</span>
         </h1>
         <p className="text-xl text-gray-600 max-w-2xl mx-auto font-light leading-relaxed">
-          The most <strong className="text-black">affordable POS system in Nairobi</strong>. Veira gives Kenyan retail owners complete control with a <strong className="text-black">POS system with inventory management</strong> and direct <strong className="text-black">Mpesa integration</strong>.
+          Discover the most affordable POS system in Nairobi. Veira gives Kenyan retail owners complete control with a dedicated POS system with inventory management and direct Mpesa integration.
         </p>
       </div>
       

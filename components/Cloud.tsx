@@ -29,7 +29,7 @@ export const Cloud: React.FC = () => {
           <h2 className="text-5xl md:text-7xl font-bold serif leading-tight text-black">Cloud POS System Kenya. <br/><span className="italic">Sync Your Success.</span></h2>
         </div>
         <p className="text-xl text-gray-600 font-light leading-relaxed">
-          Experience the <strong className="text-black">best cloud POS system for restaurants in Nairobi</strong>. Veira Cloud ensures your <strong className="text-black">retail management system Kenya</strong> is always up-to-date.
+          Experience the best cloud POS system for restaurants in Nairobi. Veira Cloud ensures your retail management system Kenya is always up-to-date, providing a centralized view of your entire operation.
         </p>
       </div>
 
@@ -37,12 +37,12 @@ export const Cloud: React.FC = () => {
         <div className="space-y-8">
           <h3 className="text-4xl font-bold serif text-black">Remote Business Management</h3>
           <p className="text-gray-600 text-lg leading-relaxed font-light">
-            Stop being tied to your shop. Track stock levels, monitor staff performance, and view sales reports from your laptop or phone.
+            Stop being tied to your shop floor. Track your current stock levels, monitor staff performance, and view detailed sales reports directly from your laptop or mobile device.
           </p>
           <div className="p-8 border border-black/5 bg-black/5 space-y-4">
             <h4 className="text-xs font-bold uppercase tracking-widest text-[#2D9B9B]">Why Choose Cloud POS?</h4>
             <p className="text-sm text-gray-500 leading-relaxed">
-              Eliminate expensive on-premise servers. Our <strong className="text-black">POS software Kenya</strong> runs entirely in the cloud.
+              Eliminate the need for expensive on-premise servers. Our POS software Kenya runs entirely in the cloud, allowing for seamless updates and zero hardware maintenance costs.
             </p>
           </div>
         </div>
