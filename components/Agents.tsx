@@ -26,13 +26,13 @@ export const Agents: React.FC = () => {
   return (
     <div className="space-y-32">
       <div className="max-w-3xl space-y-6">
-        <span className="section-label">Architecture</span>
+        <span className="section-label">AI Retail Intelligence</span>
         <h2 className="text-4xl md:text-6xl font-bold serif text-black leading-tight">
-          Autonomous <br/><span className="italic text-gray-400">Intelligence.</span>
+          AI-Powered <br/><span className="italic text-gray-400">Retail Agents.</span>
         </h2>
         <p className="text-lg text-gray-500 font-light leading-relaxed">
-          Veira is powered by three specialized AI agents that observe, act, and report automatically. 
-          They are not features; they are employees.
+          Veira is powered by specialized AI agents for <strong>retail management in Kenya</strong>. 
+          They observe every transaction, act on stock movements, and report on leakage automatically.
         </p>
       </div>
 
@@ -40,23 +40,23 @@ export const Agents: React.FC = () => {
         <AgentCard 
           name="Glenn"
           role="Operations"
-          tagline="Day-to-day friction removal"
+          tagline="Staff Support & Workflow Optimization"
           accentColor="#2D9B9B"
-          description="Glenn supports staff workflows and customer inquiries in real-time, reducing operational drag."
+          description="Glenn streamlines day-to-day friction in Kenyan shops, handling staff workflows and inventory queries in real-time."
         />
         <AgentCard 
           name="Achi"
           role="Growth"
-          tagline="Active revenue generation"
+          tagline="Revenue Generation & Marketing"
           accentColor="#8A3FA0"
-          description="Achi manages marketing follow-ups and promotions, converting leads into repeat customers automatically."
+          description="Achi acts as your virtual marketing manager, running promotions and customer follow-ups based on sales data."
         />
         <AgentCard 
           name="Tiri"
           role="Oversight"
-          tagline="Continuous protection"
+          tagline="Loss Prevention & WhatsApp Alerts"
           accentColor="#1a1a1a"
-          description="Tiri monitors every transaction for anomalies, leakage, and trends, reporting directly to ownership."
+          description="Tiri monitors transactions for anomalies and sends daily sales summaries directly to your WhatsApp."
         />
       </div>
     </div>

@@ -9,14 +9,13 @@ export const Hero: React.FC<HeroProps> = ({ onStart, onViewCaseStudy }) => {
   return (
     <div className="relative pt-32 pb-16 md:pt-48 md:pb-60 px-4 sm:px-6 flex flex-col items-center text-center max-w-7xl mx-auto overflow-visible">
       <div className="space-y-6 md:space-y-8 animate-in fade-in slide-in-from-bottom-8 duration-1000 relative z-10">
-        <span className="section-label drop-shadow-sm inline-block">The Best POS System in Kenya</span>
+        <span className="section-label drop-shadow-sm inline-block">Best Cloud POS Software in Kenya</span>
         <h1 className="text-4xl sm:text-6xl md:text-[7rem] lg:text-[8.5rem] font-bold serif leading-[1] md:leading-[0.9] tracking-tight text-black max-w-6xl">
-          Scale Your Shop <br className="hidden sm:block" /> 
-          <span className="italic text-transparent bg-clip-text bg-gradient-to-r from-black via-gray-700 to-black">Precisely.</span>
+          The Best <span className="italic text-transparent bg-clip-text bg-gradient-to-r from-black via-gray-700 to-black">POS System</span> <br className="hidden sm:block" /> in Kenya.
         </h1>
         <p className="text-base sm:text-lg md:text-2xl text-gray-500 max-w-3xl mx-auto font-light leading-relaxed mt-8 md:mt-12 px-4">
-          Veira is the best POS system for small business in Kenya, engineered for 
-          real-time visibility into sales, stock, and cash flow. Simple. Powerful. Compliant.
+          Veira is the top-rated <strong>POS system for small business in Kenya</strong>, engineered for 
+          real-time visibility into sales, stock, and cash flow. Simple. Powerful. eTIMS Compliant.
         </p>
       </div>
       

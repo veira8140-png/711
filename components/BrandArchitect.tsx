@@ -25,8 +25,8 @@ export const BrandArchitect: React.FC = () => {
     <div className="glass rounded-none p-6 md:p-16 border-black/5">
       <div className="max-w-4xl mx-auto">
         <div className="mb-10 md:mb-12 text-center md:text-left">
-          <h2 className="text-2xl md:text-4xl font-bold serif mb-3 text-black">Strategic Synthesis</h2>
-          <p className="text-gray-500 font-light text-base md:text-lg">Harness Veira Intelligence to architect your next market move.</p>
+          <h2 className="text-2xl md:text-4xl font-bold serif mb-3 text-black">AI Brand Architect</h2>
+          <p className="text-gray-500 font-light text-base md:text-lg">Harness Veira's AI intelligence to build a retail brand for the Kenyan market.</p>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-10 md:mb-12">

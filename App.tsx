@@ -10,6 +10,7 @@ import { CaseStudies } from './components/CaseStudies.tsx';
 import { WaveBackground } from './components/WaveBackground.tsx';
 import { BrandArchitect } from './components/BrandArchitect.tsx';
 import { VisualStudio } from './components/VisualStudio.tsx';
+import { FAQ } from './components/FAQ.tsx';
 
 const App: React.FC = () => {
   const navigateTo = (id: string) => {
@@ -81,12 +82,12 @@ const App: React.FC = () => {
 
           <section id="studio" className="space-y-24">
             <div className="max-w-3xl space-y-6">
-              <span className="section-label">AI Studio</span>
+              <span className="section-label">AI Retail Studio</span>
               <h2 className="text-4xl md:text-6xl font-bold serif text-black leading-tight">
-                Generative <br/><span className="italic text-gray-400">Commerce.</span>
+                AI Brand <br/><span className="italic text-gray-400">Architect.</span>
               </h2>
               <p className="text-lg text-gray-500 font-light leading-relaxed">
-                Use our built-in Gemini Intelligence to architect your brand and generate visual assets in real-time.
+                Use our built-in Gemini Intelligence to architect your retail brand and generate marketing assets in real-time.
               </p>
             </div>
             <div className="space-y-12">
@@ -120,6 +121,8 @@ const App: React.FC = () => {
               Get Started Now
             </button>
           </section>
+
+          <FAQ />
         </div>
 
         <section id="our-story" className="bg-gradient-to-b from-[#2e1065] via-[#1e1b4b] to-[#0f0720] text-white">
