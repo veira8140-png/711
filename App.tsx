@@ -39,7 +39,6 @@ const App: React.FC = () => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           // Logic for updating active state in a header could go here
-          // But we avoid window.history.replaceState to prevent SecurityErrors
         }
       });
     };
@@ -58,16 +57,49 @@ const App: React.FC = () => {
       <script type="application/ld+json">
         {JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "Organization",
-          "name": "Veira Intelligence",
-          "url": "https://veirahq.com",
-          "logo": "https://veirahq.com/logo.png",
-          "description": "Best POS system for small business in Kenya. Affordable POS software and machines in Nairobi.",
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Nairobi",
-            "addressCountry": "Kenya"
-          }
+          "@graph": [
+            {
+              "@type": "Organization",
+              "name": "Veira Intelligence",
+              "url": "https://veirahq.com",
+              "logo": "https://veirahq.com/logo.png",
+              "description": "Best POS system for small business in Kenya. Affordable POS software and machines in Nairobi.",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Nairobi",
+                "addressCountry": "Kenya"
+              }
+            },
+            {
+              "@type": "WebPage",
+              "@id": "https://veirahq.com/#webpage",
+              "url": "https://veirahq.com/",
+              "name": "Veira | Best POS system for small business in Kenya",
+              "datePublished": "2024-12-31T08:00:00+03:00",
+              "dateModified": "2025-01-20T14:30:00+03:00",
+              "description": "Veira provides the best POS system for small businesses in Kenya. Affordable POS software with Mpesa integration, eTIMS compliance, and offline capabilities.",
+              "breadcrumb": {
+                "@type": "BreadcrumbList",
+                "itemListElement": [{
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Home",
+                  "item": "https://veirahq.com/"
+                }]
+              }
+            },
+            {
+              "@type": "SoftwareApplication",
+              "name": "Veira POS",
+              "operatingSystem": "Android, Windows, Web",
+              "applicationCategory": "BusinessApplication",
+              "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "KES"
+              }
+            }
+          ]
         })}
       </script>
 

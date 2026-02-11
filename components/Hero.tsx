@@ -14,11 +14,11 @@ export const Hero: React.FC<HeroProps> = ({ onStart, onViewCaseStudy }) => {
           #1 Best POS System for Small Business in Kenya
         </p>
         <h1 className="text-6xl md:text-8xl font-bold serif leading-[1.1] tracking-tight text-black">
-          The Only POS <br /> 
-          <span className="italic">You'll Ever Need.</span>
+          Grow Your Business <br /> 
+          <span className="italic">Smarter.</span>
         </h1>
         <p className="text-xl text-gray-600 max-w-2xl mx-auto font-light leading-relaxed">
-          Discover the most affordable POS system in Nairobi. Veira gives Kenyan retail owners complete control with a dedicated POS system with inventory management and direct Mpesa integration.
+          Veira gives you instant visibility into sales, stock, and cash flow so you can make smarter decisions and compete with the big guys.
         </p>
       </div>
       
