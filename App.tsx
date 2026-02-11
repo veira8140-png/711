@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Header } from './components/Header.tsx';
 import { Hero } from './components/Hero.tsx';
 import { VisualStudio } from './components/VisualStudio.tsx';
@@ -11,27 +11,95 @@ import { Enterprise } from './components/Enterprise.tsx';
 import { OurStory } from './components/OurStory.tsx';
 import { WaveBackground } from './components/WaveBackground.tsx';
 
+// Mapping between section IDs and their SEO-friendly URL paths
+const URL_MAPPING: Record<string, string> = {
+  'hero': '/',
+  'pos': '/best-pos-system-for-small-business-in-kenya',
+  'studio': '/studio',
+  'agents': '/agents',
+  'cloud': '/cloud',
+  'enterprise': '/enterprise',
+  'our-story': '/our-story'
+};
+
 const App: React.FC = () => {
-  const scrollIntoView = (id: string) => {
+  const navigateTo = (id: string, updateUrl = true) => {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
+      if (updateUrl) {
+        const path = URL_MAPPING[id] || `/${id}`;
+        window.history.pushState({ id }, '', path);
+      }
     }
   };
+
+  // Handle initial load and deep linking
+  useEffect(() => {
+    const currentPath = window.location.pathname;
+    // Find the ID associated with the current path
+    const entry = Object.entries(URL_MAPPING).find(([id, path]) => path === currentPath);
+    const idToScroll = entry ? entry[0] : currentPath.replace('/', '');
+
+    if (idToScroll) {
+      const timer = setTimeout(() => {
+        navigateTo(idToScroll, false);
+      }, 500);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
+  // Sync URL with scroll position using Intersection Observer
+  useEffect(() => {
+    const sections = Object.keys(URL_MAPPING);
+    const observerOptions = {
+      root: null,
+      rootMargin: '-40% 0px -40% 0px',
+      threshold: 0
+    };
+
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          const path = URL_MAPPING[id] || `/${id}`;
+          if (window.location.pathname !== path) {
+            window.history.replaceState({ id }, '', path);
+          }
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    sections.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const handlePopState = (event: PopStateEvent) => {
+      const id = event.state?.id || 'hero';
+      navigateTo(id, false);
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
 
   return (
     <div className="min-h-screen relative selection:bg-[#2D9B9B] selection:text-white">
       <WaveBackground />
       
-      <Header onNavigate={scrollIntoView} />
+      <Header onNavigate={navigateTo} />
       
       <main className="pb-32">
-        {/* Full-width white hero section - starts at top 0 to hide body background under header */}
         <section id="hero" className="bg-white w-full border-b border-black/5">
-          <Hero onStart={() => scrollIntoView('pos')} />
+          <Hero onStart={() => navigateTo('pos')} />
         </section>
 
-        {/* Centered container for sections */}
         <div className="container mx-auto px-6 mt-40 space-y-60">
           <section id="pos" className="scroll-mt-32">
             <POS />
