@@ -15,7 +15,7 @@ import { WaveBackground } from './components/WaveBackground.tsx';
 // Mapping between section IDs and their SEO-friendly URL paths
 const URL_MAPPING: Record<string, string> = {
   'hero': '/',
-  'pos': '/best-pos-system-for-small-business-in-kenya',
+  'pos': '/pos',
   'case-study': '/case-study',
   'studio': '/studio',
   'agents': '/agents',
@@ -40,6 +40,9 @@ const App: React.FC = () => {
   useEffect(() => {
     const currentPath = window.location.pathname;
     const entry = Object.entries(URL_MAPPING).find(([id, path]) => path === currentPath);
+    
+    // If we find a direct mapping, use it. 
+    // Otherwise, try to find an ID that matches the path (e.g. /pos -> pos)
     const idToScroll = entry ? entry[0] : currentPath.replace('/', '');
 
     if (idToScroll) {
@@ -98,7 +101,10 @@ const App: React.FC = () => {
       
       <main className="pb-32">
         <section id="hero" className="bg-white w-full border-b border-black/5">
-          <Hero onStart={() => navigateTo('pos')} onViewCaseStudy={() => navigateTo('case-study')} />
+          <Hero 
+            onStart={() => navigateTo('pos')} 
+            onViewCaseStudy={() => navigateTo('case-study')} 
+          />
         </section>
 
         <div className="container mx-auto px-6 mt-40 space-y-60">

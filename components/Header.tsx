@@ -26,11 +26,18 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
         
         <div className="hidden lg:flex items-center space-x-8 text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500">
           <a 
-            href="/best-pos-system-for-small-business-in-kenya" 
+            href="/pos" 
             onClick={(e) => handleLinkClick(e, 'pos')} 
             className="hover:text-black transition-colors"
           >
             POS
+          </a>
+          <a 
+            href="/case-study" 
+            onClick={(e) => handleLinkClick(e, 'case-study')} 
+            className="hover:text-black transition-colors"
+          >
+            Case Study
           </a>
           <a 
             href="/agents" 
