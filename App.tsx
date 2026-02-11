@@ -76,7 +76,7 @@ const App: React.FC = () => {
           "name": "Veira Intelligence",
           "url": "https://veirahq.com",
           "logo": "https://veirahq.com/logo.png",
-          "description": "Leading provider of the best POS system for small business in Kenya.",
+          "description": "Best POS system for small business in Kenya. Affordable POS software and machines in Nairobi.",
           "address": {
             "@type": "PostalAddress",
             "addressLocality": "Nairobi",
