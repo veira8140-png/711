@@ -72,6 +72,24 @@ const App: React.FC = () => {
           <section id="enterprise">
             <Enterprise />
           </section>
+          
+          <section className="text-center space-y-12 py-24 border-t border-black/5">
+            <div className="space-y-6">
+              <h2 className="text-4xl md:text-6xl font-bold serif text-black leading-tight">
+                Ready to run the <br className="hidden sm:block" />
+                <span className="italic text-gray-400">Best POS in Kenya?</span>
+              </h2>
+              <p className="text-gray-500 max-w-xl mx-auto font-light">
+                Join hundreds of shops in Nairobi, Mombasa, and Kisumu who have upgraded to Veira.
+              </p>
+            </div>
+            <button 
+              onClick={() => navigateTo('hero')}
+              className="cta-primary px-16 py-6 text-xs font-bold uppercase tracking-widest"
+            >
+              Get Started Now
+            </button>
+          </section>
         </div>
 
         <section id="our-story" className="bg-gradient-to-b from-[#2e1065] via-[#1e1b4b] to-[#0f0720] text-white">
@@ -83,26 +101,31 @@ const App: React.FC = () => {
         <div className="container mx-auto flex flex-col md:flex-row justify-between items-start gap-12">
           <div className="space-y-4">
             <span className="text-2xl font-bold serif text-black">veira.</span>
-            <p className="text-gray-400 text-sm font-light max-w-xs">
-              Intelligent commerce solutions for the next generation of business.
+            <p className="text-gray-400 text-sm font-light max-w-xs leading-relaxed">
+              The leading POS system for small business in Kenya. Empowering retail owners with intelligent tools.
             </p>
           </div>
           <div className="grid grid-cols-2 gap-8 md:gap-16 text-[10px] uppercase tracking-widest font-bold text-gray-400">
             <div className="space-y-4">
-              <p className="text-black">Legal</p>
-              <p className="hover:text-black cursor-pointer transition-colors">Privacy</p>
-              <p className="hover:text-black cursor-pointer transition-colors">Terms</p>
+              <p className="text-black">Product</p>
+              <p className="hover:text-black cursor-pointer transition-colors" onClick={() => navigateTo('pos')}>Retail POS</p>
+              <p className="hover:text-black cursor-pointer transition-colors" onClick={() => navigateTo('cloud')}>Cloud Sync</p>
+              <p className="hover:text-black cursor-pointer transition-colors" onClick={() => navigateTo('studio')}>AI Studio</p>
             </div>
             <div className="space-y-4">
-              <p className="text-black">Contact</p>
-              <p>Nairobi, Kenya</p>
+              <p className="text-black">Connect</p>
+              <p>Nairobi, KE</p>
               <p className="hover:text-black cursor-pointer transition-colors">hello@veira.co</p>
+              <p className="hover:text-black cursor-pointer transition-colors">LinkedIn</p>
             </div>
           </div>
         </div>
         <div className="container mx-auto mt-12 pt-8 border-t border-black/5 flex flex-col sm:flex-row justify-between items-center gap-4 text-[9px] uppercase tracking-[0.2em] text-gray-400 font-bold">
-          <p>© 2024 Veira Intelligence</p>
-          <p>Built for the modern shop owner</p>
+          <p>© 2024 Veira Intelligence • Best POS system for small business in Kenya</p>
+          <div className="flex gap-6">
+            <p className="hover:text-black cursor-pointer">Privacy Policy</p>
+            <p className="hover:text-black cursor-pointer">Terms of Service</p>
+          </div>
         </div>
       </footer>
     </div>
