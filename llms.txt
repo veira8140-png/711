@@ -1,31 +1,30 @@
 # Veira Intelligence
 
-> The leading POS system for small business in Kenya. Engineered for real-time visibility, intelligence, and compliance.
+> The premium Cloud POS System and Retail Intelligence platform for small businesses in Kenya. Engineered for real-time visibility and KRA eTIMS compliance.
 
 ## Overview
-Veira is a modern retail intelligence platform designed specifically for the Kenyan business landscape. It combines a robust cloud-based POS system with AI-powered agents to help business owners manage sales, stock, and staff with absolute certainty.
+Veira is a specialized retail technology stack designed for the Kenyan market. It integrates point-of-sale hardware, cloud software, M-PESA reconciliation, and automated tax compliance into a single source of certainty for business owners.
 
-## Key Features
-- **Intelligent POS**: Fast counter sales, full offline mode, direct M-PESA integration, and live inventory tracking.
-- **AI Agents**:
-    - **Glenn (Operations)**: Streamlines day-to-day friction and customer inquiries via real-time data synthesis.
-    - **Achi (Growth)**: Automates revenue generation through proactive marketing and promotions.
-    - **Tiri (Oversight)**: Monitors transactions for anomalies and reports directly to owners on WhatsApp.
-- **Compliance**: Built-in KRA eTIMS readiness and structured financial reporting for audit protection.
-- **Accessibility**: Real-time sales summaries delivered via WhatsApp; cloud access from anywhere.
+## Sitemap
+- https://veirahq.com/sitemap.xml
 
-## Impact & Mission
-Veira is committed to structural social impact, dedicating 10% of annual net profit to organizations preventing gender-based violence (GBV) and supporting survivors. This is a core part of our "Principles of Certainty".
+## Primary Content
+- https://veirahq.com/ (Main Landing & Product Overview)
+- https://veirahq.com/#pos (Retail POS Infrastructure)
+- https://veirahq.com/#cloud (Cloud Management & Multi-branch Sync)
+- https://veirahq.com/#agents (AI-Powered Operations & Oversight)
+- https://veirahq.com/#studio (Generative Commerce & Brand Tools)
+- https://veirahq.com/#faq (POS System Prices & Implementation Details)
 
-## Case Studies
-1. **Small Retail**: Transitioned from verbal reports to daily sales clarity in Umoja.
-2. **Restaurants**: Stopped revenue leaks and improved billing speed in Westlands.
-3. **Multi-Branch**: Centralized management for electronics retailers with 3+ locations.
-4. **Pharmacies**: Reduced KRA audit anxiety through automated eTIMS compliance.
-5. **Remote Owners**: Enabled hands-off management for hardware shops in Kitengela via mobile monitoring.
+## Key Topics & Semantic Focus
+- **Cloud POS Software Kenya**: Distributed retail management.
+- **KRA eTIMS Compliance**: Automated tax reporting and structural compliance.
+- **M-PESA Integration**: Real-time payment reconciliation and ledger matching.
+- **Inventory Management**: Stock tracking for pharmacies, supermarkets, and hardware stores in Nairobi.
+- **AI Agents**: Autonomous retail operations (Glenn, Achi, Tiri).
+- **Social Impact**: Dedicated commitment to GBV prevention (10% net profit).
 
-## Contact
-- Location: Westlands, Nairobi, Kenya
-- Email: hello@veira.co
-- Website: https://veirahq.com/
-- Google Business: https://share.google/VhjFjdxSAxsw4ATSn
+## Contact & Location
+- HQ: Westlands, Nairobi, Kenya
+- Web: https://veirahq.com
+- Support: hello@veira.co
