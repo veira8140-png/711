@@ -11,14 +11,14 @@ export const Hero: React.FC<HeroProps> = ({ onStart, onViewCaseStudy }) => {
     <div className="relative pt-24 pb-32 px-6 flex flex-col items-center text-center max-w-5xl mx-auto">
       <div className="space-y-8">
         <p className="text-[#8A3FA0] text-sm font-bold uppercase tracking-[0.4em]">
-          Certainty in every sale
+          #1 Best POS System for Small Business in Kenya
         </p>
         <h1 className="text-6xl md:text-8xl font-bold serif leading-[1.1] tracking-tight text-black">
-          Confidence is the <br /> 
-          <span className="italic">new currency.</span>
+          The Only POS <br /> 
+          <span className="italic">You'll Ever Need.</span>
         </h1>
         <p className="text-xl text-gray-600 max-w-2xl mx-auto font-light leading-relaxed">
-          Veira gives retail owners complete control, visibility, and certainty over sales, profits, and operations. Grow without guesswork.
+          The most <strong className="text-black">affordable POS system in Nairobi</strong>. Veira gives Kenyan retail owners complete control with a <strong className="text-black">POS system with inventory management</strong> and direct <strong className="text-black">Mpesa integration</strong>.
         </p>
       </div>
       
@@ -27,32 +27,32 @@ export const Hero: React.FC<HeroProps> = ({ onStart, onViewCaseStudy }) => {
           onClick={onStart}
           className="cta-button w-full sm:w-auto px-12 py-5 rounded-none font-bold text-sm uppercase tracking-widest shadow-xl shadow-[#2D9B9B]/20"
         >
-          Explore Intelligence
+          Buy POS System Kenya
         </button>
         <button 
           onClick={onViewCaseStudy}
           className="w-full sm:w-auto px-12 py-5 border border-black/10 hover:bg-black/5 transition-all font-bold text-sm uppercase tracking-widest text-black"
         >
-          Case Study
+          POS System Comparison
         </button>
       </div>
 
       <div className="mt-32 grid grid-cols-2 md:grid-cols-4 gap-12 border-t border-black/5 pt-12 w-full">
         <div className="flex flex-col items-center">
-          <span className="text-4xl font-bold serif mb-2 text-black">99.9%</span>
-          <span className="text-[10px] uppercase tracking-widest text-gray-500 font-semibold">Uptime Certainty</span>
+          <span className="text-4xl font-bold serif mb-2 text-black">eTIMS</span>
+          <span className="text-[10px] uppercase tracking-widest text-gray-500 font-semibold">KRA Compliant</span>
         </div>
         <div className="flex flex-col items-center">
-          <span className="text-4xl font-bold serif mb-2 text-black">24/7</span>
-          <span className="text-[10px] uppercase tracking-widest text-gray-500 font-semibold">Active Monitoring</span>
+          <span className="text-4xl font-bold serif mb-2 text-black">MPESA</span>
+          <span className="text-[10px] uppercase tracking-widest text-gray-500 font-semibold">Direct Integration</span>
         </div>
         <div className="flex flex-col items-center">
-          <span className="text-4xl font-bold serif mb-2 text-black">0.0</span>
-          <span className="text-[10px] uppercase tracking-widest text-gray-500 font-semibold">Guesswork Factor</span>
+          <span className="text-4xl font-bold serif mb-2 text-black">Offline</span>
+          <span className="text-[10px] uppercase tracking-widest text-gray-500 font-semibold">Works Anywhere</span>
         </div>
         <div className="flex flex-col items-center">
-          <span className="text-4xl font-bold serif mb-2 text-black">∞</span>
-          <span className="text-[10px] uppercase tracking-widest text-gray-500 font-semibold">Possibilities</span>
+          <span className="text-4xl font-bold serif mb-2 text-black">Free</span>
+          <span className="text-[10px] uppercase tracking-widest text-gray-500 font-semibold">Setup & Training</span>
         </div>
       </div>
     </div>

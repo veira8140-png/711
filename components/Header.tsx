@@ -16,7 +16,7 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
     <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-4 bg-white/95 backdrop-blur-md border-b border-black/5 shadow-sm">
       <div className="container mx-auto flex justify-between items-center">
         <a 
-          href="/" 
+          href="#" 
           className="flex items-center space-x-3 cursor-pointer" 
           onClick={(e) => handleLinkClick(e, 'hero')}
         >
@@ -26,42 +26,42 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
         
         <div className="hidden lg:flex items-center space-x-8 text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500">
           <a 
-            href="/pos" 
+            href="#best-pos-system-for-small-business-in-kenya" 
             onClick={(e) => handleLinkClick(e, 'pos')} 
             className="hover:text-black transition-colors"
           >
             POS
           </a>
           <a 
-            href="/case-study" 
+            href="#case-study" 
             onClick={(e) => handleLinkClick(e, 'case-study')} 
             className="hover:text-black transition-colors"
           >
             Case Study
           </a>
           <a 
-            href="/agents" 
+            href="#agents" 
             onClick={(e) => handleLinkClick(e, 'agents')} 
             className="hover:text-black transition-colors"
           >
             Agents
           </a>
           <a 
-            href="/cloud" 
+            href="#cloud" 
             onClick={(e) => handleLinkClick(e, 'cloud')} 
             className="hover:text-black transition-colors"
           >
             Cloud
           </a>
           <a 
-            href="/enterprise" 
+            href="#enterprise" 
             onClick={(e) => handleLinkClick(e, 'enterprise')} 
             className="hover:text-black transition-colors"
           >
             Enterprise
           </a>
           <a 
-            href="/our-story" 
+            href="#our-story" 
             onClick={(e) => handleLinkClick(e, 'our-story')} 
             className="hover:text-black transition-colors"
           >
