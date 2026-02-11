@@ -32,6 +32,7 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
   const navItems = [
     { label: 'POS', id: 'pos' },
     { label: 'AGENTS', id: 'agents' },
+    { label: 'STUDIO', id: 'studio' },
     { label: 'CLOUD', id: 'cloud' },
     { label: 'ENTERPRISE', id: 'enterprise' },
     { label: 'OUR STORY', id: 'our-story' }
@@ -89,7 +90,7 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
           isMenuOpen ? 'translate-y-0' : '-translate-y-full'
         }`}
       >
-        <div className="flex flex-col space-y-8 text-center">
+        <div className="flex flex-col space-y-6 text-center px-6">
           {navItems.map((item) => (
             <a 
               key={item.id}

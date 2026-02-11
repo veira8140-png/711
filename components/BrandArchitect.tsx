@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { generateBrandIdentity } from '../services/gemini.ts';
 import { BrandOutput } from '../types.ts';
@@ -23,7 +22,7 @@ export const BrandArchitect: React.FC = () => {
   };
 
   return (
-    <div id="brand" className="glass rounded-none p-6 md:p-16 border-black/5">
+    <div className="glass rounded-none p-6 md:p-16 border-black/5">
       <div className="max-w-4xl mx-auto">
         <div className="mb-10 md:mb-12 text-center md:text-left">
           <h2 className="text-2xl md:text-4xl font-bold serif mb-3 text-black">Strategic Synthesis</h2>
@@ -56,7 +55,7 @@ export const BrandArchitect: React.FC = () => {
         <button 
           onClick={handleGenerate}
           disabled={loading}
-          className="cta-button w-full md:w-auto px-12 py-4 md:py-5 font-bold uppercase tracking-widest text-xs disabled:opacity-50"
+          className="cta-primary w-full md:w-auto px-12 py-4 md:py-5 font-bold uppercase tracking-widest text-xs disabled:opacity-50"
         >
           {loading ? 'Synthesizing...' : 'Generate Identity'}
         </button>
@@ -75,13 +74,13 @@ export const BrandArchitect: React.FC = () => {
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 border-t border-black/5 pt-10 md:pt-12">
-              <div className="md:col-span-2">
+              <div className="md:col-span-2 text-left">
                 <span className="text-gray-400 text-[10px] font-bold uppercase tracking-widest block mb-4">The Vision</span>
                 <p className="text-gray-600 leading-relaxed text-base md:text-xl font-light italic">
                   {result.mission}
                 </p>
               </div>
-              <div>
+              <div className="text-left">
                 <span className="text-gray-400 text-[10px] font-bold uppercase tracking-widest block mb-4">Core Signals</span>
                 <div className="flex flex-wrap gap-2 md:gap-3">
                   {result.keywords.map((kw, i) => (

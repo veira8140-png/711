@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { generateImage } from '../services/gemini.ts';
 
@@ -21,9 +20,9 @@ export const VisualStudio: React.FC = () => {
   };
 
   return (
-    <div id="visual" className="glass rounded-none p-6 md:p-16 border-black/5">
+    <div className="glass rounded-none p-6 md:p-16 border-black/5">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 items-center">
-        <div className="order-2 md:order-1">
+        <div className="order-2 md:order-1 text-left">
           <h2 className="text-2xl md:text-4xl font-bold serif mb-3 text-black">Visual Synthesis</h2>
           <p className="text-gray-500 font-light text-base md:text-lg mb-8 md:mb-12 leading-relaxed">
             Translate abstract operational data into high-fidelity brand assets. 
@@ -42,7 +41,7 @@ export const VisualStudio: React.FC = () => {
           <button 
             onClick={handleGenerate}
             disabled={loading}
-            className="cta-button w-full px-12 py-4 md:py-5 font-bold uppercase tracking-widest text-xs disabled:opacity-50 flex items-center justify-center gap-3"
+            className="cta-primary w-full px-12 py-4 md:py-5 font-bold uppercase tracking-widest text-xs disabled:opacity-50 flex items-center justify-center gap-3"
           >
             {loading ? (
               <>
