@@ -10,7 +10,6 @@ export const Hero: React.FC<HeroProps> = ({ onStart, onViewDemo }) => {
     <div className="relative pt-40 pb-20 md:pt-60 md:pb-80 px-4 sm:px-6 flex flex-col items-center text-center max-w-7xl mx-auto overflow-visible">
       <div className="space-y-8 md:space-y-12 animate-in fade-in slide-in-from-bottom-12 duration-[1.5s] relative z-10">
         <div className="flex flex-col items-center">
-          <span className="section-label">Run Your Business With Confidence</span>
           <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-[8rem] font-bold serif leading-[0.9] tracking-tight text-black max-w-6xl">
             See Every Shilling <br className="hidden sm:block" />
             <span className="italic text-transparent bg-clip-text bg-gradient-to-b from-black to-gray-400">In Your Business.</span>
