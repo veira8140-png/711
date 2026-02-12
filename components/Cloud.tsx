@@ -74,7 +74,7 @@ export const Cloud: React.FC = () => {
       <div className="space-y-16">
         <div className="text-center space-y-4">
           <span className="section-label mx-auto">Powering Your Business</span>
-          <h3 className="text-4xl md:text-6xl font-bold serif text-black italic text-center">Cloud Power Ups</h3>
+          <h3 className="text-4xl md:text-6xl font-bold serif text-black italic text-center">Cloud Features</h3>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <CloudFeature 

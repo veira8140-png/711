@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PowerUp: React.FC<{ title: string; desc: string; icon: string }> = ({ title, desc, icon }) => (
+const POSFeature: React.FC<{ title: string; desc: string; icon: string }> = ({ title, desc, icon }) => (
   <div className="glass p-8 border-black/5 flex flex-col items-start gap-4 hover:border-[#2D9B9B]/30 transition-all duration-500 group">
     <div className="w-10 h-10 bg-[#2D9B9B]/10 rounded-full flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
       {icon}
@@ -83,49 +83,49 @@ export const POS: React.FC = () => {
         </div>
       </div>
 
-      {/* Core Power Ups */}
+      {/* Core Features */}
       <div className="space-y-16">
         <div className="text-center space-y-4">
           <span className="section-label mx-auto">Capabilities</span>
-          <h3 className="text-4xl md:text-6xl font-bold serif text-black italic">Core Power Ups</h3>
+          <h3 className="text-4xl md:text-6xl font-bold serif text-black italic">Core Features</h3>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <PowerUp 
+          <POSFeature 
             icon="⚡" 
             title="Fast Counter Sales" 
             desc="Minimal taps. Built for speed and accuracy during peak hours." 
           />
-          <PowerUp 
+          <POSFeature 
             icon="🛡" 
             title="Offline Mode" 
             desc="Internet down? Sales continue. Everything syncs once connectivity returns." 
           />
-          <PowerUp 
+          <POSFeature 
             icon="💳" 
             title="MPESA & Payments" 
             desc="Matched to sales automatically. No manual entry, no errors." 
           />
-          <PowerUp 
+          <POSFeature 
             icon="📦" 
             title="Live Inventory" 
             desc="Stock updates instantly. Low stock and unusual movement detected early." 
           />
-          <PowerUp 
+          <POSFeature 
             icon="👤" 
             title="Accountability" 
             desc="Every action tied to a user. See who sold, refunded, or edited stock." 
           />
-          <PowerUp 
+          <POSFeature 
             icon="📲" 
             title="WhatsApp Summaries" 
             desc="Daily and real-time sales sent directly to you. No logging in needed." 
           />
-          <PowerUp 
+          <POSFeature 
             icon="🧠" 
             title="AI Powered Alerts" 
             desc="Unusual refunds? Targets missed? The system notices before you do." 
           />
-          <PowerUp 
+          <POSFeature 
             icon="🖥" 
             title="Multi-Device Ready" 
             desc="Android POS, desktops, or all-in-one systems. Built for Kenya." 

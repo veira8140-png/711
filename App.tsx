@@ -12,6 +12,7 @@ import { OurStory } from './components/OurStory.tsx';
 import { CaseStudies } from './components/CaseStudies.tsx';
 import { WaveBackground } from './components/WaveBackground.tsx';
 import { FAQ } from './components/FAQ.tsx';
+import { Pricing } from './components/Pricing.tsx';
 
 const App: React.FC = () => {
   const navigateTo = (id: string) => {
@@ -93,6 +94,10 @@ const App: React.FC = () => {
             <CaseStudies />
           </section>
 
+          <section id="pricing">
+            <Pricing />
+          </section>
+
           <section id="how-it-works">
             <HowItWorks />
           </section>
@@ -134,6 +139,7 @@ const App: React.FC = () => {
            <div className="flex justify-center gap-8 text-[10px] font-bold uppercase tracking-widest text-gray-400">
              <p className="hover:text-black cursor-pointer" onClick={() => navigateTo('pos')}>POS</p>
              <p className="hover:text-black cursor-pointer" onClick={() => navigateTo('agents')}>Agents</p>
+             <p className="hover:text-black cursor-pointer" onClick={() => navigateTo('pricing')}>Pricing</p>
              <p className="hover:text-black cursor-pointer" onClick={() => navigateTo('cloud')}>Cloud</p>
              <p className="hover:text-black cursor-pointer" onClick={() => navigateTo('our-story')}>Our Story</p>
            </div>
