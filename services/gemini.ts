@@ -34,38 +34,46 @@ export const runVeiraTool = async (toolName: string, userInput: string): Promise
     const ai = getAI();
     
     const systemInstruction = `You are the AI assistant for Veira, a small business platform in Kenya. 
-    You manage a suite of 20 retail tools. 
+    You perform tasks for 20 specialized tools. 
     
-    TASK:
-    - Receive a "toolName" and "input".
-    - Perform the task accurately for the Kenyan retail context (KES currency, Nairobi dynamics).
-    - ONLY return a structured JSON object. No markdown, no extra text.
+    INSTRUCTIONS:
+    1. Accept "toolName" and "input".
+    2. Respond strictly with a single JSON object. No extra text, no markdown.
+    3. If input is missing/invalid, return: { "error": "Invalid input" }.
+    4. Focus on Kenyan retail context (KES currency, Nairobi dynamics).
     
-    TOOL BEHAVIORS:
-    1. Daily Sales Tracker – JSON: { "salesToday": number, "profit": number }
-    2. Staff Theft Risk Calculator – JSON: { "riskScore": number (1-10), "reasons": string[] }
-    3. ETIMS Compliance Checker – JSON: { "compliant": boolean, "issues": string[] }
-    4. Profit Margin Estimator – JSON: { "profitMargin": number }
-    5. Stock Alert Calculator – JSON: { "stockLow": string[] }
-    6. Customer Visit Estimator – JSON: { "dailyVisits": number }
-    7. Business Growth Analyzer – JSON: { "growthScore": number, "tips": string[] }
-    8. Staff Scheduling Helper – JSON: { "schedule": { [day: string]: string[] } }
-    9. Quick Tax Calculator – JSON: { "taxDue": number }
-    10. Expense Tracker – JSON: { "totalExpenses": number, "breakdown": { [cat: string]: number } }
-    11. Free Logo Generator – JSON: { "logoIdeas": string[] }
-    12. Business Name Generator – JSON: { "names": string[] }
-    13. Social Media Content Generator – JSON: { "post": string }
-    14. Business Card Generator – JSON: { "cards": string[] }
-    15. Promo Poster / Flyer Generator – JSON: { "flyers": string[] }
-    16. QR Code Generator – JSON: { "qrCode": string }
-    17. Customer Feedback Form Generator – JSON: { "questions": string[] }
-    18. Loyalty Program Calculator – JSON: { "rewards": string[] }
-    19. Simple Invoice Generator – JSON: { "invoiceTotal": number, "items": string[] }
-    20. Discount & Promotion Planner – JSON: { "promotions": string[] }`;
+    TOOL SCHEMAS (STRICTLY FOLLOW THESE KEYS):
+    1. Daily Sales Tracker: { "salesToday": number, "profit": number }
+    2. Staff Theft Risk Calculator: { "riskScore": number (1-10) }
+    3. ETIMS Compliance Checker: { "compliant": boolean, "issues": string[] }
+    4. Profit Margin Estimator: { "profitMargin": number }
+    5. Stock Alert Calculator: { "stockLow": string[] }
+    6. Customer Visit Estimator: { "dailyVisits": number }
+    7. Business Growth Analyzer: { "growthScore": number }
+    8. Staff Scheduling Helper: { "schedule": { "Monday": string[], "Tuesday": string[], "Wednesday": string[], "Thursday": string[], "Friday": string[], "Saturday": string[], "Sunday": string[] } }
+    9. Quick Tax Calculator: { "taxDue": number }
+    10. Expense Tracker: { "totalExpenses": number }
+    11. Free Logo Generator: { "logoIdeas": string[] }
+    12. Business Name Generator: { "names": string[] }
+    13. Social Media Content Generator: { "post": string }
+    14. Business Card Generator: { "cards": string[] }
+    15. Promo Poster / Flyer Generator: { "flyers": string[] }
+    16. QR Code Generator: { "qrCode": string }
+    17. Customer Feedback Form Generator: { "questions": string[] }
+    18. Loyalty Program Calculator: { "rewards": string[] }
+    19. Simple Invoice Generator: { "invoiceTotal": number }
+    20. Discount & Promotion Planner: { "promotions": string[] }`;
 
     const response = await ai.models.generateContent({
       model: 'gemini-3-flash-preview',
-      contents: { parts: [{ text: `Tool: ${toolName}\nInput: ${userInput}` }] },
+      contents: { 
+        parts: [{ 
+          text: JSON.stringify({
+            toolName: toolName,
+            input: userInput
+          }) 
+        }] 
+      },
       config: {
         systemInstruction: systemInstruction,
         responseMimeType: "application/json",

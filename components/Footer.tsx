@@ -14,30 +14,31 @@ interface ToolDetail {
 }
 
 const TOOL_DETAILS: ToolDetail[] = [
-  { name: 'Daily Sales Tracker', icon: '📊', desc: 'Calculate today’s sales and profit.', placeholder: "e.g. Sales: 15,000, Expenses: 4,500" },
-  { name: 'Staff Theft Risk Calculator', icon: '🛡️', desc: 'Evaluate operational risk score.', placeholder: "e.g. 3 staff, no daily stock take, high cash turnover" },
+  { name: 'Daily Sales Tracker', icon: '📊', desc: 'Calculate today’s sales and profit.', placeholder: "e.g. Sales: 10,000, Expenses: 4,000" },
+  { name: 'Staff Theft Risk Calculator', icon: '🛡️', desc: 'Evaluate operational risk score (1-10).', placeholder: "e.g. 3 staff members, manual stock take, no CCTV" },
   { name: 'ETIMS Compliance Checker', icon: '✅', desc: 'Check KRA/ETIMS readiness.', placeholder: "e.g. Retail shop, manual receipts, 5M turnover" },
-  { name: 'Profit Margin Estimator', icon: '💰', desc: 'Know your true net margins.', placeholder: "e.g. Buying at 800, Selling at 1,200, Rent 20k" },
-  { name: 'Stock Alert Calculator', icon: '📦', desc: 'Identify critical stock levels.', placeholder: "e.g. Inventory: Milk (5), Bread (2), Eggs (12)" },
-  { name: 'Customer Visit Estimator', icon: '👥', desc: 'Estimate foot traffic revenue.', placeholder: "e.g. Boutique in Westlands, peak hours 5pm-8pm" },
-  { name: 'Business Growth Analyzer', icon: '🚀', desc: 'Evaluate your scaling potential.', placeholder: "e.g. 2 years in profit, reliable staff, looking to open branch 2" },
-  { name: 'Staff Scheduling Helper', icon: '📅', desc: 'Generate optimized shift plans.', placeholder: "e.g. 4 staff, shop open 8am-9pm, need 2 per shift" },
+  { name: 'Profit Margin Estimator', icon: '💰', desc: 'Know your true net margins.', placeholder: "e.g. Cost 800, Selling price 1,200" },
+  { name: 'Stock Alert Calculator', icon: '📦', desc: 'Identify critical stock levels.', placeholder: "e.g. Items: Milk 5, Bread 2, Eggs 10" },
+  { name: 'Customer Visit Estimator', icon: '👥', desc: 'Estimate foot traffic revenue.', placeholder: "e.g. Boutique in CBD, busy lunch hours" },
+  { name: 'Business Growth Analyzer', icon: '🚀', desc: 'Evaluate scaling potential (1-10).', placeholder: "e.g. 2 branches, 150k monthly profit, looking to scale" },
+  { name: 'Staff Scheduling Helper', icon: '📅', desc: 'Generate optimized shift plans.', placeholder: "e.g. Staff: Alice, Bob, Charlie. Shop opens 8am-8pm" },
   { name: 'Quick Tax Calculator', icon: '🧾', desc: 'Estimate turnover tax due.', placeholder: "e.g. Monthly revenue 450,000 KES" },
-  { name: 'Expense Tracker', icon: '💸', desc: 'Categorize and summarize costs.', placeholder: "e.g. Rent 30k, Power 5k, Supplier X 120k" },
-  { name: 'Free Logo Generator', icon: '🎨', desc: 'Creative identity suggestions.', placeholder: "e.g. Modern chemist named 'Afya Bora', blue/white colors" },
-  { name: 'Business Name Generator', icon: '🏷️', desc: 'Find unique shop names.', placeholder: "e.g. New delivery startup in Nairobi focusing on speed" },
-  { name: 'Social Media Content Generator', icon: '✍️', desc: 'Engaging WhatsApp/IG posts.', placeholder: "e.g. Promo for weekend clearance sale on shoes" },
-  { name: 'Business Card Generator', icon: '📇', desc: 'Professional card layouts.', placeholder: "e.g. CEO of Radiant Beauty, include IG handle @radiant_ke" },
-  { name: 'Promo Poster / Flyer Generator', icon: '📄', desc: 'Visual marketing ideas.', placeholder: "e.g. Back to school discount flyer 20% off" },
-  { name: 'QR Code Generator', icon: '📱', desc: 'MPESA integrated payment links.', placeholder: "e.g. Payment link for Zuri Styles Boutique" },
-  { name: 'Customer Feedback Form Generator', icon: '📝', desc: 'Get better customer insights.', placeholder: "e.g. Questions for restaurant delivery quality" },
-  { name: 'Loyalty Program Calculator', icon: '🎁', desc: 'Design rewards that stick.', placeholder: "e.g. Reward after 10 coffee purchases" },
-  { name: 'Simple Invoice Generator', icon: '🧾', desc: 'Professional invoice summaries.', placeholder: "e.g. 10 chairs sold to ABC Ltd at 4,500 each" },
-  { name: 'Discount & Promotion Planner', icon: '💸', desc: 'Plan profitable flash sales.', placeholder: "e.g. Clearance sale for old stock of electronics" }
+  { name: 'Expense Tracker', icon: '💸', desc: 'Summarize your business costs.', placeholder: "e.g. Rent 30k, Supplier X 120k, Staff 50k" },
+  { name: 'Free Logo Generator', icon: '🎨', desc: 'Creative identity suggestions.', placeholder: "e.g. Modern salon named 'Zuri Styles', pink colors" },
+  { name: 'Business Name Generator', icon: '🏷️', desc: 'Find unique shop names.', placeholder: "e.g. New delivery business in Nairobi" },
+  { name: 'Social Media Content Generator', icon: '✍️', desc: 'Engaging WhatsApp/IG posts.', placeholder: "e.g. Promo for weekend shoe sale" },
+  { name: 'Business Card Generator', icon: '📇', desc: 'Professional card layouts.', placeholder: "e.g. CEO of Radiant Beauty, include phone 0722..." },
+  { name: 'Promo Poster / Flyer Generator', icon: '📄', desc: 'Visual marketing ideas.', placeholder: "e.g. 20% off back to school sale poster" },
+  { name: 'QR Code Generator', icon: '📱', desc: 'MPESA integrated payment links.', placeholder: "e.g. Paybill 123456, Acc 001" },
+  { name: 'Customer Feedback Form Generator', icon: '📝', desc: 'Get better customer insights.', placeholder: "e.g. Questions for restaurant delivery satisfaction" },
+  { name: 'Loyalty Program Calculator', icon: '🎁', desc: 'Design rewards that stick.', placeholder: "e.g. Points per KES spent, reward after 1000 points" },
+  { name: 'Simple Invoice Generator', icon: '🧾', desc: 'Professional invoice summaries.', placeholder: "e.g. 5 bags of cement at 800 KES each" },
+  { name: 'Discount & Promotion Planner', icon: '💸', desc: 'Plan profitable flash sales.', placeholder: "e.g. Clear old stock of electronics" }
 ];
 
 const ResultRenderer: React.FC<{ data: any }> = ({ data }) => {
   if (!data || typeof data !== 'object') return null;
+  if (data.error) return <p className="text-red-500 font-bold italic">{data.error}</p>;
 
   const formatKey = (key: string) => key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
 
@@ -45,6 +46,9 @@ const ResultRenderer: React.FC<{ data: any }> = ({ data }) => {
     <div className="space-y-6">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {Object.entries(data).map(([key, value]) => {
+          const isCurrency = key.toLowerCase().includes('total') || key.toLowerCase().includes('profit') || key.toLowerCase().includes('sales') || key.toLowerCase().includes('due');
+          const isScore = key.toLowerCase().includes('score');
+          
           if (typeof value === 'object' && !Array.isArray(value)) {
             return (
               <div key={key} className="col-span-full border-t border-black/5 pt-4">
@@ -52,8 +56,10 @@ const ResultRenderer: React.FC<{ data: any }> = ({ data }) => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {Object.entries(value as object).map(([subKey, subVal]) => (
                     <div key={subKey} className="bg-black/5 p-4 rounded-xl">
-                      <p className="text-[9px] font-bold text-gray-400 uppercase tracking-tighter mb-1">{subKey}</p>
-                      <p className="text-sm font-semibold text-black">{String(subVal)}</p>
+                      <p className="text-[9px] font-bold text-gray-400 uppercase tracking-tighter mb-1">{formatKey(subKey)}</p>
+                      <p className="text-sm font-semibold text-black">
+                        {Array.isArray(subVal) ? subVal.join(', ') : String(subVal)}
+                      </p>
                     </div>
                   ))}
                 </div>
@@ -67,7 +73,7 @@ const ResultRenderer: React.FC<{ data: any }> = ({ data }) => {
                 <h4 className="text-[10px] font-bold uppercase tracking-widest text-gray-400">{formatKey(key)}</h4>
                 <div className="flex flex-wrap gap-2">
                   {value.map((item, i) => (
-                    <span key={i} className="px-3 py-1 bg-black/5 border border-black/5 text-[11px] font-medium rounded-full">
+                    <span key={i} className="px-3 py-2 bg-black/5 border border-black/5 text-[11px] font-medium rounded-lg text-gray-700">
                       {String(item)}
                     </span>
                   ))}
@@ -77,11 +83,14 @@ const ResultRenderer: React.FC<{ data: any }> = ({ data }) => {
           }
 
           return (
-            <div key={key} className="bg-white border border-black/5 p-6 rounded-2xl shadow-sm">
+            <div key={key} className={`bg-white border border-black/5 p-6 rounded-2xl shadow-sm ${isScore ? 'border-[#2D9B9B]/30' : ''}`}>
               <p className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-2">{formatKey(key)}</p>
-              <p className={`text-2xl font-black serif ${typeof value === 'number' ? 'text-[#2D9B9B]' : 'text-black'}`}>
-                {typeof value === 'number' && key.toLowerCase().includes('kes') ? `KES ${value.toLocaleString()}` : String(value)}
-              </p>
+              <div className="flex items-baseline gap-2">
+                <p className={`text-2xl font-black serif ${isCurrency ? 'text-[#2D9B9B]' : isScore ? 'text-purple-600' : 'text-black'}`}>
+                  {isCurrency && typeof value === 'number' ? `KES ${value.toLocaleString()}` : String(value)}
+                </p>
+                {isScore && <span className="text-xs text-gray-400 font-bold">/ 10</span>}
+              </div>
             </div>
           );
         })}
@@ -103,14 +112,15 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
     setIsGenerating(true);
     setToolResult(null);
     setError(null);
-    setGenStep('Initializing Veira AI...');
+    setGenStep('Calibrating Intelligence...');
     
     try {
-      setTimeout(() => setGenStep('Processing retail parameters...'), 1500);
+      setTimeout(() => setGenStep('Processing Market Data...'), 1200);
       const result = await runVeiraTool(activeTool.name, toolInput);
       setToolResult(result);
     } catch (err: any) {
-      setError(err.message === "API_KEY_MISSING" ? "Service connection error." : "System busy. Please try again.");
+      console.error(err);
+      setError("The AI service is temporarily busy. Please try again in a moment.");
     } finally {
       setIsGenerating(false);
       setGenStep('');
@@ -131,9 +141,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           <div className="space-y-8">
             <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-black">Platform</h4>
             <ul className="space-y-4 text-sm font-light text-gray-500">
-              <li><button onClick={() => onNavigate('pos')} className="hover:text-[#2D9B9B]">Cloud POS</button></li>
-              <li><button onClick={() => onNavigate('agents')} className="hover:text-[#2D9B9B]">AI Agents</button></li>
-              <li><button onClick={() => onNavigate('cloud')} className="hover:text-[#2D9B9B]">Inventory Hub</button></li>
+              <li><button onClick={() => onNavigate('pos')} className="hover:text-[#2D9B9B] transition-colors">Cloud POS</button></li>
+              <li><button onClick={() => onNavigate('agents')} className="hover:text-[#2D9B9B] transition-colors">AI Agents</button></li>
+              <li><button onClick={() => onNavigate('cloud')} className="hover:text-[#2D9B9B] transition-colors">Inventory Hub</button></li>
             </ul>
           </div>
 
@@ -144,9 +154,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 <button
                   key={tool.name}
                   onClick={() => { setActiveTool(tool); setToolResult(null); setError(null); }}
-                  className="px-4 py-3 bg-black/5 hover:bg-black hover:text-white text-[10px] font-bold uppercase tracking-wider text-left transition-all rounded-sm flex items-center gap-2"
+                  className="px-4 py-3 bg-black/5 hover:bg-black hover:text-white text-[10px] font-bold uppercase tracking-wider text-left transition-all rounded-sm flex items-center gap-2 group"
                 >
-                  <span className="text-base grayscale group-hover:grayscale-0">{tool.icon}</span>
+                  <span className="text-base grayscale group-hover:grayscale-0 transition-all">{tool.icon}</span>
                   <span className="truncate">{tool.name}</span>
                 </button>
               ))}
@@ -159,9 +169,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             © {new Date().getFullYear()} Veira Intelligence. Westlands, Nairobi.
           </p>
           <div className="flex gap-8 text-[10px] font-bold uppercase tracking-widest text-gray-300">
-            <a href="#" className="hover:text-black">KRA eTIMS</a>
-            <a href="#" className="hover:text-black">M-PESA Direct</a>
-            <a href="#" className="hover:text-black">Terms</a>
+            <a href="#" className="hover:text-black transition-colors">KRA eTIMS</a>
+            <a href="#" className="hover:text-black transition-colors">M-PESA Direct</a>
+            <a href="#" className="hover:text-black transition-colors">Terms</a>
           </div>
         </div>
       </div>
@@ -182,7 +192,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             {!toolResult ? (
               <div className="space-y-8">
                 <div className="space-y-3">
-                  <label className="text-[10px] font-bold uppercase tracking-widest text-gray-400">Input Details</label>
+                  <label className="text-[10px] font-bold uppercase tracking-widest text-gray-400">Input Data</label>
                   <textarea
                     autoFocus
                     value={toolInput}
@@ -206,7 +216,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                       </div>
                       <span className="text-[8px] opacity-70 tracking-widest">{genStep}</span>
                     </>
-                  ) : `Generate Analysis`}
+                  ) : `Execute Analysis`}
                 </button>
               </div>
             ) : (
@@ -216,9 +226,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                     <ResultRenderer data={toolResult} />
                   </div>
                 </div>
-                <div className="flex gap-4">
+                <div className="flex flex-col sm:flex-row gap-4">
                   <button onClick={() => { setToolResult(null); setToolInput(''); }} className="flex-1 bg-black text-white py-6 rounded-2xl text-[10px] font-bold uppercase tracking-widest hover:bg-gray-800 transition-colors">
-                    New Calculation
+                    New Analysis
                   </button>
                   <button onClick={() => setActiveTool(null)} className="flex-1 bg-gray-100 text-gray-500 py-6 rounded-2xl text-[10px] font-bold uppercase tracking-widest hover:bg-gray-200 transition-colors">
                     Close Tool
