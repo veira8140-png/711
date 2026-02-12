@@ -2,6 +2,18 @@ import React, { useState } from 'react';
 
 const faqItems = [
   {
+    question: "What is the most reliable POS machine in Kenya for small shops?",
+    answer: "The best POS machine in Kenya should be durable, portable, and come with a built-in printer. Veira provides high-quality Android POS terminals for free with our Success Plan. These machines are pre-configured with eTIMS compliance and long-lasting batteries, perfect for the Kenyan retail environment."
+  },
+  {
+    question: "How do point of sale systems in Kenya handle M-PESA integration?",
+    answer: "Modern point of sale systems in Kenya must support M-PESA. Veira automates this by reconciling your Till or Paybill transactions directly with your sales records. This prevents manual entry errors and ensures that every shilling sent via M-PESA is accounted for in your daily reports."
+  },
+  {
+    question: "Are there cloud-based POS systems in Kenya that work offline?",
+    answer: "Yes, leading POS systems in Kenya like Veira offer a hybrid approach. You get the benefits of the cloud (remote monitoring from your phone) while maintaining a robust offline core. This means you can keep selling even during power outages or internet downtime, and the system syncs everything once you're back online."
+  },
+  {
     question: "Is the 1% revenue share fair?",
     answer: "Veira only succeeds when you succeed. It is significantly cheaper than hiring even one employee to do the same work. Veira never sleeps, never steals, never makes mistakes, and keeps you fully compliant with KRA requirements automatically."
   },
