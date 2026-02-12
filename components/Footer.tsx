@@ -1,8 +1,7 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { runVeiraTool } from '../services/gemini.ts';
 
-// Fix: Added missing interfaces
 interface FooterProps {
   onNavigate: (id: string) => void;
 }
@@ -11,103 +10,144 @@ interface ToolDetail {
   name: string;
   icon: string;
   desc: string;
-  color: string;
+  placeholder: string;
 }
 
-// Fix: Added missing TOOL_DETAILS
 const TOOL_DETAILS: ToolDetail[] = [
-  { name: 'Logo Design', icon: '🎨', desc: 'Create a unique brand logo.', color: '#7C3AED' },
-  { name: 'QR Code', icon: '📱', desc: 'Generate M-PESA integrated QR.', color: '#2D9B9B' },
-  { name: 'Business Card', icon: '📇', desc: 'Design professional cards.', color: '#F59E0B' },
-  { name: 'Market Flyer', icon: '📄', desc: 'Promote your latest offers.', color: '#EF4444' },
-  { name: 'Instagram Copy', icon: '📸', desc: 'Social media growth scripts.', color: '#EC4899' }
+  { name: 'Daily Sales Tracker', icon: '📊', desc: 'Calculate today’s sales and profit.', placeholder: "e.g. Sales: 15,000, Expenses: 4,500" },
+  { name: 'Staff Theft Risk Calculator', icon: '🛡️', desc: 'Evaluate operational risk score.', placeholder: "e.g. 3 staff, no daily stock take, high cash turnover" },
+  { name: 'ETIMS Compliance Checker', icon: '✅', desc: 'Check KRA/ETIMS readiness.', placeholder: "e.g. Retail shop, manual receipts, 5M turnover" },
+  { name: 'Profit Margin Estimator', icon: '💰', desc: 'Know your true net margins.', placeholder: "e.g. Buying at 800, Selling at 1,200, Rent 20k" },
+  { name: 'Stock Alert Calculator', icon: '📦', desc: 'Identify critical stock levels.', placeholder: "e.g. Inventory: Milk (5), Bread (2), Eggs (12)" },
+  { name: 'Customer Visit Estimator', icon: '👥', desc: 'Estimate foot traffic revenue.', placeholder: "e.g. Boutique in Westlands, peak hours 5pm-8pm" },
+  { name: 'Business Growth Analyzer', icon: '🚀', desc: 'Evaluate your scaling potential.', placeholder: "e.g. 2 years in profit, reliable staff, looking to open branch 2" },
+  { name: 'Staff Scheduling Helper', icon: '📅', desc: 'Generate optimized shift plans.', placeholder: "e.g. 4 staff, shop open 8am-9pm, need 2 per shift" },
+  { name: 'Quick Tax Calculator', icon: '🧾', desc: 'Estimate turnover tax due.', placeholder: "e.g. Monthly revenue 450,000 KES" },
+  { name: 'Expense Tracker', icon: '💸', desc: 'Categorize and summarize costs.', placeholder: "e.g. Rent 30k, Power 5k, Supplier X 120k" },
+  { name: 'Free Logo Generator', icon: '🎨', desc: 'Creative identity suggestions.', placeholder: "e.g. Modern chemist named 'Afya Bora', blue/white colors" },
+  { name: 'Business Name Generator', icon: '🏷️', desc: 'Find unique shop names.', placeholder: "e.g. New delivery startup in Nairobi focusing on speed" },
+  { name: 'Social Media Content Generator', icon: '✍️', desc: 'Engaging WhatsApp/IG posts.', placeholder: "e.g. Promo for weekend clearance sale on shoes" },
+  { name: 'Business Card Generator', icon: '📇', desc: 'Professional card layouts.', placeholder: "e.g. CEO of Radiant Beauty, include IG handle @radiant_ke" },
+  { name: 'Promo Poster / Flyer Generator', icon: '📄', desc: 'Visual marketing ideas.', placeholder: "e.g. Back to school discount flyer 20% off" },
+  { name: 'QR Code Generator', icon: '📱', desc: 'MPESA integrated payment links.', placeholder: "e.g. Payment link for Zuri Styles Boutique" },
+  { name: 'Customer Feedback Form Generator', icon: '📝', desc: 'Get better customer insights.', placeholder: "e.g. Questions for restaurant delivery quality" },
+  { name: 'Loyalty Program Calculator', icon: '🎁', desc: 'Design rewards that stick.', placeholder: "e.g. Reward after 10 coffee purchases" },
+  { name: 'Simple Invoice Generator', icon: '🧾', desc: 'Professional invoice summaries.', placeholder: "e.g. 10 chairs sold to ABC Ltd at 4,500 each" },
+  { name: 'Discount & Promotion Planner', icon: '💸', desc: 'Plan profitable flash sales.', placeholder: "e.g. Clearance sale for old stock of electronics" }
 ];
+
+const ResultRenderer: React.FC<{ data: any }> = ({ data }) => {
+  if (!data || typeof data !== 'object') return null;
+
+  const formatKey = (key: string) => key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
+
+  return (
+    <div className="space-y-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {Object.entries(data).map(([key, value]) => {
+          if (typeof value === 'object' && !Array.isArray(value)) {
+            return (
+              <div key={key} className="col-span-full border-t border-black/5 pt-4">
+                <h4 className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-4">{formatKey(key)}</h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {Object.entries(value as object).map(([subKey, subVal]) => (
+                    <div key={subKey} className="bg-black/5 p-4 rounded-xl">
+                      <p className="text-[9px] font-bold text-gray-400 uppercase tracking-tighter mb-1">{subKey}</p>
+                      <p className="text-sm font-semibold text-black">{String(subVal)}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            );
+          }
+
+          if (Array.isArray(value)) {
+            return (
+              <div key={key} className="col-span-full space-y-2">
+                <h4 className="text-[10px] font-bold uppercase tracking-widest text-gray-400">{formatKey(key)}</h4>
+                <div className="flex flex-wrap gap-2">
+                  {value.map((item, i) => (
+                    <span key={i} className="px-3 py-1 bg-black/5 border border-black/5 text-[11px] font-medium rounded-full">
+                      {String(item)}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            );
+          }
+
+          return (
+            <div key={key} className="bg-white border border-black/5 p-6 rounded-2xl shadow-sm">
+              <p className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-2">{formatKey(key)}</p>
+              <p className={`text-2xl font-black serif ${typeof value === 'number' ? 'text-[#2D9B9B]' : 'text-black'}`}>
+                {typeof value === 'number' && key.toLowerCase().includes('kes') ? `KES ${value.toLocaleString()}` : String(value)}
+              </p>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
 
 export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   const [activeTool, setActiveTool] = useState<ToolDetail | null>(null);
   const [toolInput, setToolInput] = useState('');
-  const [toolResult, setToolResult] = useState<string | null>(null);
+  const [toolResult, setToolResult] = useState<any>(null);
   const [isGenerating, setIsGenerating] = useState(false);
-  const [copyFeedback, setCopyFeedback] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [genStep, setGenStep] = useState<string>('');
+  const [genStep, setGenStep] = useState('');
 
   const handleLaunchTool = async () => {
     if (!activeTool || !toolInput.trim()) return;
     setIsGenerating(true);
     setToolResult(null);
     setError(null);
-    
-    // Step-based feedback for better UX
-    setGenStep('Connecting to Veira AI Engine...');
+    setGenStep('Initializing Veira AI...');
     
     try {
-      setTimeout(() => { if (isGenerating) setGenStep('Analyzing business context...'); }, 1500);
-      setTimeout(() => { if (isGenerating) setGenStep('Generating retail insights...'); }, 3500);
-
+      setTimeout(() => setGenStep('Processing retail parameters...'), 1500);
       const result = await runVeiraTool(activeTool.name, toolInput);
       setToolResult(result);
     } catch (err: any) {
-      console.error(err);
-      if (err.message === "API_KEY_MISSING") {
-        setError("Retail Intelligence requires an active connection. Please contact support.");
-      } else if (err.toString().includes('429')) {
-        setError("High traffic detected. We're retrying, but the service is currently at capacity. Please try in 1 minute.");
-      } else if (err.message === "DESIGN_FAILED") {
-        setError("The AI was unable to visualize that request. Try being more descriptive (e.g. 'Minimalist logo with a coffee bean').");
-      } else {
-        setError("The AI engine is taking longer than usual. This usually happens during peak hours in Nairobi. Please try one more time.");
-      }
+      setError(err.message === "API_KEY_MISSING" ? "Service connection error." : "System busy. Please try again.");
     } finally {
       setIsGenerating(false);
       setGenStep('');
     }
   };
 
-  const handleCopy = () => {
-    if (toolResult) {
-      navigator.clipboard.writeText(toolResult);
-      setCopyFeedback(true);
-      setTimeout(() => setCopyFeedback(false), 2000);
-    }
-  };
-
   return (
-    <footer className="bg-white border-t border-black/5 py-24">
+    <footer className="bg-white border-t border-black/5 pt-32 pb-16">
       <div className="container mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
-          <div className="space-y-6">
-            <h3 className="text-2xl font-bold serif text-black uppercase">Veira.</h3>
-            <p className="text-gray-400 font-light text-sm leading-relaxed">
-              Empowering Kenyan retail through intelligent oversight and operational clarity.
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-16 mb-24">
+          <div className="space-y-8">
+            <h3 className="text-3xl font-black serif tracking-tighter uppercase text-black">veira.</h3>
+            <p className="text-sm text-gray-400 font-light leading-relaxed max-w-xs">
+              The premium retail intelligence engine for high-growth shops and pharmacies in Kenya.
             </p>
           </div>
-          <div className="space-y-6">
-            <h4 className="text-[10px] font-bold uppercase tracking-widest text-gray-400">Platform</h4>
+          
+          <div className="space-y-8">
+            <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-black">Platform</h4>
             <ul className="space-y-4 text-sm font-light text-gray-500">
-              <li><button onClick={() => onNavigate('pos')} className="hover:text-black">POS System</button></li>
-              <li><button onClick={() => onNavigate('agents')} className="hover:text-black">AI Agents</button></li>
-              <li><button onClick={() => onNavigate('cloud')} className="hover:text-black">Veira Cloud</button></li>
+              <li><button onClick={() => onNavigate('pos')} className="hover:text-[#2D9B9B]">Cloud POS</button></li>
+              <li><button onClick={() => onNavigate('agents')} className="hover:text-[#2D9B9B]">AI Agents</button></li>
+              <li><button onClick={() => onNavigate('cloud')} className="hover:text-[#2D9B9B]">Inventory Hub</button></li>
             </ul>
           </div>
-          <div className="space-y-6">
-            <h4 className="text-[10px] font-bold uppercase tracking-widest text-gray-400">Company</h4>
-            <ul className="space-y-4 text-sm font-light text-gray-500">
-              <li><button onClick={() => onNavigate('our-story')} className="hover:text-black">Our Story</button></li>
-              <li><button onClick={() => onNavigate('enterprise')} className="hover:text-black">Enterprise</button></li>
-              <li><button onClick={() => onNavigate('pricing')} className="hover:text-black">Pricing</button></li>
-            </ul>
-          </div>
-          <div className="space-y-6">
-            <h4 className="text-[10px] font-bold uppercase tracking-widest text-gray-400">Intelligence Tools</h4>
-            <div className="flex flex-wrap gap-2">
+
+          <div className="md:col-span-2 space-y-8">
+            <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-black">AI Power-Up Suite</h4>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
               {TOOL_DETAILS.map((tool) => (
                 <button
                   key={tool.name}
                   onClick={() => { setActiveTool(tool); setToolResult(null); setError(null); }}
-                  className="px-3 py-1 bg-black/5 text-[10px] font-bold uppercase tracking-widest hover:bg-black hover:text-white transition-colors"
+                  className="px-4 py-3 bg-black/5 hover:bg-black hover:text-white text-[10px] font-bold uppercase tracking-wider text-left transition-all rounded-sm flex items-center gap-2"
                 >
-                  {tool.name}
+                  <span className="text-base grayscale group-hover:grayscale-0">{tool.icon}</span>
+                  <span className="truncate">{tool.name}</span>
                 </button>
               ))}
             </div>
@@ -115,77 +155,73 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         </div>
 
         <div className="pt-12 border-t border-black/5 flex flex-col md:flex-row justify-between items-center gap-8">
-          <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400">
-            © {new Date().getFullYear()} Veira Intelligence. All Rights Reserved. Nairobi, Kenya.
+          <p className="text-[10px] font-bold uppercase tracking-widest text-gray-300">
+            © {new Date().getFullYear()} Veira Intelligence. Westlands, Nairobi.
           </p>
-          <div className="flex gap-8 text-[10px] font-bold uppercase tracking-widest text-gray-400">
+          <div className="flex gap-8 text-[10px] font-bold uppercase tracking-widest text-gray-300">
+            <a href="#" className="hover:text-black">KRA eTIMS</a>
+            <a href="#" className="hover:text-black">M-PESA Direct</a>
             <a href="#" className="hover:text-black">Terms</a>
-            <a href="#" className="hover:text-black">Privacy</a>
-            <a href="#" className="hover:text-black">KRA/eTIMS</a>
           </div>
         </div>
       </div>
 
       {activeTool && (
-        <div className="fixed inset-0 z-[200] flex items-center justify-center p-6 bg-black/40 backdrop-blur-sm">
-          <div className="bg-white w-full max-w-2xl p-8 md:p-12 space-y-8 animate-in fade-in zoom-in duration-300 relative">
-            <button 
-              onClick={() => setActiveTool(null)}
-              className="absolute top-6 right-6 text-gray-400 hover:text-black"
-            >
-              ✕
-            </button>
+        <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm">
+          <div className="bg-white w-full max-w-2xl p-8 md:p-12 space-y-10 animate-in fade-in zoom-in duration-300 relative rounded-[2rem] shadow-2xl overflow-y-auto max-h-[90vh]">
+            <button onClick={() => setActiveTool(null)} className="absolute top-8 right-8 text-gray-300 hover:text-black transition-colors">✕</button>
+            
             <div className="space-y-2">
-              <div className="flex items-center gap-3">
-                <span className="text-2xl">{activeTool.icon}</span>
-                <h3 className="text-2xl font-bold serif">{activeTool.name}</h3>
+              <div className="flex items-center gap-4">
+                <span className="text-4xl">{activeTool.icon}</span>
+                <h3 className="text-3xl font-bold serif">{activeTool.name}</h3>
               </div>
-              <p className="text-gray-500 font-light">{activeTool.desc}</p>
+              <p className="text-gray-400 font-light text-lg">{activeTool.desc}</p>
             </div>
 
             {!toolResult ? (
-              <div className="space-y-6">
-                <textarea
-                  value={toolInput}
-                  onChange={(e) => setToolInput(e.target.value)}
-                  placeholder="Describe what you want to generate (e.g. 'Coffee shop flyer for Westlands')..."
-                  className="w-full bg-black/5 border border-black/10 p-4 min-h-[120px] focus:outline-none focus:border-black transition-colors"
-                />
-                {error && <p className="text-red-500 text-xs italic">{error}</p>}
+              <div className="space-y-8">
+                <div className="space-y-3">
+                  <label className="text-[10px] font-bold uppercase tracking-widest text-gray-400">Input Details</label>
+                  <textarea
+                    autoFocus
+                    value={toolInput}
+                    onChange={(e) => setToolInput(e.target.value)}
+                    placeholder={activeTool.placeholder}
+                    className="w-full bg-black/5 border-none p-6 min-h-[160px] focus:ring-1 focus:ring-black transition-all rounded-2xl text-lg font-light"
+                  />
+                </div>
+                {error && <p className="text-red-500 text-xs italic bg-red-50 p-3 rounded-lg border border-red-100">{error}</p>}
                 <button 
                   disabled={isGenerating || !toolInput.trim()}
                   onClick={handleLaunchTool}
-                  className="cta-primary w-full py-6 text-[12px] font-bold uppercase tracking-[0.4em] disabled:opacity-50 flex flex-col items-center justify-center gap-2"
+                  className="cta-primary w-full py-7 text-[11px] font-bold uppercase tracking-[0.4em] disabled:opacity-50 flex flex-col items-center justify-center gap-2 rounded-2xl shadow-xl shadow-[#2D9B9B]/20"
                 >
                   {isGenerating ? (
                     <>
-                      <div className="flex gap-2">
-                        <div className="w-2 h-2 bg-white rounded-full animate-bounce [animation-delay:-0.3s]"></div>
-                        <div className="w-2 h-2 bg-white rounded-full animate-bounce [animation-delay:-0.15s]"></div>
-                        <div className="w-2 h-2 bg-white rounded-full animate-bounce"></div>
+                      <div className="flex gap-2 mb-1">
+                        <div className="w-1.5 h-1.5 bg-white rounded-full animate-bounce [animation-delay:-0.3s]"></div>
+                        <div className="w-1.5 h-1.5 bg-white rounded-full animate-bounce [animation-delay:-0.15s]"></div>
+                        <div className="w-1.5 h-1.5 bg-white rounded-full animate-bounce"></div>
                       </div>
-                      <span className="text-[9px] opacity-70 tracking-widest animate-pulse">{genStep}</span>
+                      <span className="text-[8px] opacity-70 tracking-widest">{genStep}</span>
                     </>
-                  ) : (
-                    `Generate ${activeTool.name}`
-                  )}
+                  ) : `Generate Analysis`}
                 </button>
               </div>
             ) : (
-              <div className="space-y-6">
-                <div className="bg-black/5 p-6 overflow-auto max-h-[400px]">
-                  {activeTool.name.includes('Logo') || activeTool.name.includes('QR') || activeTool.name.includes('Card') || activeTool.name.includes('Flyer') ? (
-                    <div className="flex justify-center" dangerouslySetInnerHTML={{ __html: toolResult }} />
-                  ) : (
-                    <pre className="whitespace-pre-wrap text-sm font-light text-gray-700">{toolResult}</pre>
-                  )}
+              <div className="space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                <div className="p-1 bg-black/5 rounded-[2rem]">
+                  <div className="bg-white p-8 rounded-[1.8rem] border border-black/5">
+                    <ResultRenderer data={toolResult} />
+                  </div>
                 </div>
                 <div className="flex gap-4">
-                  <button onClick={handleCopy} className="flex-1 border border-black py-4 text-[10px] font-bold uppercase tracking-widest hover:bg-black hover:text-white transition-colors">
-                    {copyFeedback ? 'Copied!' : 'Copy Result'}
+                  <button onClick={() => { setToolResult(null); setToolInput(''); }} className="flex-1 bg-black text-white py-6 rounded-2xl text-[10px] font-bold uppercase tracking-widest hover:bg-gray-800 transition-colors">
+                    New Calculation
                   </button>
-                  <button onClick={() => { setToolResult(null); setToolInput(''); }} className="flex-1 bg-black text-white py-4 text-[10px] font-bold uppercase tracking-widest">
-                    Start Over
+                  <button onClick={() => setActiveTool(null)} className="flex-1 bg-gray-100 text-gray-500 py-6 rounded-2xl text-[10px] font-bold uppercase tracking-widest hover:bg-gray-200 transition-colors">
+                    Close Tool
                   </button>
                 </div>
               </div>

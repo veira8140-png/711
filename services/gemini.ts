@@ -2,9 +2,6 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { BrandOutput } from "../types";
 
-/**
- * Utility for exponential backoff retries.
- */
 const withRetry = async <T>(fn: () => Promise<T>, maxRetries = 3): Promise<T> => {
   let lastError: any;
   for (let i = 0; i < maxRetries; i++) {
@@ -12,15 +9,12 @@ const withRetry = async <T>(fn: () => Promise<T>, maxRetries = 3): Promise<T> =>
       return await fn();
     } catch (err: any) {
       lastError = err;
-      // If it's a 429 (Rate Limit) or 503 (Overloaded), wait and retry
       const errorStr = err.toString();
       if (errorStr.includes('429') || errorStr.includes('503') || errorStr.includes('500')) {
         const waitTime = Math.pow(2, i) * 1000;
-        console.warn(`AI Engine busy, retrying in ${waitTime}ms...`);
         await new Promise(res => setTimeout(res, waitTime));
         continue;
       }
-      // If it's a safety block or auth error, don't retry
       throw err;
     }
   }
@@ -35,52 +29,62 @@ const getAI = () => {
   return new GoogleGenAI({ apiKey });
 };
 
-const cleanAIOutput = (text: string, isVisual: boolean = false): string => {
-  if (!text) return "";
-  let cleaned = text.replace(/```[a-z]*\n/gi, '').replace(/```/g, '').trim();
-  if (isVisual) {
-    const svgMatch = cleaned.match(/<svg[\s\S]*?<\/svg>/i);
-    if (svgMatch) return svgMatch[0];
-  }
-  return cleaned;
-};
-
-export const runVeiraTool = async (toolName: string, userInput: string): Promise<string> => {
+export const runVeiraTool = async (toolName: string, userInput: string): Promise<any> => {
   return withRetry(async () => {
     const ai = getAI();
-    const isVisual = ['Logo', 'QR', 'Card', 'Poster', 'Flyer'].some(kw => toolName.includes(kw));
-
-    const systemInstruction = `You are Veira Intelligence, the expert AI core for Kenyan retail.
-      Mode: "${toolName}".
-      
-      INSTRUCTIONS:
-      1. For visual/design tools: Output ONLY raw SVG code.
-      2. For operational tools: Provide a bulleted summary using KES currency. Focus on Nairobi/Kenyan retail dynamics (e.g., M-PESA, eTIMS).
-      3. For content tools: Provide 3 variants for WhatsApp/Instagram.
-      4. Stay professional, precise, and helpful.`;
+    
+    const systemInstruction = `You are the AI assistant for Veira, a small business platform in Kenya. 
+    You manage a suite of 20 retail tools. 
+    
+    TASK:
+    - Receive a "toolName" and "input".
+    - Perform the task accurately for the Kenyan retail context (KES currency, Nairobi dynamics).
+    - ONLY return a structured JSON object. No markdown, no extra text.
+    
+    TOOL BEHAVIORS:
+    1. Daily Sales Tracker – JSON: { "salesToday": number, "profit": number }
+    2. Staff Theft Risk Calculator – JSON: { "riskScore": number (1-10), "reasons": string[] }
+    3. ETIMS Compliance Checker – JSON: { "compliant": boolean, "issues": string[] }
+    4. Profit Margin Estimator – JSON: { "profitMargin": number }
+    5. Stock Alert Calculator – JSON: { "stockLow": string[] }
+    6. Customer Visit Estimator – JSON: { "dailyVisits": number }
+    7. Business Growth Analyzer – JSON: { "growthScore": number, "tips": string[] }
+    8. Staff Scheduling Helper – JSON: { "schedule": { [day: string]: string[] } }
+    9. Quick Tax Calculator – JSON: { "taxDue": number }
+    10. Expense Tracker – JSON: { "totalExpenses": number, "breakdown": { [cat: string]: number } }
+    11. Free Logo Generator – JSON: { "logoIdeas": string[] }
+    12. Business Name Generator – JSON: { "names": string[] }
+    13. Social Media Content Generator – JSON: { "post": string }
+    14. Business Card Generator – JSON: { "cards": string[] }
+    15. Promo Poster / Flyer Generator – JSON: { "flyers": string[] }
+    16. QR Code Generator – JSON: { "qrCode": string }
+    17. Customer Feedback Form Generator – JSON: { "questions": string[] }
+    18. Loyalty Program Calculator – JSON: { "rewards": string[] }
+    19. Simple Invoice Generator – JSON: { "invoiceTotal": number, "items": string[] }
+    20. Discount & Promotion Planner – JSON: { "promotions": string[] }`;
 
     const response = await ai.models.generateContent({
-      model: 'gemini-3-flash-preview', // Flash is faster and has better quotas
-      contents: { parts: [{ text: `Tool: ${toolName}\nContext: ${userInput}` }] },
+      model: 'gemini-3-flash-preview',
+      contents: { parts: [{ text: `Tool: ${toolName}\nInput: ${userInput}` }] },
       config: {
         systemInstruction: systemInstruction,
-        temperature: 0.2,
+        responseMimeType: "application/json",
+        temperature: 0.1,
       },
     });
 
-    const rawText = response.text;
-    if (!rawText) throw new Error("Empty response from AI engine.");
-
-    const processed = cleanAIOutput(rawText, isVisual);
-    if (isVisual && !processed.includes('<svg')) {
-      throw new Error("DESIGN_FAILED");
+    const text = response.text;
+    if (!text) throw new Error("EMPTY_RESPONSE");
+    
+    try {
+      return JSON.parse(text);
+    } catch (e) {
+      console.error("JSON Parse Error:", text);
+      throw new Error("INVALID_FORMAT");
     }
-
-    return processed;
   });
 };
 
-// Fix: Implement missing generateBrandIdentity with JSON schema
 export const generateBrandIdentity = async (industry: string, vibe: string): Promise<BrandOutput> => {
   return withRetry(async () => {
     const ai = getAI();
@@ -95,42 +99,26 @@ export const generateBrandIdentity = async (industry: string, vibe: string): Pro
             name: { type: Type.STRING },
             tagline: { type: Type.STRING },
             mission: { type: Type.STRING },
-            keywords: {
-              type: Type.ARRAY,
-              items: { type: Type.STRING }
-            }
+            keywords: { type: Type.ARRAY, items: { type: Type.STRING } }
           },
           required: ["name", "tagline", "mission", "keywords"]
         }
       }
     });
-    const text = response.text;
-    if (!text) throw new Error("Empty response");
-    return JSON.parse(text) as BrandOutput;
+    return JSON.parse(response.text || "{}");
   });
 };
 
-// Fix: Implement missing generateImage for visual assets
 export const generateImage = async (prompt: string): Promise<string> => {
   return withRetry(async () => {
     const ai = getAI();
     const response = await ai.models.generateContent({
       model: 'gemini-2.5-flash-image',
-      contents: {
-        parts: [{ text: prompt }]
-      },
-      config: {
-        imageConfig: {
-          aspectRatio: "1:1"
-        }
-      }
+      contents: { parts: [{ text: prompt }] },
+      config: { imageConfig: { aspectRatio: "1:1" } }
     });
-    
-    for (const part of response.candidates?.[0]?.content?.parts || []) {
-      if (part.inlineData) {
-        return `data:${part.inlineData.mimeType};base64,${part.inlineData.data}`;
-      }
-    }
-    throw new Error("IMAGE_GENERATION_FAILED");
+    const part = response.candidates?.[0]?.content?.parts.find(p => p.inlineData);
+    if (!part?.inlineData) throw new Error("IMAGE_FAILED");
+    return `data:${part.inlineData.mimeType};base64,${part.inlineData.data}`;
   });
 };
