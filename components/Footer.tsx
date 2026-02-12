@@ -1,6 +1,5 @@
-
 import React, { useState } from 'react';
-import { runVeiraTool } from '../services/gemini.ts';
+import { runGroqTool } from '../services/groqService';
 
 interface FooterProps {
   onNavigate: (id: string) => void;
@@ -113,14 +112,15 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
     setToolResult(null);
     setError(null);
     setGenStep('Initializing Intelligence...');
-    
+
     try {
       setTimeout(() => setGenStep('Processing Retail Data...'), 1200);
-      const result = await runVeiraTool(activeTool.name, toolInput);
-      setToolResult(result);
+      const result = await runGroqTool(activeTool.name, { userInput: toolInput });
+      if (result.error) setError(result.error);
+      else setToolResult(result);
     } catch (err: any) {
       console.error(err);
-      setError("System Busy. Our AI is currently processing multiple retail requests. Please try again.");
+      setError("⚠️ AI service is busy. Please try again.");
     } finally {
       setIsGenerating(false);
       setGenStep('');
@@ -137,7 +137,6 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               The premium retail intelligence engine for high-growth shops and pharmacies in Kenya.
             </p>
           </div>
-          
           <div className="space-y-8">
             <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-black">Platform</h4>
             <ul className="space-y-4 text-sm font-light text-gray-500">
