@@ -15,25 +15,25 @@ interface ToolDetail {
 
 const TOOL_DETAILS: ToolDetail[] = [
   { name: 'Daily Sales Tracker', icon: '📊', desc: 'Calculate today’s sales and profit.', placeholder: "e.g. Sales: 10,000, Expenses: 4,000" },
-  { name: 'Staff Theft Risk Calculator', icon: '🛡️', desc: 'Evaluate operational risk score (1-10).', placeholder: "e.g. 3 staff members, manual stock take, no CCTV" },
-  { name: 'ETIMS Compliance Checker', icon: '✅', desc: 'Check KRA/ETIMS readiness.', placeholder: "e.g. Retail shop, manual receipts, 5M turnover" },
-  { name: 'Profit Margin Estimator', icon: '💰', desc: 'Know your true net margins.', placeholder: "e.g. Cost 800, Selling price 1,200" },
-  { name: 'Stock Alert Calculator', icon: '📦', desc: 'Identify critical stock levels.', placeholder: "e.g. Items: Milk 5, Bread 2, Eggs 10" },
-  { name: 'Customer Visit Estimator', icon: '👥', desc: 'Estimate foot traffic revenue.', placeholder: "e.g. Boutique in CBD, busy lunch hours" },
-  { name: 'Business Growth Analyzer', icon: '🚀', desc: 'Evaluate scaling potential (1-10).', placeholder: "e.g. 2 branches, 150k monthly profit, looking to scale" },
-  { name: 'Staff Scheduling Helper', icon: '📅', desc: 'Generate optimized shift plans.', placeholder: "e.g. Staff: Alice, Bob, Charlie. Shop opens 8am-8pm" },
-  { name: 'Quick Tax Calculator', icon: '🧾', desc: 'Estimate turnover tax due.', placeholder: "e.g. Monthly revenue 450,000 KES" },
-  { name: 'Expense Tracker', icon: '💸', desc: 'Summarize your business costs.', placeholder: "e.g. Rent 30k, Supplier X 120k, Staff 50k" },
-  { name: 'Free Logo Generator', icon: '🎨', desc: 'Creative identity suggestions.', placeholder: "e.g. Modern salon named 'Zuri Styles', pink colors" },
-  { name: 'Business Name Generator', icon: '🏷️', desc: 'Find unique shop names.', placeholder: "e.g. New delivery business in Nairobi" },
-  { name: 'Social Media Content Generator', icon: '✍️', desc: 'Engaging WhatsApp/IG posts.', placeholder: "e.g. Promo for weekend shoe sale" },
-  { name: 'Business Card Generator', icon: '📇', desc: 'Professional card layouts.', placeholder: "e.g. CEO of Radiant Beauty, include phone 0722..." },
-  { name: 'Promo Poster / Flyer Generator', icon: '📄', desc: 'Visual marketing ideas.', placeholder: "e.g. 20% off back to school sale poster" },
-  { name: 'QR Code Generator', icon: '📱', desc: 'MPESA integrated payment links.', placeholder: "e.g. Paybill 123456, Acc 001" },
-  { name: 'Customer Feedback Form Generator', icon: '📝', desc: 'Get better customer insights.', placeholder: "e.g. Questions for restaurant delivery satisfaction" },
-  { name: 'Loyalty Program Calculator', icon: '🎁', desc: 'Design rewards that stick.', placeholder: "e.g. Points per KES spent, reward after 1000 points" },
-  { name: 'Simple Invoice Generator', icon: '🧾', desc: 'Professional invoice summaries.', placeholder: "e.g. 5 bags of cement at 800 KES each" },
-  { name: 'Discount & Promotion Planner', icon: '💸', desc: 'Plan profitable flash sales.', placeholder: "e.g. Clear old stock of electronics" }
+  { name: 'Staff Theft Risk Calculator', icon: '🛡️', desc: 'Evaluate operational risk score (1-10).', placeholder: "e.g. High turnover, no CCTV, manual reconciliation" },
+  { name: 'ETIMS Compliance Checker', icon: '✅', desc: 'Check KRA/ETIMS readiness.', placeholder: "e.g. Retail shop, issuing manual receipts, KES 5M turnover" },
+  { name: 'Profit Margin Estimator', icon: '💰', desc: 'Know your true net margins.', placeholder: "e.g. Sales: 50,000, Costs: 35,000" },
+  { name: 'Stock Alert Calculator', icon: '📦', desc: 'Identify critical stock levels.', placeholder: "e.g. Inventory: Milk (5), Bread (2), Soda (10)" },
+  { name: 'Customer Visit Estimator', icon: '👥', desc: 'Estimate foot traffic revenue.', placeholder: "e.g. Shop in CBD, peak hours 12pm-2pm" },
+  { name: 'Business Growth Analyzer', icon: '🚀', desc: 'Evaluate scaling potential (1-10).', placeholder: "e.g. Growing at 20% MoM, seeking second location" },
+  { name: 'Staff Scheduling Helper', icon: '📅', desc: 'Generate optimized shift plans.', placeholder: "e.g. Staff: Alice, Bob, Charlie. Hours: 8am-8pm" },
+  { name: 'Quick Tax Calculator', icon: '🧾', desc: 'Estimate turnover tax due.', placeholder: "e.g. Monthly Revenue: 450,000 KES" },
+  { name: 'Expense Tracker', icon: '💸', desc: 'Categorize and summarize costs.', placeholder: "e.g. Rent: 30k, Suppliers: 120k, Electricity: 5k" },
+  { name: 'Free Logo Generator', icon: '🎨', desc: 'Creative identity suggestions.', placeholder: "e.g. Minimalist design for 'Zuri Cafe', Coffee brown" },
+  { name: 'Business Name Generator', icon: '🏷️', desc: 'Find unique shop names.', placeholder: "e.g. New delivery startup in Nairobi focusing on groceries" },
+  { name: 'Social Media Content Generator', icon: '✍️', desc: 'Engaging WhatsApp/IG posts.', placeholder: "e.g. Clearance sale for old electronics, 30% off" },
+  { name: 'Business Card Generator', icon: '📇', desc: 'Professional card layouts.', placeholder: "e.g. Director, Westlands Hardware, Phone 0722..." },
+  { name: 'Promo Poster / Flyer Generator', icon: '📄', desc: 'Visual marketing ideas.', placeholder: "e.g. Back-to-school offer on school uniforms" },
+  { name: 'QR Code Generator', icon: '📱', desc: 'MPESA integrated payment links.', placeholder: "e.g. Paybill 123456, Acc 789" },
+  { name: 'Customer Feedback Form Generator', icon: '📝', desc: 'Get better customer insights.', placeholder: "e.g. Questions for restaurant delivery speed" },
+  { name: 'Loyalty Program Calculator', icon: '🎁', desc: 'Design rewards that stick.', placeholder: "e.g. Reward after 5 visits or 20,000 KES spend" },
+  { name: 'Simple Invoice Generator', icon: '🧾', desc: 'Professional invoice summaries.', placeholder: "e.g. 10 bags of cement, 800 KES each" },
+  { name: 'Discount & Promotion Planner', icon: '💸', desc: 'Plan profitable flash sales.', placeholder: "e.g. Weekend clearance sale on stationary" }
 ];
 
 const ResultRenderer: React.FC<{ data: any }> = ({ data }) => {
@@ -112,15 +112,15 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
     setIsGenerating(true);
     setToolResult(null);
     setError(null);
-    setGenStep('Calibrating Intelligence...');
+    setGenStep('Initializing Intelligence...');
     
     try {
-      setTimeout(() => setGenStep('Processing Market Data...'), 1200);
+      setTimeout(() => setGenStep('Processing Retail Data...'), 1200);
       const result = await runVeiraTool(activeTool.name, toolInput);
       setToolResult(result);
     } catch (err: any) {
       console.error(err);
-      setError("The AI service is temporarily busy. Please try again in a moment.");
+      setError("System Busy. Our AI is currently processing multiple retail requests. Please try again.");
     } finally {
       setIsGenerating(false);
       setGenStep('');
