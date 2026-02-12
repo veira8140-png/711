@@ -2,40 +2,32 @@ import React, { useState } from 'react';
 
 const faqItems = [
   {
-    question: "What is the most reliable POS machine in Kenya for small shops?",
-    answer: "The best POS machine in Kenya should be durable, portable, and come with a built-in printer. Veira provides high-quality Android POS terminals for free with our Success Plan. These machines are pre-configured with eTIMS compliance and long-lasting batteries, perfect for the Kenyan retail environment."
+    question: "Where can I buy a POS system in Kenya that is eTIMS ready?",
+    answer: "If you are looking to buy a POS system in Kenya, Veira offers the most complete solution. Our POS machine Kenya package includes a wireless POS machine for sale in Kenya that is fully integrated with KRA eTIMS. It's the best POS system for small business in Kenya because it automates tax compliance right at the counter."
   },
   {
-    question: "How do point of sale systems in Kenya handle M-PESA integration?",
-    answer: "Modern point of sale systems in Kenya must support M-PESA. Veira automates this by reconciling your Till or Paybill transactions directly with your sales records. This prevents manual entry errors and ensures that every shilling sent via M-PESA is accounted for in your daily reports."
+    question: "What is the average POS system price in Kenya and setup cost?",
+    answer: "Wondering how much does a POS system cost in Kenya? While some providers charge high upfront fees, Veira offers an affordable POS system in Nairobi with a one-time setup fee of KES 3,500. There are no expensive POS system Kenya cost hurdles for the hardware; we provide a high-quality POS machine Kenya for free as part of our success-based 1% revenue share model."
   },
   {
-    question: "Are there cloud-based POS systems in Kenya that work offline?",
-    answer: "Yes, leading POS systems in Kenya like Veira offer a hybrid approach. You get the benefits of the cloud (remote monitoring from your phone) while maintaining a robust offline core. This means you can keep selling even during power outages or internet downtime, and the system syncs everything once you're back online."
+    question: "Why is Veira considered the best POS software in Kenya for retail shops?",
+    answer: "Veira is the best POS software in Kenya because it combines ease of use with deep local functionality. As a top-tier retail POS system Kenya solution, it includes a retail management system Kenya module that handles everything from barcode scanning to real-time stock alerts, making it a cheap POS system for retail shop Kenya owners who don't want to compromise on quality."
   },
   {
-    question: "Is the 1% revenue share fair?",
-    answer: "Veira only succeeds when you succeed. It is significantly cheaper than hiring even one employee to do the same work. Veira never sleeps, never steals, never makes mistakes, and keeps you fully compliant with KRA requirements automatically."
+    question: "Does your POS solution Kenya include M-PESA integration?",
+    answer: "Yes, our POS solution Kenya is built for the local market. It is a POS system with Mpesa integration Kenya that automatically reconciles Till and Paybill payments. This mobile POS Kenya capability ensures that your point of sale system Nairobi operations are always accurate and your digital cash is perfectly accounted for."
   },
   {
-    question: "What happens if I grow my business to multiple branches?",
-    answer: "The 1% fee scales with your revenue. Veira grows with you. For very high-volume merchants with hundreds of branches, optional flat-rate enterprise plans are available."
+    question: "Is there a specific restaurant POS system in Kenya for cafes and bars?",
+    answer: "Absolutely. Veira is an excellent restaurant POS system in Kenya. We offer a specialized cloud-based POS system for restaurants in Nairobi that includes table management and kitchen printing. It's an all-in-one POS system for cafe Kenya businesses that need to track ingredients and manage fast-paced orders efficiently."
   },
   {
-    question: "Can I trust the data accuracy?",
-    answer: "Every transaction is recorded in real time. Reports, alerts, and compliance notifications are sent directly to your WhatsApp and the Veira mobile app. The system is transparent, accurate, and fully auditable."
+    question: "Can I use your cloud POS system in Kenya if my internet is unstable?",
+    answer: "Yes. Unlike other cloud POS system Kenya providers, Veira is a POS system that works offline Kenya. Your data is stored locally on the device and syncs to the cloud once the connection is restored. This makes it a reliable POS software Kenya option for areas with fluctuating connectivity."
   },
   {
-    question: "Is Veira POS KRA eTIMS compliant?",
-    answer: "Yes, Veira is fully built with eTIMS readiness in mind. We help businesses in Kenya automate their tax compliance by ensuring all sales data is structured correctly for KRA reporting and audit-ready at all times."
-  },
-  {
-    question: "Can I use Veira POS offline?",
-    answer: "Absolutely. We understand that internet in Kenya can be unstable. Veira POS features a robust offline mode that allows you to keep selling even without a connection; data syncs automatically once you're back online."
-  },
-  {
-    question: "How does the 'Free Hardware' offer work?",
-    answer: "Upon payment of the KES 3,500 setup fee, we deliver and pre-configure an Android POS terminal specifically for your business. There are no monthly rental fees for this device as long as you are active on the Success Plan."
+    question: "Is this the best POS software for supermarket in Kenya operations?",
+    answer: "For larger retailers, Veira serves as a powerful POS system with inventory management Kenya. It is widely regarded as the best POS software for supermarket in Kenya due to its ability to handle thousands of SKUs, manage multiple suppliers, and provide the deep analytics required for high-volume retail management."
   }
 ];
 
@@ -61,7 +53,7 @@ const AccordionItem: React.FC<{
       </button>
       
       <div 
-        className={`overflow-hidden transition-all duration-500 ease-in-out ${isOpen ? 'max-h-[400px] pb-12 opacity-100' : 'max-h-0 opacity-0'}`}
+        className={`overflow-hidden transition-all duration-500 ease-in-out ${isOpen ? 'max-h-[500px] pb-12 opacity-100' : 'max-h-0 opacity-0'}`}
       >
         <div className="pr-12">
           <p className="text-gray-500 font-light leading-relaxed text-base md:text-lg">
@@ -84,8 +76,8 @@ export const FAQ: React.FC = () => {
     <section id="faq" className="py-24 border-t border-black/5">
       <div className="max-w-4xl mx-auto px-6">
         <div className="text-center mb-16 space-y-4">
-          <span className="section-label mx-auto">Common Inquiries</span>
-          <h2 className="text-3xl md:text-5xl font-bold serif text-black italic">Common Questions</h2>
+          <span className="section-label mx-auto">Expert Guidance</span>
+          <h2 className="text-3xl md:text-5xl font-bold serif text-black italic">POS Systems Kenya FAQ</h2>
         </div>
         
         <div className="divide-y divide-black/5">
@@ -101,10 +93,11 @@ export const FAQ: React.FC = () => {
 
         <div className="mt-20 p-10 bg-[#2D9B9B]/5 border border-[#2D9B9B]/10 text-center space-y-6">
           <p className="text-gray-600 font-light italic">
-            Still have questions about how Veira can transform your business?
+            Still looking for the best POS software Kenya has to offer? 
+            Our team in Nairobi is ready to help you scale.
           </p>
           <button className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#2D9B9B] hover:text-black transition-colors">
-            Chat with an Agent on WhatsApp →
+            Get a Free Consultation via WhatsApp →
           </button>
         </div>
       </div>
