@@ -16,6 +16,7 @@ import { Pricing } from './components/Pricing.tsx';
 import { BrandArchitect } from './components/BrandArchitect.tsx';
 import { VisualStudio } from './components/VisualStudio.tsx';
 import { Footer } from './components/Footer.tsx';
+import { Testimonials } from './components/Testimonials.tsx';
 
 const App: React.FC = () => {
   const navigateTo = (id: string) => {
@@ -84,6 +85,8 @@ const App: React.FC = () => {
           <section id="case-studies">
             <CaseStudies />
           </section>
+
+          <Testimonials />
 
           <section id="pricing">
             <Pricing />

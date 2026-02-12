@@ -49,14 +49,19 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           <div className="space-y-8">
             <h4 className="text-[10px] font-bold uppercase tracking-[0.4em] text-black">Solutions</h4>
             <ul className="space-y-4">
-              {['POS', 'Cloud', 'Agents', 'Enterprise'].map((item) => (
-                <li key={item}>
+              {[
+                { label: 'POS Management', id: 'pos' },
+                { label: 'Cloud Oversight', id: 'cloud' },
+                { label: 'AI Agents', id: 'agents' },
+                { label: 'Enterprise Systems', id: 'enterprise' }
+              ].map((item) => (
+                <li key={item.id}>
                   <a 
-                    href={`#${item.toLowerCase()}`}
-                    onClick={(e) => handleLinkClick(e, item.toLowerCase())}
+                    href={`#${item.id}`}
+                    onClick={(e) => handleLinkClick(e, item.id)}
                     className="text-sm text-gray-500 hover:text-[#2D9B9B] transition-colors font-light"
                   >
-                    {item} Management
+                    {item.label}
                   </a>
                 </li>
               ))}
@@ -68,10 +73,11 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             <h4 className="text-[10px] font-bold uppercase tracking-[0.4em] text-black">Company</h4>
             <ul className="space-y-4">
               {[
-                { label: 'Pricing', id: 'pricing' },
-                { label: 'Our Story', id: 'our-story' },
-                { label: 'Case Studies', id: 'case-studies' },
-                { label: 'FAQ', id: 'faq' }
+                { label: 'Voices (Proof)', id: 'testimonials' },
+                { label: 'Pricing Plan', id: 'pricing' },
+                { label: 'Our Mission', id: 'our-story' },
+                { label: 'Success Stories', id: 'case-studies' },
+                { label: 'Common Questions', id: 'faq' }
               ].map((link) => (
                 <li key={link.id}>
                   <a 
