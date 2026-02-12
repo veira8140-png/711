@@ -1,8 +1,8 @@
 import React from 'react';
 
 const POSFeature: React.FC<{ title: string; desc: string; icon: string }> = ({ title, desc, icon }) => (
-  <div className="glass p-8 border-black/5 flex flex-col items-start gap-4 hover:border-[#2D9B9B]/30 transition-all duration-500 group">
-    <div className="w-10 h-10 bg-[#2D9B9B]/10 rounded-full flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
+  <div className="glass p-8 border-black/5 flex flex-col items-start gap-4 hover:border-black/20 transition-all duration-500 group">
+    <div className="w-10 h-10 bg-black/5 rounded-full flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
       {icon}
     </div>
     <div className="space-y-2">
@@ -16,8 +16,8 @@ const Scenario: React.FC<{ title: string; situation: string; solution: string }>
   <div className="border-l-2 border-black/5 pl-8 py-4 space-y-4">
     <h4 className="text-lg font-bold serif text-black italic">{title}</h4>
     <div className="space-y-3">
-      <p className="text-sm text-gray-400"><span className="font-bold text-[9px] uppercase tracking-widest block mb-1">Situation</span> {situation}</p>
-      <p className="text-sm text-black"><span className="font-bold text-[9px] uppercase tracking-widest text-[#2D9B9B] block mb-1">Veira Result</span> {solution}</p>
+      <p className="text-sm text-gray-400"><span className="font-bold text-[9px] uppercase tracking-widest block mb-1 text-gray-300">Situation</span> {situation}</p>
+      <p className="text-sm text-black"><span className="font-bold text-[9px] uppercase tracking-widest text-black block mb-1 opacity-40">Veira Result</span> {solution}</p>
     </div>
   </div>
 );
@@ -45,7 +45,7 @@ export const POS: React.FC = () => {
             <div className="grid grid-cols-2 gap-4">
               {['Insights', 'Alerts', 'Decisions', 'Intelligence'].map((item) => (
                 <div key={item} className="flex items-center gap-3 py-3 border-b border-black/5">
-                  <div className="w-1 h-1 bg-[#2D9B9B] rounded-full"></div>
+                  <div className="w-1 h-1 bg-gray-400 rounded-full"></div>
                   <span className="text-xs font-bold uppercase tracking-[0.2em] text-black">{item}</span>
                 </div>
               ))}
@@ -54,7 +54,7 @@ export const POS: React.FC = () => {
         </div>
 
         <div className="bg-black p-12 md:p-20 text-white space-y-10 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-[#2D9B9B] opacity-10 blur-[80px] -translate-y-1/2 translate-x-1/2"></div>
+          <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 blur-[80px] -translate-y-1/2 translate-x-1/2"></div>
           <div className="space-y-6 relative z-10">
             <h3 className="text-3xl font-bold serif italic">The business keeps moving.</h3>
             <p className="text-gray-400 font-light leading-relaxed">
@@ -63,7 +63,7 @@ export const POS: React.FC = () => {
             </p>
           </div>
           <div className="pt-10 border-t border-white/10 space-y-6">
-            <span className="text-[10px] font-bold text-[#2D9B9B] uppercase tracking-[0.4em]">What Happens When a Sale Is Made</span>
+            <span className="text-[10px] font-bold text-gray-500 uppercase tracking-[0.4em]">What Happens When a Sale Is Made</span>
             <div className="space-y-4">
               {[
                 "Customer pays.",
@@ -74,7 +74,7 @@ export const POS: React.FC = () => {
                 "Trends become alerts."
               ].map((text, i) => (
                 <div key={i} className="flex items-center gap-4 text-sm font-light text-gray-300">
-                  <span className="text-[#2D9B9B] font-mono text-[10px]">0{i+1}</span>
+                  <span className="text-gray-600 font-mono text-[10px]">0{i+1}</span>
                   {text}
                 </div>
               ))}
@@ -90,46 +90,14 @@ export const POS: React.FC = () => {
           <h3 className="text-4xl md:text-6xl font-bold serif text-black italic">Core Features</h3>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <POSFeature 
-            icon="⚡" 
-            title="Fast Counter Sales" 
-            desc="Minimal taps. Built for speed and accuracy during peak hours." 
-          />
-          <POSFeature 
-            icon="🛡" 
-            title="Offline Mode" 
-            desc="Internet down? Sales continue. Everything syncs once connectivity returns." 
-          />
-          <POSFeature 
-            icon="💳" 
-            title="MPESA & Payments" 
-            desc="Matched to sales automatically. No manual entry, no errors." 
-          />
-          <POSFeature 
-            icon="📦" 
-            title="Live Inventory" 
-            desc="Stock updates instantly. Low stock and unusual movement detected early." 
-          />
-          <POSFeature 
-            icon="👤" 
-            title="Accountability" 
-            desc="Every action tied to a user. See who sold, refunded, or edited stock." 
-          />
-          <POSFeature 
-            icon="📲" 
-            title="WhatsApp Summaries" 
-            desc="Daily and real-time sales sent directly to you. No logging in needed." 
-          />
-          <POSFeature 
-            icon="🧠" 
-            title="AI Powered Alerts" 
-            desc="Unusual refunds? Targets missed? The system notices before you do." 
-          />
-          <POSFeature 
-            icon="🖥" 
-            title="Multi-Device Ready" 
-            desc="Android POS, desktops, or all-in-one systems. Built for Kenya." 
-          />
+          <POSFeature icon="⚡" title="Fast Counter Sales" desc="Minimal taps. Built for speed and accuracy during peak hours." />
+          <POSFeature icon="🛡" title="Offline Mode" desc="Internet down? Sales continue. Everything syncs once connectivity returns." />
+          <POSFeature icon="💳" title="MPESA & Payments" desc="Matched to sales automatically. No manual entry, no errors." />
+          <POSFeature icon="📦" title="Live Inventory" desc="Stock updates instantly. Low stock and unusual movement detected early." />
+          <POSFeature icon="👤" title="Accountability" desc="Every action tied to a user. See who sold, refunded, or edited stock." />
+          <POSFeature icon="📲" title="WhatsApp Summaries" desc="Daily and real-time sales sent directly to you. No logging in needed." />
+          <POSFeature icon="🧠" title="AI Powered Alerts" desc="Unusual refunds? Targets missed? The system notices before you do." />
+          <POSFeature icon="🖥" title="Multi-Device Ready" desc="Android POS, desktops, or all-in-one systems. Built for Kenya." />
         </div>
       </div>
 
@@ -142,51 +110,14 @@ export const POS: React.FC = () => {
           </p>
         </div>
         <div className="space-y-12">
-          <Scenario 
-            title="Internet goes down"
-            situation="A busy shop loses connectivity during the lunch rush."
-            solution="The shop keeps selling. Data syncs later without a single lost transaction."
-          />
-          <Scenario 
-            title="Owner wants daily updates"
-            situation="Owner is away on business and needs to know performance."
-            solution="Sales arrive automatically on WhatsApp. No calls, no stress."
-          />
-          <Scenario 
-            title="Leakage starts quietly"
-            situation="Minor stock deviations start happening consistently."
-            solution="Unusual activity is flagged early. You fix it before it grows into a loss."
-          />
-        </div>
-      </div>
-
-      {/* AI Integration Section */}
-      <div className="max-w-5xl mx-auto text-center space-y-16">
-        <div className="space-y-6">
-          <span className="section-label mx-auto">The AI Foundation</span>
-          <h3 className="text-4xl md:text-7xl font-bold serif text-black leading-tight">How POS Powers <br/><span className="italic text-gray-400">the AI Agents.</span></h3>
-          <p className="text-xl text-gray-500 font-light leading-relaxed max-w-3xl mx-auto">
-            Veira POS is the foundation. Without clean data, AI guesses. With Veira POS, every AI decision starts at the counter.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-left">
-          {[
-            { name: 'Glenn', role: 'Strategic Advisor', desc: 'Answers questions using real sales history to suggest growth paths.' },
-            { name: 'Achi', role: 'Campaign Manager', desc: 'Launches promotions based on actual demand and customer behavior.' },
-            { name: 'Tiri', role: 'Operations Guard', desc: 'Monitors daily performance and sends instant WhatsApp alerts.' }
-          ].map((agent) => (
-            <div key={agent.name} className="space-y-4 p-8 bg-white border border-black/5 hover:border-[#2D9B9B] transition-colors">
-              <h4 className="text-2xl font-bold serif text-black">{agent.name}</h4>
-              <p className="text-xs font-bold uppercase tracking-widest text-[#2D9B9B]">{agent.role}</p>
-              <p className="text-sm text-gray-500 font-light leading-relaxed">{agent.desc}</p>
-            </div>
-          ))}
+          <Scenario title="Internet goes down" situation="A busy shop loses connectivity during the lunch rush." solution="The shop keeps selling. Data syncs later without a single lost transaction." />
+          <Scenario title="Owner wants daily updates" situation="Owner is away on business and needs to know performance." solution="Sales arrive automatically on WhatsApp. No calls, no stress." />
+          <Scenario title="Leakage starts quietly" situation="Minor stock deviations start happening consistently." solution="Unusual activity is flagged early. You fix it before it grows into a loss." />
         </div>
       </div>
 
       {/* Summary Footer */}
-      <div className="bg-[#2D9B9B] p-12 md:p-24 text-white text-center space-y-12">
+      <div className="bg-black p-12 md:p-24 text-white text-center space-y-12">
         <h3 className="text-3xl md:text-5xl font-bold serif italic">What This Means for You</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 text-left max-w-6xl mx-auto">
           {[
@@ -198,13 +129,13 @@ export const POS: React.FC = () => {
             "The business runs while you're away."
           ].map((item, i) => (
             <div key={i} className="flex items-start gap-4">
-              <span className="text-white/40 font-mono text-sm pt-1">0{i+1}</span>
+              <span className="text-white/20 font-mono text-sm pt-1">0{i+1}</span>
               <p className="text-lg font-light leading-relaxed">{item}</p>
             </div>
           ))}
         </div>
         <div className="pt-12">
-          <button className="bg-black text-white px-16 py-6 text-xs font-bold uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all">
+          <button className="cta-primary px-16 py-6 text-xs font-bold uppercase tracking-[0.2em]">
             Experience the Intelligence
           </button>
         </div>

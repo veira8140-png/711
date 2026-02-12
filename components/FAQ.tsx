@@ -43,10 +43,10 @@ const AccordionItem: React.FC<{
         className="w-full py-8 flex items-center justify-between gap-6 text-left group focus:outline-none"
         aria-expanded={isOpen}
       >
-        <h3 className={`text-lg md:text-xl font-bold transition-colors duration-300 ${isOpen ? 'text-[#2D9B9B]' : 'text-black group-hover:text-[#2D9B9B]'}`}>
+        <h3 className={`text-lg md:text-xl font-bold transition-colors duration-300 ${isOpen ? 'text-black italic' : 'text-gray-400 group-hover:text-black'}`}>
           {item.question}
         </h3>
-        <div className="relative w-6 h-6 shrink-0">
+        <div className="relative w-6 h-6 shrink-0 text-gray-400">
           <span className={`absolute top-1/2 left-0 w-full h-[1px] bg-current transition-transform duration-500 ${isOpen ? 'rotate-180' : ''}`}></span>
           <span className={`absolute top-0 left-1/2 h-full w-[1px] bg-current transition-transform duration-500 ${isOpen ? 'rotate-90 opacity-0' : ''}`}></span>
         </div>
@@ -91,12 +91,12 @@ export const FAQ: React.FC = () => {
           ))}
         </div>
 
-        <div className="mt-20 p-10 bg-[#2D9B9B]/5 border border-[#2D9B9B]/10 text-center space-y-6">
+        <div className="mt-20 p-10 bg-black/[0.02] border border-black/5 text-center space-y-6">
           <p className="text-gray-600 font-light italic">
             Still looking for the best POS software Kenya has to offer? 
             Our team in Nairobi is ready to help you scale.
           </p>
-          <button className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#2D9B9B] hover:text-black transition-colors">
+          <button className="cta-primary px-12 py-4 font-bold uppercase tracking-[0.3em] text-[10px]">
             Get a Free Consultation via WhatsApp →
           </button>
         </div>

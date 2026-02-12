@@ -9,14 +9,14 @@ const AgentCard: React.FC<{
   useCases: string[];
   color: string;
 }> = ({ name, role, tagline, description, capabilities, useCases, color }) => (
-  <div className="glass p-8 md:p-12 border-black/5 flex flex-col h-full hover:border-[#2D9B9B]/20 transition-all duration-500 group">
+  <div className="glass p-8 md:p-12 border-black/5 flex flex-col h-full hover:border-black/20 transition-all duration-500 group">
     <div className="space-y-6 flex-1">
       <div className="space-y-2">
         <div className="flex items-center gap-3">
           <h3 className="text-3xl font-black serif text-black">{name}</h3>
           <div className="h-[1px] flex-1 bg-black/5"></div>
         </div>
-        <p className="text-[10px] font-bold uppercase tracking-[0.4em]" style={{ color }}>{role}</p>
+        <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400">{role}</p>
       </div>
       
       <p className="text-xl font-bold serif italic text-black">{tagline}</p>
@@ -27,7 +27,7 @@ const AgentCard: React.FC<{
         <ul className="space-y-2">
           {capabilities.map((cap, i) => (
             <li key={i} className="flex items-start gap-3 text-sm text-gray-600 font-light">
-              <span className="text-[#2D9B9B] mt-1">•</span>
+              <span className="text-gray-300 mt-1">•</span>
               {cap}
             </li>
           ))}
@@ -72,82 +72,28 @@ export const Agents: React.FC = () => {
           role="AI Support Agent"
           tagline="Keeps the Business Running"
           description="Glenn handles day-to-day friction so the business never slows down. Staff get help instantly, and owners are not pulled into every issue."
-          color="#2D9B9B"
-          capabilities={[
-            "Answers staff questions about products, pricing, and workflows",
-            "Trains new employees on the job without supervision",
-            "Responds to customer inquiries on WhatsApp",
-            "Explains system alerts in simple language",
-            "Reduces mistakes from poor training"
-          ]}
-          useCases={[
-            "New cashier day one: Glenn guides them step by step.",
-            "Rush hour confusion: Glenn answers repetitive questions instantly.",
-            "Owner away: Operations continue without interruption."
-          ]}
+          color="#94A3B8"
+          capabilities={["Answers staff questions", "Trains new employees", "Responds to WhatsApp", "Explains alerts", "Reduces mistakes"]}
+          useCases={["New cashier day one guide.", "Rush hour assistance.", "Owner away operations."]}
         />
         <AgentCard 
           name="Achi"
           role="AI Sales & Marketing"
           tagline="Makes the Business Grow"
-          description="Achi does not just show numbers. She actively drives revenue and engagement by understanding customer behavior."
-          color="#8b5cf6"
-          capabilities={[
-            "Runs promotions and campaigns automatically",
-            "Follows up leads and customers on WhatsApp",
-            "Encourages repeat visits and upsells",
-            "Analyzes trends to recommend what to push",
-            "Creates marketing messages that convert"
-          ]}
-          useCases={[
-            "Dormant customers: Targeted messages bring them back.",
-            "Slow-moving products: Launches promotions to move stock.",
-            "Lead follow-up: Converts interest into actual sales."
-          ]}
+          description="Achi drives revenue and engagement by understanding customer behavior."
+          color="#94A3B8"
+          capabilities={["Runs promotions", "WhatsApp follow-ups", "Encourages repeats", "Analyzes trends", "Creates marketing"]}
+          useCases={["Targeted win-back messages.", "Moving slow stock.", "Lead conversion."]}
         />
         <AgentCard 
           name="Tiri"
           role="AI Manager Agent"
           tagline="Watches Everything, Protects Money"
-          description="Tiri is the guardian. She monitors operations continuously and reports directly to you on WhatsApp. You don't log in; Tiri brings the data."
-          color="#000000"
-          capabilities={[
-            "Sends daily sales reports on WhatsApp automatically",
-            "Breaks down cash vs digital payments",
-            "Detects fraud, theft, or suspicious behavior",
-            "Monitors inventory and shrinkage",
-            "Flags compliance and reporting risks"
-          ]}
-          useCases={[
-            "Daily WhatsApp report: See revenue and red flags instantly.",
-            "Leakage detection: Flags discrepancies before losses grow.",
-            "Staff manipulation: Identifies unusual discounts or reversals."
-          ]}
+          description="Tiri monitors operations continuously and reports directly to you on WhatsApp."
+          color="#94A3B8"
+          capabilities={["WhatsApp daily reports", "Cash vs Digital breakdown", "Fraud detection", "Inventory monitoring", "Flags risks"]}
+          useCases={["Daily revenue snapshot.", "Leakage flags.", "Identifying unusual discounts."]}
         />
-      </div>
-
-      {/* Integration section */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center bg-black text-white p-12 md:p-24">
-        <div className="space-y-8">
-          <h3 className="text-4xl md:text-6xl font-bold serif italic">How the Agents <br/>Work Together.</h3>
-          <p className="text-gray-400 text-xl font-light leading-relaxed">
-            They are not separate tools. They form a closed loop of support, growth, and control.
-          </p>
-        </div>
-        <div className="space-y-12">
-          <div className="flex gap-6 items-start">
-            <div className="w-10 h-10 border border-white/20 flex items-center justify-center shrink-0 font-serif italic text-[#2D9B9B]">01</div>
-            <p className="text-lg font-light"><span className="text-white font-bold">Tiri</span> detects a risk or abnormal behavior in your sales patterns.</p>
-          </div>
-          <div className="flex gap-6 items-start">
-            <div className="w-10 h-10 border border-white/20 flex items-center justify-center shrink-0 font-serif italic text-[#2D9B9B]">02</div>
-            <p className="text-lg font-light"><span className="text-white font-bold">Glenn</span> helps staff correct the issue on the ground immediately.</p>
-          </div>
-          <div className="flex gap-6 items-start">
-            <div className="w-10 h-10 border border-white/20 flex items-center justify-center shrink-0 font-serif italic text-[#2D9B9B]">03</div>
-            <p className="text-lg font-light"><span className="text-white font-bold">Achi</span> adjusts marketing campaigns based on the new real-time performance data.</p>
-          </div>
-        </div>
       </div>
 
       {/* Summary Section */}
@@ -159,12 +105,12 @@ export const Agents: React.FC = () => {
           {[
             "You get daily sales on WhatsApp automatically",
             "Fraud and theft are detected early",
-            "Revenue grows without constant marketing effort",
+            "Revenue grows without constant effort",
             "Staff no longer need micromanagement",
             "You stay in control, even when offsite"
           ].map((item, i) => (
             <div key={i} className="flex items-center gap-4 border-b border-black/5 pb-6">
-              <span className="text-[#2D9B9B] font-bold">✓</span>
+              <span className="text-gray-400 font-bold">✓</span>
               <p className="text-lg text-gray-700 font-light">{item}</p>
             </div>
           ))}

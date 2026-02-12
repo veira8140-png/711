@@ -1,8 +1,8 @@
 import React from 'react';
 
 const CloudFeature: React.FC<{ title: string; desc: string; icon: string }> = ({ title, desc, icon }) => (
-  <div className="glass p-8 border-black/5 hover:border-[#2D9B9B]/30 transition-all duration-500 group flex flex-col items-start gap-4">
-    <div className="w-12 h-12 bg-black/5 rounded-full flex items-center justify-center text-xl group-hover:bg-[#2D9B9B]/10 group-hover:scale-110 transition-all">
+  <div className="glass p-8 border-black/5 hover:border-black/20 transition-all duration-500 group flex flex-col items-start gap-4">
+    <div className="w-12 h-12 bg-black/5 rounded-full flex items-center justify-center text-xl group-hover:bg-black/10 group-hover:scale-110 transition-all">
       {icon}
     </div>
     <div className="space-y-2">
@@ -36,8 +36,8 @@ export const Cloud: React.FC = () => {
                 "Access your business anytime, anywhere"
               ].map((item, i) => (
                 <div key={i} className="flex items-center gap-4">
-                  <div className="w-5 h-5 bg-[#2D9B9B]/10 rounded-full flex items-center justify-center">
-                    <div className="w-1.5 h-1.5 bg-[#2D9B9B] rounded-full"></div>
+                  <div className="w-5 h-5 bg-black/5 rounded-full flex items-center justify-center">
+                    <div className="w-1.5 h-1.5 bg-gray-400 rounded-full"></div>
                   </div>
                   <span className="text-lg text-gray-700 font-light">{item}</span>
                 </div>
@@ -50,10 +50,10 @@ export const Cloud: React.FC = () => {
         </div>
 
         <div className="relative">
-          <div className="absolute -inset-10 bg-[#2D9B9B]/5 blur-[100px] rounded-full"></div>
+          <div className="absolute -inset-10 bg-black/5 blur-[100px] rounded-full"></div>
           <div className="relative glass p-12 md:p-20 border-black/5 space-y-10">
             <div className="space-y-4">
-              <span className="text-[10px] font-bold text-[#2D9B9B] uppercase tracking-[0.4em]">The Core Benefits</span>
+              <span className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.4em]">The Core Benefits</span>
               <h3 className="text-3xl font-bold serif text-black">Infrastructure for Growth</h3>
             </div>
             <div className="space-y-6">
@@ -77,65 +77,15 @@ export const Cloud: React.FC = () => {
           <h3 className="text-4xl md:text-6xl font-bold serif text-black italic text-center">Cloud Features</h3>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <CloudFeature 
-            icon="☁"
-            title="Automatic Cloud Backup"
-            desc="Never lose a sale or record. Your data is safe, recoverable, and always accurate."
-          />
-          <CloudFeature 
-            icon="🌐"
-            title="Online and Offline Access"
-            desc="Sell even when the internet is down. Everything syncs automatically when you reconnect."
-          />
-          <CloudFeature 
-            icon="🖥"
-            title="Multi-Device & Multi-User"
-            desc="Access business data from any device. Control staff permissions with ease."
-          />
-          <CloudFeature 
-            icon="🔗"
-            title="Seamless Integration"
-            desc="Works perfectly with AI agents Achi, Glenn, and Tiri. AI gets the data it needs to act fast."
-          />
-          <CloudFeature 
-            icon="🔒"
-            title="Security You Can Trust"
-            desc="Encryption, tamper-proof records, and compliance-ready storage make you audit-ready."
-          />
-          <div className="bg-[#2D9B9B] p-8 flex flex-col justify-center items-center text-center text-white space-y-6">
-             <p className="text-sm uppercase tracking-widest font-bold">Scale without work</p>
+          <CloudFeature icon="☁" title="Automatic Cloud Backup" desc="Never lose a sale or record. Your data is safe, recoverable, and always accurate." />
+          <CloudFeature icon="🌐" title="Online and Offline Access" desc="Sell even when the internet is down. Everything syncs automatically when you reconnect." />
+          <CloudFeature icon="🖥" title="Multi-Device & Multi-User" desc="Access business data from any device. Control staff permissions with ease." />
+          <CloudFeature icon="🔗" title="Seamless Integration" desc="Works perfectly with AI agents Achi, Glenn, and Tiri. AI gets the data it needs to act fast." />
+          <CloudFeature icon="🔒" title="Security You Can Trust" desc="Encryption, tamper-proof records, and compliance-ready storage make you audit-ready." />
+          <div className="bg-black p-8 flex flex-col justify-center items-center text-center text-white space-y-6">
+             <p className="text-sm uppercase tracking-widest font-bold text-gray-500">Scale without work</p>
              <h4 className="text-2xl serif font-bold italic">Ready to grow?</h4>
-             <button className="bg-white text-black px-8 py-4 text-[10px] font-bold uppercase tracking-widest hover:bg-black hover:text-white transition-all">Connect Now</button>
-          </div>
-        </div>
-      </div>
-
-      {/* AI Integration Section */}
-      <div className="bg-black text-white p-12 md:p-24 space-y-20">
-        <div className="max-w-4xl space-y-6">
-          <span className="text-[#2D9B9B] text-[10px] font-bold uppercase tracking-[0.4em]">Intelligence Foundation</span>
-          <h3 className="text-4xl md:text-6xl font-bold serif italic">How Veira Cloud <br/>Powers Your AI Agents</h3>
-          <p className="text-gray-400 text-xl font-light">Without Cloud, AI guesses. With Veira Cloud, AI acts.</p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-16 border-t border-white/10 pt-20">
-          <div className="space-y-6">
-            <h4 className="text-2xl font-bold serif text-[#2D9B9B]">Achi</h4>
-            <p className="text-gray-400 font-light leading-relaxed">
-              Responds to customers instantly and manages daily sales interactions using real-time inventory and pricing data.
-            </p>
-          </div>
-          <div className="space-y-6">
-            <h4 className="text-2xl font-bold serif text-[#2D9B9B]">Glenn</h4>
-            <p className="text-gray-400 font-light leading-relaxed">
-              Gives accurate revenue insights and performance reports by analyzing your entire history stored securely in the cloud.
-            </p>
-          </div>
-          <div className="space-y-6">
-            <h4 className="text-2xl font-bold serif text-[#2D9B9B]">Tiri</h4>
-            <p className="text-gray-400 font-light leading-relaxed">
-              Monitors compliance, fraud, and KRA filings using secure cloud records to protect your business from risk.
-            </p>
+             <button className="cta-primary px-8 py-4 text-[10px] font-bold uppercase tracking-widest">Connect Now</button>
           </div>
         </div>
       </div>
@@ -157,19 +107,16 @@ export const Cloud: React.FC = () => {
             "Lets you stay in control, from anywhere"
           ].map((item, i) => (
             <div key={i} className="flex items-start gap-4 p-6 border border-black/5 bg-white">
-              <span className="text-[#2D9B9B] font-bold">✓</span>
+              <span className="text-gray-400 font-bold">✓</span>
               <p className="text-gray-700 font-medium">{item}</p>
             </div>
           ))}
         </div>
 
         <div className="pt-10">
-          <button className="cta-primary px-16 py-8 text-xs font-bold uppercase tracking-[0.3em] w-full sm:w-auto">
+          <button className="cta-primary px-16 py-8 text-xs font-bold uppercase tracking-[0.3em]">
             Get Started with Veira Cloud Today
           </button>
-          <p className="mt-8 text-gray-400 text-[10px] uppercase tracking-widest font-bold">
-            Connect your business • Protect your data • Unlock AI
-          </p>
         </div>
       </div>
     </div>
