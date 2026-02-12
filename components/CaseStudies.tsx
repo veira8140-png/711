@@ -162,7 +162,7 @@ export const CaseStudies: React.FC = () => {
           Don't wait until money goes missing. Join the hundreds of 
           shop owners in Kenya using Veira.
         </p>
-        <button className="cta-primary bg-white text-black px-12 py-5 font-bold uppercase tracking-widest text-xs">
+        <button className="cta-primary px-12 py-5 font-bold uppercase tracking-widest text-xs">
           Learn More
         </button>
       </div>

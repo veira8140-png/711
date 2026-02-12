@@ -32,7 +32,7 @@ export const Hero: React.FC<HeroProps> = ({ onStart, onViewDemo }) => {
         </button>
         <button 
           onClick={onViewDemo}
-          className="w-full sm:w-auto px-12 md:px-16 py-6 md:py-7 border border-black/10 backdrop-blur-md bg-white/30 hover:bg-black hover:text-white transition-all duration-500 text-[10px] font-bold uppercase tracking-[0.2em] text-black min-h-[64px]"
+          className="w-full sm:w-auto px-12 md:px-16 py-6 md:py-7 border border-black/10 backdrop-blur-md bg-white/30 hover:bg-[#2D9B9B] hover:text-white transition-all duration-500 text-[10px] font-bold uppercase tracking-[0.2em] text-black min-h-[64px]"
         >
           Book a Free Demo
         </button>

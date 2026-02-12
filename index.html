@@ -38,7 +38,7 @@
     <style>
         :root {
             --veira-plum: #0a0510;
-            --veira-accent: #8b5cf6; 
+            --veira-accent: #2D9B9B; /* Turquoise */
             --bg-satin: #fbfbfd;
             --text-main: #1d1d1f;
         }
@@ -52,7 +52,7 @@
         }
         .serif { font-family: 'Playfair Display', serif; }
         .cta-primary {
-            background-color: #000;
+            background-color: var(--veira-accent);
             color: #fff;
             transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
@@ -60,11 +60,11 @@
             border: 1px solid transparent;
         }
         .cta-primary:hover {
-            background-color: #fff;
-            color: #000;
+            background-color: #000;
+            color: #fff;
             border-color: #000;
             transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 20px 40px -15px rgba(0,0,0,0.15);
+            box-shadow: 0 20px 40px -15px rgba(45, 155, 155, 0.3);
         }
         .glass {
             background: rgba(255, 255, 255, 0.6);
