@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { runVeiraTool } from '../services/gemini.ts';
 
 interface FooterProps {
   onNavigate: (id: string) => void;
@@ -37,11 +38,38 @@ const ToolItem: React.FC<{ icon: string; label: string; desc: string; onClick: (
 export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   const currentYear = new Date().getFullYear();
   const [activeTool, setActiveTool] = useState<{ name: string; icon: string } | null>(null);
+  const [toolInput, setToolInput] = useState('');
+  const [toolResult, setToolResult] = useState<string | null>(null);
+  const [isGenerating, setIsGenerating] = useState(false);
 
   const handleNav = (e: React.MouseEvent, id: string) => {
     e.preventDefault();
     onNavigate(id);
   };
+
+  const handleLaunchTool = async () => {
+    if (!activeTool || !toolInput.trim()) return;
+    setIsGenerating(true);
+    try {
+      const result = await runVeiraTool(activeTool.name, toolInput);
+      setToolResult(result);
+    } catch (err) {
+      console.error(err);
+      setToolResult("An error occurred during generation. Please try again.");
+    } finally {
+      setIsGenerating(false);
+    }
+  };
+
+  const resetTool = () => {
+    setActiveTool(null);
+    setToolInput('');
+    setToolResult(null);
+    setIsGenerating(false);
+  };
+
+  // Helper to detect if the result is SVG
+  const isSvg = (str: string) => str.trim().startsWith('<svg') || str.includes('</svg>');
 
   return (
     <footer className="bg-white border-t border-black/5 pt-32 pb-16 px-6 overflow-hidden">
@@ -184,10 +212,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
       {/* Modal Tool Overlay */}
       {activeTool && (
         <div className="fixed inset-0 z-[200] flex items-center justify-center px-4">
-          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={() => setActiveTool(null)}></div>
-          <div className="bg-white rounded-[2rem] p-8 md:p-12 max-w-xl w-full relative z-[210] shadow-2xl animate-in zoom-in-95 fade-in duration-300">
+          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={resetTool}></div>
+          <div className="bg-white rounded-[2rem] p-8 md:p-12 max-w-2xl w-full relative z-[210] shadow-2xl animate-in zoom-in-95 fade-in duration-300 max-h-[90vh] overflow-y-auto">
             <button 
-              onClick={() => setActiveTool(null)}
+              onClick={resetTool}
               className="absolute top-6 right-6 text-gray-300 hover:text-black transition-colors"
             >
               ✕
@@ -200,18 +228,76 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   <p className="text-[10px] font-bold uppercase tracking-widest text-[#2D9B9B]">Powered by Veira AI Intelligence</p>
                 </div>
               </div>
-              <div className="space-y-6">
-                <div className="space-y-2">
-                  <label className="text-[9px] font-bold uppercase tracking-widest text-gray-400">Business Email to Receive Result</label>
-                  <input type="email" placeholder="your@business.com" className="w-full bg-black/5 border-b border-black/10 px-4 py-4 focus:outline-none focus:border-[#2D9B9B] transition-colors font-light text-black" />
+
+              {!toolResult ? (
+                <div className="space-y-6">
+                  <div className="space-y-2">
+                    <label className="text-[9px] font-bold uppercase tracking-widest text-gray-400">Describe your Business or Requirement</label>
+                    <textarea 
+                      placeholder={activeTool.name.includes('Generator') ? "e.g., 'Modern boutique in Nairobi called Zuri Styles'" : "e.g., 'I sell 100 units at 500 KES with cost of 300 KES'"}
+                      className="w-full bg-black/5 border-b border-black/10 px-4 py-4 focus:outline-none focus:border-[#2D9B9B] transition-colors font-light text-black min-h-[120px] resize-none"
+                      value={toolInput}
+                      onChange={(e) => setToolInput(e.target.value)}
+                    />
+                  </div>
+                  <button 
+                    disabled={isGenerating || !toolInput.trim()}
+                    onClick={handleLaunchTool}
+                    className="cta-primary w-full py-6 text-[10px] font-bold uppercase tracking-widest disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3"
+                  >
+                    {isGenerating ? (
+                      <>
+                        <div className="w-2 h-2 bg-white rounded-full animate-bounce"></div>
+                        <span>Veira is thinking...</span>
+                      </>
+                    ) : (
+                      `Launch ${activeTool.name} Now`
+                    )}
+                  </button>
                 </div>
-                <button className="cta-primary w-full py-6 text-[10px] font-bold uppercase tracking-widest">
-                  Launch {activeTool.name} Now
-                </button>
-                <p className="text-[10px] text-center text-gray-400 font-light italic leading-relaxed">
-                  Join 5,000+ businesses using Veira's AI suite. <br/>By clicking launch, you agree to our terms of service.
-                </p>
-              </div>
+              ) : (
+                <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                  <div className="p-6 bg-gray-50 rounded-2xl border border-black/5 min-h-[200px]">
+                    {isSvg(toolResult) ? (
+                      <div className="flex flex-col items-center gap-6">
+                        <div className="w-full max-w-[300px] aspect-square flex items-center justify-center bg-white p-4 rounded-xl shadow-inner overflow-hidden" 
+                             dangerouslySetInnerHTML={{ __html: toolResult }} />
+                        <p className="text-[10px] text-gray-400 italic">Live preview generated by Veira AI</p>
+                      </div>
+                    ) : (
+                      <div className="prose prose-sm max-w-none text-gray-700 font-light whitespace-pre-wrap leading-relaxed">
+                        {toolResult}
+                      </div>
+                    )}
+                  </div>
+                  
+                  <div className="flex gap-4">
+                    <button 
+                      onClick={() => { setToolResult(null); setToolInput(''); }}
+                      className="flex-1 py-4 border border-black/10 text-[10px] font-bold uppercase tracking-widest hover:bg-black hover:text-white transition-all"
+                    >
+                      Start New Analysis
+                    </button>
+                    <button 
+                      onClick={() => {
+                        const blob = new Blob([toolResult], { type: isSvg(toolResult) ? 'image/svg+xml' : 'text/plain' });
+                        const url = URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = `veira-${activeTool.name.toLowerCase().replace(/\s+/g, '-')}.${isSvg(toolResult) ? 'svg' : 'txt'}`;
+                        a.click();
+                      }}
+                      className="cta-primary flex-1 py-4 text-[10px] font-bold uppercase tracking-widest"
+                    >
+                      Download Result
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              <p className="text-[10px] text-center text-gray-400 font-light italic leading-relaxed">
+                Free Power-up Suite. Results are AI-generated based on Kenyan market context.
+              </p>
             </div>
           </div>
         </div>

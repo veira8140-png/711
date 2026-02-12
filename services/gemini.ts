@@ -8,7 +8,7 @@ export const generateBrandIdentity = async (industry: string, vibe: string): Pro
   const ai = getAI();
   const response = await ai.models.generateContent({
     model: 'gemini-3-flash-preview',
-    contents: `Generate a brand identity for a company in the ${industry} industry with a ${vibe} vibe.`,
+    contents: `Generate a brand identity for a company in the ${industry} industry with a ${vibe} vibe. Output as JSON.`,
     config: {
       responseMimeType: "application/json",
       responseSchema: {
@@ -24,7 +24,6 @@ export const generateBrandIdentity = async (industry: string, vibe: string): Pro
     },
   });
   
-  // Directly access .text property
   const text = response.text || '{}';
   return JSON.parse(text);
 };
@@ -43,7 +42,6 @@ export const generateImage = async (prompt: string): Promise<string> => {
     },
   });
 
-  // Find the image part in nano banana series models
   const part = response.candidates?.[0]?.content?.parts.find(p => p.inlineData);
   if (part?.inlineData) {
     return `data:image/png;base64,${part.inlineData.data}`;
@@ -51,25 +49,30 @@ export const generateImage = async (prompt: string): Promise<string> => {
   throw new Error("No image generated");
 };
 
-export const generateCopy = async (topic: string, format: string): Promise<CopyOutput> => {
+/**
+ * Generic tool executor for the Footer Power-up Suite
+ */
+export const runVeiraTool = async (toolName: string, userInput: string): Promise<string> => {
   const ai = getAI();
+  
+  const systemPrompt = `
+    You are Veira AI, the intelligence core for Kenyan retail businesses. 
+    The user is using the tool: "${toolName}".
+    Context provided: "${userInput}".
+    
+    GUIDELINES:
+    - For visual tools (Logo, Business Card, QR, Poster): Output ONLY a clean, professional SVG code block that renders the requested asset. Make it modern, minimalist, and high-contrast.
+    - For operational tools (Tracker, Calculator, Checker): Provide structured, bulleted advice and formulas. Focus on the Kenyan retail market (KES currency, local trends).
+    - For content tools (Social Media, Name Gen): Provide several high-quality options.
+    - KEEP IT FAST AND INSTANT.
+    - Do not include preamble or conversational filler.
+    - If user asks for a Logo, design a vector-style SVG.
+  `;
+
   const response = await ai.models.generateContent({
     model: 'gemini-3-flash-preview',
-    contents: `Write professional ${format} about ${topic}.`,
-    config: {
-      responseMimeType: "application/json",
-      responseSchema: {
-        type: Type.OBJECT,
-        properties: {
-          title: { type: Type.STRING },
-          content: { type: Type.STRING },
-        },
-        required: ["title", "content"]
-      },
-    },
+    contents: systemPrompt,
   });
 
-  // Directly access .text property
-  const text = response.text || '{}';
-  return JSON.parse(text);
+  return response.text || "No response generated. Please try again.";
 };
