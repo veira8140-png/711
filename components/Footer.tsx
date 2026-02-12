@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { runGroqTool } from '../services/groqService';
+
+const GROQ_API_KEY = process.env.GROQ_API_KEY || '';
 
 interface FooterProps {
   onNavigate: (id: string) => void;
@@ -47,7 +48,7 @@ const ResultRenderer: React.FC<{ data: any }> = ({ data }) => {
         {Object.entries(data).map(([key, value]) => {
           const isCurrency = key.toLowerCase().includes('total') || key.toLowerCase().includes('profit') || key.toLowerCase().includes('sales') || key.toLowerCase().includes('due');
           const isScore = key.toLowerCase().includes('score');
-          
+
           if (typeof value === 'object' && !Array.isArray(value)) {
             return (
               <div key={key} className="col-span-full border-t border-black/5 pt-4">
@@ -56,9 +57,7 @@ const ResultRenderer: React.FC<{ data: any }> = ({ data }) => {
                   {Object.entries(value as object).map(([subKey, subVal]) => (
                     <div key={subKey} className="bg-black/5 p-4 rounded-xl">
                       <p className="text-[9px] font-bold text-gray-400 uppercase tracking-tighter mb-1">{formatKey(subKey)}</p>
-                      <p className="text-sm font-semibold text-black">
-                        {Array.isArray(subVal) ? subVal.join(', ') : String(subVal)}
-                      </p>
+                      <p className="text-sm font-semibold text-black">{Array.isArray(subVal) ? subVal.join(', ') : String(subVal)}</p>
                     </div>
                   ))}
                 </div>
@@ -72,9 +71,7 @@ const ResultRenderer: React.FC<{ data: any }> = ({ data }) => {
                 <h4 className="text-[10px] font-bold uppercase tracking-widest text-gray-400">{formatKey(key)}</h4>
                 <div className="flex flex-wrap gap-2">
                   {value.map((item, i) => (
-                    <span key={i} className="px-3 py-2 bg-black/5 border border-black/5 text-[11px] font-medium rounded-lg text-gray-700">
-                      {String(item)}
-                    </span>
+                    <span key={i} className="px-3 py-2 bg-black/5 border border-black/5 text-[11px] font-medium rounded-lg text-gray-700">{String(item)}</span>
                   ))}
                 </div>
               </div>
@@ -98,6 +95,32 @@ const ResultRenderer: React.FC<{ data: any }> = ({ data }) => {
   );
 };
 
+// --- Groq API Helper ---
+const runGroqTool = async (toolName: string, data: any) => {
+  try {
+    // If not parser, first convert free text into structured JSON
+    let structured = data;
+    if (toolName !== 'Input Parser') {
+      const parserRes = await runGroqTool('Input Parser', { userInput: data.userInput });
+      if (parserRes.error) return { error: parserRes.error };
+      structured = parserRes;
+    }
+
+    const res = await fetch('https://api.groq.com/v1/query', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${GROQ_API_KEY}` },
+      body: JSON.stringify({ tool: toolName, input: structured }),
+    });
+
+    const result = await res.json();
+    return result.error ? { error: result.error } : result;
+  } catch (err: any) {
+    console.error('Groq API Error:', err);
+    return { error: '⚠️ AI service is busy. Please try again.' };
+  }
+};
+
+// --- Footer Component ---
 export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   const [activeTool, setActiveTool] = useState<ToolDetail | null>(null);
   const [toolInput, setToolInput] = useState('');
@@ -120,7 +143,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
       else setToolResult(result);
     } catch (err: any) {
       console.error(err);
-      setError("⚠️ AI service is busy. Please try again.");
+      setError('⚠️ AI service is busy. Please try again.');
     } finally {
       setIsGenerating(false);
       setGenStep('');
@@ -137,6 +160,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               The premium retail intelligence engine for high-growth shops and pharmacies in Kenya.
             </p>
           </div>
+
           <div className="space-y-8">
             <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-black">Platform</h4>
             <ul className="space-y-4 text-sm font-light text-gray-500">
@@ -150,11 +174,8 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-black">AI Power-Up Suite</h4>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
               {TOOL_DETAILS.map((tool) => (
-                <button
-                  key={tool.name}
-                  onClick={() => { setActiveTool(tool); setToolResult(null); setError(null); }}
-                  className="px-4 py-3 bg-black/5 hover:bg-black hover:text-white text-[10px] font-bold uppercase tracking-wider text-left transition-all rounded-sm flex items-center gap-2 group"
-                >
+                <button key={tool.name} onClick={() => { setActiveTool(tool); setToolResult(null); setError(null); }}
+                  className="px-4 py-3 bg-black/5 hover:bg-black hover:text-white text-[10px] font-bold uppercase tracking-wider text-left transition-all rounded-sm flex items-center gap-2 group">
                   <span className="text-base grayscale group-hover:grayscale-0 transition-all">{tool.icon}</span>
                   <span className="truncate">{tool.name}</span>
                 </button>
@@ -179,7 +200,6 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm">
           <div className="bg-white w-full max-w-2xl p-8 md:p-12 space-y-10 animate-in fade-in zoom-in duration-300 relative rounded-[2rem] shadow-2xl overflow-y-auto max-h-[90vh]">
             <button onClick={() => setActiveTool(null)} className="absolute top-8 right-8 text-gray-300 hover:text-black transition-colors">✕</button>
-            
             <div className="space-y-2">
               <div className="flex items-center gap-4">
                 <span className="text-4xl">{activeTool.icon}</span>
@@ -192,20 +212,13 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               <div className="space-y-8">
                 <div className="space-y-3">
                   <label className="text-[10px] font-bold uppercase tracking-widest text-gray-400">Input Data</label>
-                  <textarea
-                    autoFocus
-                    value={toolInput}
-                    onChange={(e) => setToolInput(e.target.value)}
+                  <textarea autoFocus value={toolInput} onChange={(e) => setToolInput(e.target.value)}
                     placeholder={activeTool.placeholder}
-                    className="w-full bg-black/5 border-none p-6 min-h-[160px] focus:ring-1 focus:ring-black transition-all rounded-2xl text-lg font-light"
-                  />
+                    className="w-full bg-black/5 border-none p-6 min-h-[160px] focus:ring-1 focus:ring-black transition-all rounded-2xl text-lg font-light" />
                 </div>
                 {error && <p className="text-red-500 text-xs italic bg-red-50 p-3 rounded-lg border border-red-100">{error}</p>}
-                <button 
-                  disabled={isGenerating || !toolInput.trim()}
-                  onClick={handleLaunchTool}
-                  className="cta-primary w-full py-7 text-[11px] font-bold uppercase tracking-[0.4em] disabled:opacity-50 flex flex-col items-center justify-center gap-2 rounded-2xl shadow-xl shadow-[#2D9B9B]/20"
-                >
+                <button disabled={isGenerating || !toolInput.trim()} onClick={handleLaunchTool}
+                  className="cta-primary w-full py-7 text-[11px] font-bold uppercase tracking-[0.4em] disabled:opacity-50 flex flex-col items-center justify-center gap-2 rounded-2xl shadow-xl shadow-[#2D9B9B]/20">
                   {isGenerating ? (
                     <>
                       <div className="flex gap-2 mb-1">
