@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { runVeiraTool } from '../services/gemini.ts';
 
@@ -296,9 +297,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   const [isGenerating, setIsGenerating] = useState(false);
   const [copyFeedback, setCopyFeedback] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [isKeyError, setIsKeyError] = useState(false);
 
-  // Dynamic SEO Updates
   useEffect(() => {
     if (activeTool) {
       document.title = activeTool.seoTitle;
@@ -321,31 +320,18 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
     setIsGenerating(true);
     setToolResult(null);
     setError(null);
-    setIsKeyError(false);
     try {
       const result = await runVeiraTool(activeTool.name, toolInput);
       setToolResult(result);
     } catch (err: any) {
       console.error(err);
       if (err.message === "API_KEY_MISSING") {
-        setError("AI access not configured. You need to connect an API key to use these tools.");
-        setIsKeyError(true);
+        setError("Retail Intelligence service is temporarily busy. Please try again in a moment.");
       } else {
-        setError(err.message || "An unexpected error occurred. Please try again.");
+        setError("Our AI engine encountered a brief issue. Please refine your details and try again.");
       }
     } finally {
       setIsGenerating(false);
-    }
-  };
-
-  const handleConnectAI = async () => {
-    // @ts-ignore
-    if (window.aistudio && typeof window.aistudio.openSelectKey === 'function') {
-      // @ts-ignore
-      await window.aistudio.openSelectKey();
-      setError(null);
-      setIsKeyError(false);
-      // Wait a tiny bit and try again or just let user click again
     }
   };
 
@@ -355,7 +341,6 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
     setToolResult(null);
     setError(null);
     setIsGenerating(false);
-    setIsKeyError(false);
   };
 
   const isSvg = (str: string) => str.trim().startsWith('<svg') || str.includes('</svg>');
@@ -370,9 +355,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   return (
     <footer className="bg-white border-t border-black/5 pt-32 pb-16 px-6 overflow-hidden">
       <div className="container mx-auto max-w-7xl">
-        
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-y-16 gap-x-8 mb-32">
-          
           <div className="col-span-2 md:col-span-1 space-y-12">
             <div className="space-y-6">
               <a href="#" onClick={(e) => handleNav(e, 'hero')} className="text-3xl font-black serif tracking-tighter uppercase text-black">veira.</a>
@@ -517,23 +500,12 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                     <span className="text-xl mt-0.5">⚠️</span>
                     <div className="space-y-4">
                       <p>{error}</p>
-                      <div className="flex flex-wrap gap-4">
-                        {isKeyError ? (
-                          <button 
-                            onClick={handleConnectAI}
-                            className="bg-red-600 text-white px-6 py-2 rounded-xl text-[10px] uppercase tracking-widest font-bold shadow-lg shadow-red-500/20 hover:bg-red-700 transition-all"
-                          >
-                            Connect AI Account
-                          </button>
-                        ) : (
-                          <button 
-                            onClick={() => setError(null)}
-                            className="text-[10px] uppercase tracking-widest font-bold underline"
-                          >
-                            Dismiss and Try Again
-                          </button>
-                        )}
-                      </div>
+                      <button 
+                        onClick={() => setError(null)}
+                        className="text-[10px] uppercase tracking-widest font-bold underline"
+                      >
+                        Dismiss and Try Again
+                      </button>
                     </div>
                   </div>
                 </div>

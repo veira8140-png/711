@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Header } from './components/Header.tsx';
 import { Hero } from './components/Hero.tsx';
@@ -45,7 +46,6 @@ const App: React.FC = () => {
 
         <div className="container mx-auto px-4 sm:px-6 space-y-32 md:space-y-48 lg:space-y-64 pb-24 md:pb-40">
           <Testimonials />
-
           <Problem />
 
           <section id="pos">
@@ -62,15 +62,14 @@ const App: React.FC = () => {
             <Agents />
           </section>
 
-          {/* Studio Section */}
           <section id="studio" className="space-y-24">
             <div className="max-w-4xl space-y-6">
-              <span className="section-label">AI Creative Suite</span>
+              <span className="section-label">AI Intelligence Suite</span>
               <h2 className="text-5xl md:text-8xl font-black serif text-black leading-[0.9] tracking-tighter">
-                Brand Intelligence <br/><span className="italic text-gray-400">at your fingertips.</span>
+                Visual Commerce <br/><span className="italic text-gray-400">automated.</span>
               </h2>
               <p className="text-xl md:text-2xl text-gray-500 font-light max-w-2xl">
-                Use Veira's built-in Gemini models to design your brand identity and visual assets specifically for the Kenyan market.
+                Deploy Veira's high-fidelity AI models to design assets specifically for the Kenyan market.
               </p>
             </div>
             

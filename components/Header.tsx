@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Orb } from './Orb.tsx';
 
@@ -5,49 +6,15 @@ interface HeaderProps {
   onNavigate: (id: string) => void;
 }
 
-// Removed redundant declare global block to fix duplicate identifier and modifier errors.
-// window.aistudio is pre-configured in the environment and already declared globally.
-
 export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [hasKey, setHasKey] = useState<boolean>(true);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
-
-    // Check for API key on mount to follow mandatory selection guidelines for paid models
-    const checkKey = async () => {
-      try {
-        // @ts-ignore - aistudio is provided by the execution environment
-        if (window.aistudio && typeof window.aistudio.hasSelectedApiKey === 'function') {
-          // @ts-ignore
-          const selected = await window.aistudio.hasSelectedApiKey();
-          setHasKey(selected);
-        }
-      } catch (e) {
-        console.error("Failed to check API key status", e);
-      }
-    };
-    checkKey();
-
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const handleOpenKey = async () => {
-    try {
-      // @ts-ignore - aistudio is provided by the execution environment
-      if (window.aistudio && typeof window.aistudio.openSelectKey === 'function') {
-        // @ts-ignore
-        await window.aistudio.openSelectKey();
-        // As per guidelines, assume the key selection was successful to mitigate race conditions
-        setHasKey(true);
-      }
-    } catch (e) {
-      console.error("Failed to open key selection", e);
-    }
-  };
 
   const handleLinkClick = (e: React.MouseEvent, id: string) => {
     e.preventDefault();
@@ -56,11 +23,7 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
   };
 
   useEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
+    document.body.style.overflow = isMenuOpen ? 'hidden' : 'unset';
   }, [isMenuOpen]);
 
   const navItems = [
@@ -104,16 +67,6 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
               </a>
             ))}
             
-            {/* Display API Key button if not selected, as per mandatory requirements */}
-            {!hasKey && (
-              <button 
-                onClick={handleOpenKey}
-                className="bg-red-500 text-white px-6 py-2 rounded-full text-[9px] font-bold uppercase tracking-widest hover:bg-red-600 transition-all animate-pulse shadow-lg shadow-red-500/20"
-              >
-                Connect API Key
-              </button>
-            )}
-
             <button className="cta-primary px-8 py-3 rounded-none text-[9px]">
               Talk To Us
             </button>
@@ -146,14 +99,6 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
               {item.label}
             </a>
           ))}
-          {!hasKey && (
-            <button 
-              onClick={handleOpenKey}
-              className="text-2xl font-bold serif text-red-500 italic animate-pulse"
-            >
-              Connect API Key
-            </button>
-          )}
           <a 
             href="#contact" 
             onClick={(e) => { e.preventDefault(); setIsMenuOpen(false); }} 
@@ -161,12 +106,6 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
           >
             Talk To Us
           </a>
-        </div>
-        
-        <div className="pt-8 border-t border-black/5 w-64 text-center">
-          <button className="cta-primary w-full py-5 text-[10px] font-bold uppercase tracking-[0.2em]">
-            Talk To Us
-          </button>
         </div>
       </div>
     </>

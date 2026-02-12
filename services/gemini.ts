@@ -1,8 +1,10 @@
+
 import { GoogleGenAI, Type } from "@google/genai";
 import { BrandOutput } from "../types";
 
 /**
  * Standardized initialization to ensure the latest process.env.API_KEY is used.
+ * We create the instance fresh each time to avoid stale keys after selection.
  */
 const getAI = () => {
   const apiKey = process.env.API_KEY;
@@ -33,7 +35,7 @@ const cleanAIOutput = (text: string, isVisual: boolean = false): string => {
 };
 
 /**
- * Generates a full brand identity.
+ * Generates a full brand identity using the high-reasoning engine.
  */
 export const generateBrandIdentity = async (industry: string, vibe: string): Promise<BrandOutput> => {
   const ai = getAI();
@@ -69,7 +71,7 @@ export const generateBrandIdentity = async (industry: string, vibe: string): Pro
 };
 
 /**
- * Generates brand assets using the Gemini 2.5 Flash Image model.
+ * Generates brand assets using the specialized visual engine.
  */
 export const generateImage = async (prompt: string): Promise<string> => {
   const ai = getAI();
@@ -85,14 +87,13 @@ export const generateImage = async (prompt: string): Promise<string> => {
     },
   });
 
-  // Guidelines: iterate parts to find the image
   for (const part of response.candidates?.[0]?.content?.parts || []) {
     if (part.inlineData) {
       return `data:image/png;base64,${part.inlineData.data}`;
     }
   }
   
-  throw new Error("No image was returned by the AI. Check your description.");
+  throw new Error("No visual was returned by the AI. Check your description.");
 };
 
 /**
@@ -103,18 +104,18 @@ export const runVeiraTool = async (toolName: string, userInput: string): Promise
   
   const isVisual = ['Logo', 'QR', 'Card', 'Poster', 'Flyer'].some(kw => toolName.includes(kw));
 
-  const systemInstruction = `You are Veira AI, the expert intelligence core for Kenyan retail businesses.
-    Tool Mode: "${toolName}".
+  const systemInstruction = `You are Veira Intelligence, the expert AI core for Kenyan retail.
+    Mode: "${toolName}".
     
     INSTRUCTIONS:
-    1. For visual/design tools (Logo, QR, Card, Poster): Output ONLY the raw SVG code. No text, no intros.
-    2. For operational/logic tools: Provide a bulleted summary using KES currency. Focus on Nairobi/Kenyan retail dynamics (MPESA, estate trends, eTIMS).
+    1. For visual/design tools: Output ONLY the raw SVG code.
+    2. For operational tools: Provide a bulleted summary using KES currency. Focus on Nairobi/Kenyan retail dynamics.
     3. For content tools: Provide 3 variants for WhatsApp/Instagram.
     4. Stay professional and precise.`;
 
   const response = await ai.models.generateContent({
     model: 'gemini-3-flash-preview',
-    contents: { parts: [{ text: `Tool: ${toolName}\nUser Business Context: ${userInput}` }] },
+    contents: { parts: [{ text: `Tool: ${toolName}\nContext: ${userInput}` }] },
     config: {
       systemInstruction: systemInstruction,
       temperature: 0.2,
@@ -122,12 +123,12 @@ export const runVeiraTool = async (toolName: string, userInput: string): Promise
   });
 
   const rawText = response.text;
-  if (!rawText) throw new Error("The AI service is currently unavailable. Please check your internet connection.");
+  if (!rawText) throw new Error("The AI service is currently unavailable.");
 
   const processed = cleanAIOutput(rawText, isVisual);
   
   if (isVisual && !processed.includes('<svg')) {
-    throw new Error("The AI failed to generate a valid design. Try adding more detail to your description.");
+    throw new Error("Failed to generate a valid design. Try adding more detail.");
   }
 
   return processed;
