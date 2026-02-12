@@ -1,32 +1,49 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { BrandOutput } from "../types";
 
-// Always initialize the client within the service to ensure process.env.API_KEY is current
-const getAI = () => new GoogleGenAI({ apiKey: process.env.API_KEY });
+/**
+ * Standardized initialization to ensure the latest process.env.API_KEY is used.
+ */
+const getAI = () => {
+  const apiKey = process.env.API_KEY;
+  if (!apiKey) {
+    throw new Error("AI access not configured. Please ensure your environment is set up correctly.");
+  }
+  return new GoogleGenAI({ apiKey });
+};
 
 /**
- * Cleans markdown artifacts and extracts specific content blocks
+ * Robust extraction for SVG and text content.
  */
 const cleanAIOutput = (text: string, isVisual: boolean = false): string => {
   if (!text) return "";
   
-  // Remove markdown code blocks
+  // Standard cleanup of markdown backticks
   let cleaned = text.replace(/```[a-z]*\n/gi, '').replace(/```/g, '').trim();
   
   if (isVisual) {
-    // For visual tools, specifically try to extract the SVG tag
+    // Specifically target SVG tags with a more resilient regex
     const svgMatch = cleaned.match(/<svg[\s\S]*?<\/svg>/i);
-    if (svgMatch) return svgMatch[0];
+    if (svgMatch) {
+      return svgMatch[0];
+    }
   }
   
   return cleaned;
 };
 
+/**
+ * Generates a full brand identity.
+ */
 export const generateBrandIdentity = async (industry: string, vibe: string): Promise<BrandOutput> => {
   const ai = getAI();
+  const prompt = `Generate a comprehensive brand identity for a company in the "${industry}" industry with a "${vibe}" vibe. 
+    The company operates in Kenya, so ensure the mission and tagline resonate with Nairobi and estate retail culture. 
+    Output strictly as JSON.`;
+
   const response = await ai.models.generateContent({
     model: 'gemini-3-flash-preview',
-    contents: `Generate a brand identity for a company in the ${industry} industry with a ${vibe} vibe. Output as JSON.`,
+    contents: prompt,
     config: {
       responseMimeType: "application/json",
       responseSchema: {
@@ -42,16 +59,24 @@ export const generateBrandIdentity = async (industry: string, vibe: string): Pro
     },
   });
   
-  const text = cleanAIOutput(response.text || '{}');
-  return JSON.parse(text);
+  const text = response.text || "{}";
+  try {
+    return JSON.parse(cleanAIOutput(text));
+  } catch (e) {
+    console.error("Failed to parse brand identity JSON", text);
+    throw new Error("The AI provided an invalid identity format. Please try again.");
+  }
 };
 
+/**
+ * Generates brand assets using the Gemini 2.5 Flash Image model.
+ */
 export const generateImage = async (prompt: string): Promise<string> => {
   const ai = getAI();
   const response = await ai.models.generateContent({
     model: 'gemini-2.5-flash-image',
     contents: {
-      parts: [{ text: prompt }],
+      parts: [{ text: `Create a high-quality retail brand asset for: ${prompt}. Clean, professional, minimal.` }],
     },
     config: {
       imageConfig: {
@@ -60,44 +85,50 @@ export const generateImage = async (prompt: string): Promise<string> => {
     },
   });
 
-  const part = response.candidates?.[0]?.content?.parts.find(p => p.inlineData);
-  if (part?.inlineData) {
-    return `data:image/png;base64,${part.inlineData.data}`;
+  // Guidelines: iterate parts to find the image
+  for (const part of response.candidates?.[0]?.content?.parts || []) {
+    if (part.inlineData) {
+      return `data:image/png;base64,${part.inlineData.data}`;
+    }
   }
-  throw new Error("No image generated");
+  
+  throw new Error("No image was returned by the AI. Check your description.");
 };
 
 /**
  * Unified tool executor for the Veira Power-up Suite.
- * Optimized for Kenyan retail context and high-speed delivery.
  */
 export const runVeiraTool = async (toolName: string, userInput: string): Promise<string> => {
   const ai = getAI();
   
-  // Determine if this is a visual tool to adjust prompt and cleaning
   const isVisual = ['Logo', 'QR', 'Card', 'Poster', 'Flyer'].some(kw => toolName.includes(kw));
 
   const systemInstruction = `You are Veira AI, the expert intelligence core for Kenyan retail businesses.
-    Current Tool Context: "${toolName}".
+    Tool Mode: "${toolName}".
     
-    CRITICAL OUTPUT RULES:
-    1. If this is a visual/design tool (Logo, QR, Business Card, Poster): You MUST output ONLY a valid, modern, high-contrast, professional SVG code block. No explanation before or after.
-    2. If this is an operational/calculator tool: Provide a clear, bulleted summary. Always use KES (Kenya Shillings) as currency. Provide actionable advice based on Kenyan market trends (Nairobi, estate retail, CBD dynamics).
-    3. If this is a content tool: Provide 3-5 high-impact variations ready for WhatsApp or Instagram.
-    4. NEVER use conversational filler (e.g., "I can help with that").
-    5. Ensure all data provided aligns with KRA eTIMS logic and local tax rates (16% VAT, 3% Turnover Tax) where applicable.`;
+    INSTRUCTIONS:
+    1. For visual/design tools (Logo, QR, Card, Poster): Output ONLY the raw SVG code. No text, no intros.
+    2. For operational/logic tools: Provide a bulleted summary using KES currency. Focus on Nairobi/Kenyan retail dynamics (MPESA, estate trends, eTIMS).
+    3. For content tools: Provide 3 variants for WhatsApp/Instagram.
+    4. Stay professional and precise.`;
 
   const response = await ai.models.generateContent({
     model: 'gemini-3-flash-preview',
-    contents: [{ parts: [{ text: `User Business Input: ${userInput}` }] }],
+    contents: { parts: [{ text: `Tool: ${toolName}\nUser Business Context: ${userInput}` }] },
     config: {
       systemInstruction: systemInstruction,
-      temperature: 0.2, // Lower temperature for more consistent, reliable tool outputs
+      temperature: 0.2,
     },
   });
 
-  const rawText = response.text || "";
-  if (!rawText) throw new Error("Empty response from AI engine");
+  const rawText = response.text;
+  if (!rawText) throw new Error("The AI service is currently unavailable. Please check your internet connection.");
 
-  return cleanAIOutput(rawText, isVisual);
+  const processed = cleanAIOutput(rawText, isVisual);
+  
+  if (isVisual && !processed.includes('<svg')) {
+    throw new Error("The AI failed to generate a valid design. Try adding more detail to your description.");
+  }
+
+  return processed;
 };

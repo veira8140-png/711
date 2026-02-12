@@ -1,7 +1,5 @@
 {
   "name": "Veira POS Studio",
   "description": "Best POS system for small business in Kenya. A premium retail intelligence dashboard powered by Gemini.",
-  "requestFramePermissions": [
-    "camera"
-  ]
+  "requestFramePermissions": []
 }
