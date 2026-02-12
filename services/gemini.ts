@@ -6,8 +6,8 @@ import { BrandOutput } from "../types";
  */
 const getAI = () => {
   const apiKey = process.env.API_KEY;
-  if (!apiKey) {
-    throw new Error("AI access not configured. Please ensure your environment is set up correctly.");
+  if (!apiKey || apiKey === "undefined") {
+    throw new Error("API_KEY_MISSING");
   }
   return new GoogleGenAI({ apiKey });
 };

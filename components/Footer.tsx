@@ -214,7 +214,7 @@ const TOOL_DETAILS: Record<string, ToolDetail> = {
     seoTitle: 'Customer Feedback Form Generator – Improve Service',
     h1: 'Collect Reviews & Insights',
     metaDescription: 'Free Feedback Form Generator – Understand your customers and improve service quality in your shop.',
-    placeholder: "e.g., 'I want to know if my customers are happy with our new home delivery service.'",
+    placeholder: "e.g., 'I want to know if my customers are happy with our home delivery service.'",
     faqs: [
       { q: "How to collect and act on feedback?", a: "Ask clear questions, provide a small incentive for responding, and review results weekly." },
       { q: "Why is feedback important?", a: "It identifies service gaps before they drive customers away to competitors." }
@@ -296,6 +296,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   const [isGenerating, setIsGenerating] = useState(false);
   const [copyFeedback, setCopyFeedback] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [isKeyError, setIsKeyError] = useState(false);
 
   // Dynamic SEO Updates
   useEffect(() => {
@@ -320,14 +321,31 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
     setIsGenerating(true);
     setToolResult(null);
     setError(null);
+    setIsKeyError(false);
     try {
       const result = await runVeiraTool(activeTool.name, toolInput);
       setToolResult(result);
     } catch (err: any) {
       console.error(err);
-      setError(err.message || "An unexpected error occurred. Please try again.");
+      if (err.message === "API_KEY_MISSING") {
+        setError("AI access not configured. You need to connect an API key to use these tools.");
+        setIsKeyError(true);
+      } else {
+        setError(err.message || "An unexpected error occurred. Please try again.");
+      }
     } finally {
       setIsGenerating(false);
+    }
+  };
+
+  const handleConnectAI = async () => {
+    // @ts-ignore
+    if (window.aistudio && typeof window.aistudio.openSelectKey === 'function') {
+      // @ts-ignore
+      await window.aistudio.openSelectKey();
+      setError(null);
+      setIsKeyError(false);
+      // Wait a tiny bit and try again or just let user click again
     }
   };
 
@@ -337,6 +355,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
     setToolResult(null);
     setError(null);
     setIsGenerating(false);
+    setIsKeyError(false);
   };
 
   const isSvg = (str: string) => str.trim().startsWith('<svg') || str.includes('</svg>');
@@ -352,7 +371,6 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
     <footer className="bg-white border-t border-black/5 pt-32 pb-16 px-6 overflow-hidden">
       <div className="container mx-auto max-w-7xl">
         
-        {/* Veed.io Style Mega Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-y-16 gap-x-8 mb-32">
           
           <div className="col-span-2 md:col-span-1 space-y-12">
@@ -463,7 +481,6 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         </div>
       </div>
 
-      {/* Landing Page Style Tool Modal */}
       {activeTool && (
         <div className="fixed inset-0 z-[200] flex items-center justify-center px-4">
           <div className="absolute inset-0 bg-black/60 backdrop-blur-md" onClick={resetTool}></div>
@@ -475,7 +492,6 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               ✕
             </button>
             <div className="space-y-12">
-              {/* SEO Header Section */}
               <div className="space-y-6">
                 <div className="flex items-center gap-4">
                   <div className="w-16 h-16 bg-gray-50 rounded-2xl flex items-center justify-center text-4xl shadow-sm">
@@ -497,16 +513,29 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
               {error && (
                 <div className="p-6 bg-red-50 border border-red-100 rounded-2xl text-red-600 text-sm font-medium animate-in fade-in zoom-in-95">
-                  <p className="flex items-center gap-2">
-                    <span className="text-xl">⚠️</span>
-                    {error}
-                  </p>
-                  <button 
-                    onClick={() => setError(null)}
-                    className="mt-4 text-[10px] uppercase tracking-widest font-bold underline"
-                  >
-                    Dismiss and Try Again
-                  </button>
+                  <div className="flex items-start gap-3">
+                    <span className="text-xl mt-0.5">⚠️</span>
+                    <div className="space-y-4">
+                      <p>{error}</p>
+                      <div className="flex flex-wrap gap-4">
+                        {isKeyError ? (
+                          <button 
+                            onClick={handleConnectAI}
+                            className="bg-red-600 text-white px-6 py-2 rounded-xl text-[10px] uppercase tracking-widest font-bold shadow-lg shadow-red-500/20 hover:bg-red-700 transition-all"
+                          >
+                            Connect AI Account
+                          </button>
+                        ) : (
+                          <button 
+                            onClick={() => setError(null)}
+                            className="text-[10px] uppercase tracking-widest font-bold underline"
+                          >
+                            Dismiss and Try Again
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  </div>
                 </div>
               )}
 
@@ -577,7 +606,6 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 </div>
               )}
 
-              {/* Tool Specific FAQ Section */}
               <div className="pt-12 border-t border-black/5 space-y-8">
                 <div className="space-y-2">
                   <h4 className="text-[12px] font-bold uppercase tracking-[0.3em] text-black">Common Questions</h4>
