@@ -18,6 +18,18 @@ const faqItems = [
     answer: "Yes, our POS solution Kenya is built for the local market. It is a POS system with Mpesa integration Kenya that automatically reconciles Till and Paybill payments. This mobile POS Kenya capability ensures that your point of sale system Nairobi operations are always accurate and your digital cash is perfectly accounted for."
   },
   {
+    question: "Do you provide a physical POS machine Kenya with the software?",
+    answer: "Yes, when you join Veira, we provide a premium, hand-held POS machine Kenya for your business at no upfront cost. This hardware is specifically designed to handle heavy daily use in busy shops, featuring a built-in thermal receipt printer, a high-sensitivity touch screen, and a long-lasting battery life to ensure your sales never stop even during power outages."
+  },
+  {
+    question: "Where is your point of sale system Nairobi office located for support?",
+    answer: "Our primary point of sale system Nairobi support and training hub is located in the heart of Westlands. We believe in being close to our customers; that's why we offer on-site installation and 24-hour technical assistance across the city. Being a local Nairobi-based company allows us to respond faster and understand the unique retail environment of the CBD and surrounding neighborhoods."
+  },
+  {
+    question: "How does Veira compare to other legacy POS systems in Kenya?",
+    answer: "Most legacy POS systems in Kenya are offline-only, complex to learn, and require expensive server hardware. Veira is different because it is cloud-native and AI-powered. We move beyond simple record-keeping to provide active retail intelligence. While traditional systems just tell you what you sold, Veira tells you how to grow, detects theft patterns, and ensures you're always eTIMS compliant without manual effort."
+  },
+  {
     question: "Is there a specific restaurant POS system in Kenya for cafes and bars?",
     answer: "Absolutely. Veira is an excellent restaurant POS system in Kenya. We offer a specialized cloud-based POS system for restaurants in Nairobi that includes table management and kitchen printing. It's an all-in-one POS system for cafe Kenya businesses that need to track ingredients and manage fast-paced orders efficiently."
   },
