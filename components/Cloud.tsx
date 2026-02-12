@@ -95,7 +95,7 @@ export const Cloud: React.FC = () => {
           <CloudFeature 
             icon="🔗"
             title="Seamless Integration"
-            desc="Works perfectly with AI agents Svan, Glenn, and Tat. AI gets the data it needs to act fast."
+            desc="Works perfectly with AI agents Achi, Glenn, and Tiri. AI gets the data it needs to act fast."
           />
           <CloudFeature 
             icon="🔒"
@@ -120,7 +120,7 @@ export const Cloud: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-16 border-t border-white/10 pt-20">
           <div className="space-y-6">
-            <h4 className="text-2xl font-bold serif text-[#2D9B9B]">Svan</h4>
+            <h4 className="text-2xl font-bold serif text-[#2D9B9B]">Achi</h4>
             <p className="text-gray-400 font-light leading-relaxed">
               Responds to customers instantly and manages daily sales interactions using real-time inventory and pricing data.
             </p>
@@ -132,7 +132,7 @@ export const Cloud: React.FC = () => {
             </p>
           </div>
           <div className="space-y-6">
-            <h4 className="text-2xl font-bold serif text-[#2D9B9B]">Tat</h4>
+            <h4 className="text-2xl font-bold serif text-[#2D9B9B]">Tiri</h4>
             <p className="text-gray-400 font-light leading-relaxed">
               Monitors compliance, fraud, and KRA filings using secure cloud records to protect your business from risk.
             </p>
