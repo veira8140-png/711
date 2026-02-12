@@ -44,6 +44,8 @@ const App: React.FC = () => {
         </section>
 
         <div className="container mx-auto px-4 sm:px-6 space-y-32 md:space-y-48 lg:space-y-64 pb-24 md:pb-40">
+          <Testimonials />
+
           <Problem />
 
           <section id="pos">
@@ -85,8 +87,6 @@ const App: React.FC = () => {
           <section id="case-studies">
             <CaseStudies />
           </section>
-
-          <Testimonials />
 
           <section id="pricing">
             <Pricing />

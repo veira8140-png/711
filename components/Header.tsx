@@ -32,7 +32,7 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
   const navItems = [
     { label: 'POS', id: 'pos' },
     { label: 'Agents', id: 'agents' },
-    { label: 'Voices', id: 'testimonials' },
+    { label: 'Enterprise', id: 'enterprise' },
     { label: 'Pricing', id: 'pricing' },
     { label: 'Cloud', id: 'cloud' },
     { label: 'Our Story', id: 'our-story' }
