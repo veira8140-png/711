@@ -1,8 +1,12 @@
 import { GoogleGenAI, Type } from "@google/genai";
-import { BrandOutput, CopyOutput } from "../types";
+import { BrandOutput } from "../types";
 
 // Always use const ai = new GoogleGenAI({apiKey: process.env.API_KEY});
 const getAI = () => new GoogleGenAI({ apiKey: process.env.API_KEY });
+
+const cleanAIOutput = (text: string) => {
+  return text.replace(/```(json|svg|xml|html)?/g, '').replace(/```/g, '').trim();
+};
 
 export const generateBrandIdentity = async (industry: string, vibe: string): Promise<BrandOutput> => {
   const ai = getAI();
@@ -24,7 +28,7 @@ export const generateBrandIdentity = async (industry: string, vibe: string): Pro
     },
   });
   
-  const text = response.text || '{}';
+  const text = cleanAIOutput(response.text || '{}');
   return JSON.parse(text);
 };
 
@@ -55,24 +59,24 @@ export const generateImage = async (prompt: string): Promise<string> => {
 export const runVeiraTool = async (toolName: string, userInput: string): Promise<string> => {
   const ai = getAI();
   
-  const systemPrompt = `
-    You are Veira AI, the intelligence core for Kenyan retail businesses. 
-    The user is using the tool: "${toolName}".
-    Context provided: "${userInput}".
+  const systemInstruction = `You are Veira AI, the intelligence core for Kenyan retail businesses. 
+    You are powering a specific business tool: "${toolName}".
     
     GUIDELINES:
-    - For visual tools (Logo, Business Card, QR, Poster): Output ONLY a clean, professional SVG code block that renders the requested asset. Make it modern, minimalist, and high-contrast.
-    - For operational tools (Tracker, Calculator, Checker): Provide structured, bulleted advice and formulas. Focus on the Kenyan retail market (KES currency, local trends).
-    - For content tools (Social Media, Name Gen): Provide several high-quality options.
-    - KEEP IT FAST AND INSTANT.
-    - Do not include preamble or conversational filler.
-    - If user asks for a Logo, design a vector-style SVG.
-  `;
+    - If it's a visual tool (Logo, QR, Business Card, Poster): Output ONLY valid, modern, high-contrast SVG code. No text before or after.
+    - If it's an operational/calculator tool: Provide a clear, formatted summary with KES (Kenya Shillings) context. Include actionable advice.
+    - If it's a content tool: Provide 3-5 high-quality creative variations.
+    - Focus on the Kenyan market context (Nairobi, local shopping habits, eTIMS compliance).
+    - Be professional, concise, and helpful. Do not use filler words like "Sure, I can help."`;
 
   const response = await ai.models.generateContent({
     model: 'gemini-3-flash-preview',
-    contents: systemPrompt,
+    contents: [{ parts: [{ text: `User Requirement: ${userInput}` }] }],
+    config: {
+      systemInstruction: systemInstruction,
+      temperature: 0.7,
+    },
   });
 
-  return response.text || "No response generated. Please try again.";
+  return cleanAIOutput(response.text || "No response generated. Please try again.");
 };

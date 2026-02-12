@@ -41,6 +41,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   const [toolInput, setToolInput] = useState('');
   const [toolResult, setToolResult] = useState<string | null>(null);
   const [isGenerating, setIsGenerating] = useState(false);
+  const [copyFeedback, setCopyFeedback] = useState(false);
 
   const handleNav = (e: React.MouseEvent, id: string) => {
     e.preventDefault();
@@ -50,12 +51,13 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   const handleLaunchTool = async () => {
     if (!activeTool || !toolInput.trim()) return;
     setIsGenerating(true);
+    setToolResult(null);
     try {
       const result = await runVeiraTool(activeTool.name, toolInput);
       setToolResult(result);
     } catch (err) {
       console.error(err);
-      setToolResult("An error occurred during generation. Please try again.");
+      setToolResult("An error occurred. Our AI agents are currently busy. Please try again in a moment.");
     } finally {
       setIsGenerating(false);
     }
@@ -68,17 +70,22 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
     setIsGenerating(false);
   };
 
-  // Helper to detect if the result is SVG
   const isSvg = (str: string) => str.trim().startsWith('<svg') || str.includes('</svg>');
+
+  const handleCopy = () => {
+    if (!toolResult) return;
+    navigator.clipboard.writeText(toolResult);
+    setCopyFeedback(true);
+    setTimeout(() => setCopyFeedback(false), 2000);
+  };
 
   return (
     <footer className="bg-white border-t border-black/5 pt-32 pb-16 px-6 overflow-hidden">
       <div className="container mx-auto max-w-7xl">
         
-        {/* Main Mega Grid */}
+        {/* Veed.io Style Mega Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-y-16 gap-x-8 mb-32">
           
-          {/* Column 1: Solutions & Brand */}
           <div className="col-span-2 md:col-span-1 space-y-12">
             <div className="space-y-6">
               <a href="#" onClick={(e) => handleNav(e, 'hero')} className="text-3xl font-black serif tracking-tighter uppercase text-black">veira.</a>
@@ -86,7 +93,6 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 The leading retail intelligence platform and cloud POS system for high-growth businesses in Kenya.
               </p>
             </div>
-            
             <div className="space-y-6">
               <h4 className="text-[11px] font-bold uppercase tracking-[0.2em] text-black">Solutions</h4>
               <ul className="space-y-4">
@@ -100,7 +106,6 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             </div>
           </div>
 
-          {/* Column 2: AI Operations & Compliance */}
           <div className="space-y-8">
             <div className="space-y-2">
               <h4 className="text-[11px] font-bold uppercase tracking-[0.2em] text-black">🏢 Operations</h4>
@@ -117,7 +122,6 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             </ul>
           </div>
 
-          {/* Column 3: AI Branding & Marketing */}
           <div className="space-y-8">
             <div className="space-y-2">
               <h4 className="text-[11px] font-bold uppercase tracking-[0.2em] text-black">🎨 Branding</h4>
@@ -133,7 +137,6 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             </ul>
           </div>
 
-          {/* Column 4: AI Engagement & Sales */}
           <div className="space-y-8">
             <div className="space-y-2">
               <h4 className="text-[11px] font-bold uppercase tracking-[0.2em] text-black">💬 Engagement</h4>
@@ -147,7 +150,6 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             </ul>
           </div>
 
-          {/* Column 5: Company & Legal */}
           <div className="space-y-12">
             <div className="space-y-6">
               <h4 className="text-[11px] font-bold uppercase tracking-[0.2em] text-black">Company</h4>
@@ -159,24 +161,13 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 <FooterLink label="Contact Us" href="mailto:hello@veira.co" />
               </ul>
             </div>
-            
-            <div className="space-y-6">
-              <h4 className="text-[11px] font-bold uppercase tracking-[0.2em] text-black">Resources</h4>
-              <ul className="space-y-4">
-                <FooterLink label="Retail Blog" />
-                <FooterLink label="eTIMS Guide" isNew />
-                <FooterLink label="Kenya POS Laws" />
-                <FooterLink label="API Docs" />
-              </ul>
-            </div>
           </div>
         </div>
 
-        {/* Micro-CTA & Trust Bar */}
         <div className="pt-16 pb-12 border-t border-black/5 flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="space-y-2 text-center md:text-left">
-            <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-black">All tools powered by Veira AI.</p>
-            <p className="text-[13px] text-gray-400 font-light">Try them free. <span className="text-[#2D9B9B] font-semibold">Simplify your business today.</span></p>
+            <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-black">All tools powered by Veira AI Intelligence.</p>
+            <p className="text-[13px] text-gray-400 font-light italic">Zero setup. No email required. Instant business clarity.</p>
           </div>
           <div className="flex items-center gap-6">
             <div className="flex -space-x-2">
@@ -190,17 +181,8 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           </div>
         </div>
 
-        {/* Bottom Strip */}
         <div className="pt-12 border-t border-black/5 flex flex-col md:flex-row justify-between items-center gap-8">
-          <div className="flex items-center gap-12">
-            <p className="text-[11px] text-gray-400 font-medium">© {currentYear} Veira Intelligence Limited</p>
-            <div className="flex gap-8">
-              <a href="#" className="text-[11px] text-gray-400 hover:text-black transition-colors font-medium">Privacy</a>
-              <a href="#" className="text-[11px] text-gray-400 hover:text-black transition-colors font-medium">Terms</a>
-              <a href="#" className="text-[11px] text-gray-400 hover:text-black transition-colors font-medium">Cookie Settings</a>
-            </div>
-          </div>
-          
+          <p className="text-[11px] text-gray-400 font-medium">© {currentYear} Veira Intelligence Limited • Westlands, Nairobi</p>
           <div className="flex items-center gap-6">
             {['𝕏', 'LinkedIn', 'Instagram', 'WhatsApp'].map(social => (
               <a key={social} href="#" className="text-[13px] text-gray-400 hover:text-[#2D9B9B] transition-colors">{social}</a>
@@ -209,33 +191,36 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         </div>
       </div>
 
-      {/* Modal Tool Overlay */}
+      {/* Modern AI Tool Modal */}
       {activeTool && (
         <div className="fixed inset-0 z-[200] flex items-center justify-center px-4">
-          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={resetTool}></div>
-          <div className="bg-white rounded-[2rem] p-8 md:p-12 max-w-2xl w-full relative z-[210] shadow-2xl animate-in zoom-in-95 fade-in duration-300 max-h-[90vh] overflow-y-auto">
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-md" onClick={resetTool}></div>
+          <div className="bg-white rounded-[2.5rem] p-8 md:p-14 max-w-2xl w-full relative z-[210] shadow-2xl animate-in zoom-in-95 fade-in duration-300 max-h-[90vh] overflow-y-auto border border-white/20">
             <button 
               onClick={resetTool}
-              className="absolute top-6 right-6 text-gray-300 hover:text-black transition-colors"
+              className="absolute top-8 right-8 w-10 h-10 flex items-center justify-center rounded-full bg-black/5 text-gray-400 hover:text-black hover:bg-black/10 transition-all"
             >
               ✕
             </button>
-            <div className="space-y-8">
+            <div className="space-y-10">
               <div className="flex items-center gap-6">
-                <span className="text-5xl">{activeTool.icon}</span>
+                <div className="w-20 h-20 bg-gray-50 rounded-2xl flex items-center justify-center text-4xl shadow-sm">
+                  {activeTool.icon}
+                </div>
                 <div>
-                  <h4 className="text-2xl font-bold serif italic text-black">{activeTool.name}</h4>
-                  <p className="text-[10px] font-bold uppercase tracking-widest text-[#2D9B9B]">Powered by Veira AI Intelligence</p>
+                  <h4 className="text-3xl font-bold serif italic text-black leading-tight">{activeTool.name}</h4>
+                  <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#2D9B9B] mt-1">One-Click AI Power-up</p>
                 </div>
               </div>
 
               {!toolResult ? (
-                <div className="space-y-6">
-                  <div className="space-y-2">
-                    <label className="text-[9px] font-bold uppercase tracking-widest text-gray-400">Describe your Business or Requirement</label>
+                <div className="space-y-8">
+                  <div className="space-y-3">
+                    <label className="text-[10px] font-bold uppercase tracking-widest text-gray-400">Describe your context or provide data</label>
                     <textarea 
-                      placeholder={activeTool.name.includes('Generator') ? "e.g., 'Modern boutique in Nairobi called Zuri Styles'" : "e.g., 'I sell 100 units at 500 KES with cost of 300 KES'"}
-                      className="w-full bg-black/5 border-b border-black/10 px-4 py-4 focus:outline-none focus:border-[#2D9B9B] transition-colors font-light text-black min-h-[120px] resize-none"
+                      autoFocus
+                      placeholder={activeTool.name.includes('Generator') ? "e.g., 'Modern electronics store in Nairobi CBD called SkyNet'" : "e.g., 'Today I sold 45 items, total cash 22,500 KES, M-PESA 18,000 KES. Cost of goods was 30,000 KES.'"}
+                      className="w-full bg-gray-50 border-2 border-black/5 rounded-2xl px-6 py-6 focus:outline-none focus:border-[#2D9B9B] focus:bg-white transition-all font-light text-black min-h-[160px] resize-none text-lg leading-relaxed"
                       value={toolInput}
                       onChange={(e) => setToolInput(e.target.value)}
                     />
@@ -243,61 +228,64 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   <button 
                     disabled={isGenerating || !toolInput.trim()}
                     onClick={handleLaunchTool}
-                    className="cta-primary w-full py-6 text-[10px] font-bold uppercase tracking-widest disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3"
+                    className="cta-primary w-full py-7 text-[11px] font-bold uppercase tracking-[0.4em] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-4 rounded-2xl"
                   >
                     {isGenerating ? (
                       <>
+                        <div className="w-2 h-2 bg-white rounded-full animate-bounce [animation-delay:-0.3s]"></div>
+                        <div className="w-2 h-2 bg-white rounded-full animate-bounce [animation-delay:-0.15s]"></div>
                         <div className="w-2 h-2 bg-white rounded-full animate-bounce"></div>
-                        <span>Veira is thinking...</span>
                       </>
                     ) : (
-                      `Launch ${activeTool.name} Now`
+                      `Run ${activeTool.name} Now`
                     )}
                   </button>
                 </div>
               ) : (
-                <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-                  <div className="p-6 bg-gray-50 rounded-2xl border border-black/5 min-h-[200px]">
-                    {isSvg(toolResult) ? (
-                      <div className="flex flex-col items-center gap-6">
-                        <div className="w-full max-w-[300px] aspect-square flex items-center justify-center bg-white p-4 rounded-xl shadow-inner overflow-hidden" 
-                             dangerouslySetInnerHTML={{ __html: toolResult }} />
-                        <p className="text-[10px] text-gray-400 italic">Live preview generated by Veira AI</p>
-                      </div>
-                    ) : (
-                      <div className="prose prose-sm max-w-none text-gray-700 font-light whitespace-pre-wrap leading-relaxed">
-                        {toolResult}
-                      </div>
-                    )}
+                <div className="space-y-10 animate-in fade-in slide-in-from-bottom-8 duration-700">
+                  <div className="relative group/result">
+                    <div className="absolute -inset-1 bg-gradient-to-r from-[#2D9B9B]/20 to-purple-500/10 rounded-3xl blur opacity-20 group-hover/result:opacity-40 transition-opacity"></div>
+                    <div className="relative p-8 bg-gray-50/50 rounded-3xl border border-black/5 backdrop-blur-sm">
+                      {isSvg(toolResult) ? (
+                        <div className="flex flex-col items-center gap-8 py-4">
+                          <div className="w-full max-w-[320px] aspect-square flex items-center justify-center bg-white p-6 rounded-2xl shadow-xl overflow-hidden ring-1 ring-black/5" 
+                               dangerouslySetInnerHTML={{ __html: toolResult }} />
+                          <div className="text-center space-y-2">
+                            <p className="text-[11px] text-gray-400 font-bold uppercase tracking-widest">Digital Asset Ready</p>
+                            <p className="text-[10px] text-gray-300 italic">High-resolution vector generated for your business</p>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="prose prose-slate max-w-none text-gray-800 font-light whitespace-pre-wrap leading-relaxed text-base italic selection:bg-[#2D9B9B] selection:text-white">
+                          {toolResult}
+                        </div>
+                      )}
+                    </div>
                   </div>
                   
-                  <div className="flex gap-4">
+                  <div className="grid grid-cols-2 gap-4">
                     <button 
                       onClick={() => { setToolResult(null); setToolInput(''); }}
-                      className="flex-1 py-4 border border-black/10 text-[10px] font-bold uppercase tracking-widest hover:bg-black hover:text-white transition-all"
+                      className="py-5 bg-black/5 rounded-2xl text-[10px] font-bold uppercase tracking-widest hover:bg-black hover:text-white transition-all border border-transparent"
                     >
-                      Start New Analysis
+                      New Analysis
                     </button>
                     <button 
-                      onClick={() => {
-                        const blob = new Blob([toolResult], { type: isSvg(toolResult) ? 'image/svg+xml' : 'text/plain' });
-                        const url = URL.createObjectURL(blob);
-                        const a = document.createElement('a');
-                        a.href = url;
-                        a.download = `veira-${activeTool.name.toLowerCase().replace(/\s+/g, '-')}.${isSvg(toolResult) ? 'svg' : 'txt'}`;
-                        a.click();
-                      }}
-                      className="cta-primary flex-1 py-4 text-[10px] font-bold uppercase tracking-widest"
+                      onClick={handleCopy}
+                      className="cta-primary py-5 text-[10px] font-bold uppercase tracking-widest rounded-2xl flex items-center justify-center gap-2"
                     >
-                      Download Result
+                      {copyFeedback ? '✓ Copied!' : isSvg(toolResult) ? 'Copy SVG Code' : 'Copy Result'}
                     </button>
                   </div>
                 </div>
               )}
 
-              <p className="text-[10px] text-center text-gray-400 font-light italic leading-relaxed">
-                Free Power-up Suite. Results are AI-generated based on Kenyan market context.
-              </p>
+              <div className="pt-6 border-t border-black/5 text-center space-y-2">
+                <p className="text-[10px] text-gray-400 font-medium uppercase tracking-widest">Veira Free Power-up Suite</p>
+                <p className="text-[9px] text-gray-300 italic leading-relaxed">
+                  Advanced AI models may occasionally generate inaccurate data. <br/>Use as a guide for your business strategy.
+                </p>
+              </div>
             </div>
           </div>
         </div>
