@@ -64,7 +64,7 @@ const App: React.FC = () => {
         <section id="hero">
           <Hero 
             onStart={() => navigateTo('how-it-works')} 
-            onViewDemo={() => navigateTo('pos')} 
+            onViewDemo={() => navigateTo('case-studies')} 
           />
         </section>
 
@@ -87,6 +87,10 @@ const App: React.FC = () => {
 
           <section id="enterprise">
             <Enterprise />
+          </section>
+
+          <section id="case-studies">
+            <CaseStudies />
           </section>
 
           <section id="how-it-works">
