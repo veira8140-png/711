@@ -16,7 +16,7 @@ interface ToolDetail {
 const TOOL_DETAILS: ToolDetail[] = [
   { name: 'Daily Sales Tracker', icon: '📊', desc: 'Calculate today’s sales and profit.', placeholder: "e.g. Sales: 10,000, Expenses: 4,000" },
   { name: 'Staff Theft Risk Calculator', icon: '🛡️', desc: 'Evaluate operational risk score (1-10).', placeholder: "e.g. High turnover, no CCTV, manual reconciliation" },
-  { name: 'ETIMS Compliance Checker', icon: '✅', desc: 'Check KRA/ETIMS readiness.', placeholder: "e.g. Retail shop, manual receipts, 5M turnover" },
+  { name: 'ETIMS Compliance Checker', icon: '✅', desc: 'Check KRA/ETIMS readiness.', placeholder: "e.g. Retail shop, issuing manual receipts, KES 5M turnover" },
   { name: 'Profit Margin Estimator', icon: '💰', desc: 'Know your true net margins.', placeholder: "e.g. Cost 800, Selling price 1,200" },
   { name: 'Stock Alert Calculator', icon: '📦', desc: 'Identify critical stock levels.', placeholder: "e.g. Items: Milk 5, Bread 2, Eggs 10" },
   { name: 'Customer Visit Estimator', icon: '👥', desc: 'Estimate foot traffic revenue.', placeholder: "e.g. Boutique in CBD, busy lunch hours" },
@@ -46,8 +46,16 @@ const ResultRenderer: React.FC<{ data: any }> = ({ data }) => {
     <div className="space-y-6">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {Object.entries(data).map(([key, value]) => {
-          const isCurrency = key.toLowerCase().includes('total') || key.toLowerCase().includes('profit') || key.toLowerCase().includes('sales') || key.toLowerCase().includes('due');
-          const isScore = key.toLowerCase().includes('score');
+          const lowerKey = key.toLowerCase();
+          const isCurrency = lowerKey.includes('total') || 
+                            lowerKey.includes('profit') || 
+                            lowerKey.includes('sales') || 
+                            lowerKey.includes('due') ||
+                            lowerKey.includes('tax') ||
+                            lowerKey.includes('margin') === false && typeof value === 'number';
+          
+          const isPercentage = lowerKey.includes('margin') || lowerKey.includes('percent');
+          const isScore = lowerKey.includes('score');
           
           if (typeof value === 'object' && !Array.isArray(value)) {
             return (
@@ -87,7 +95,9 @@ const ResultRenderer: React.FC<{ data: any }> = ({ data }) => {
               <p className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-2">{formatKey(key)}</p>
               <div className="flex items-baseline gap-2">
                 <p className={`text-2xl font-black serif ${isCurrency ? 'text-[#2D9B9B]' : isScore ? 'text-purple-600' : 'text-black'}`}>
-                  {isCurrency && typeof value === 'number' ? `KES ${value.toLocaleString()}` : String(value)}
+                  {isCurrency && typeof value === 'number' ? `KES ${value.toLocaleString()}` : 
+                   isPercentage && typeof value === 'number' ? `${value}%` : 
+                   String(value)}
                 </p>
                 {isScore && <span className="text-xs text-gray-400 font-bold">/ 10</span>}
               </div>
@@ -115,12 +125,12 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
     setGenStep('Calibrating Intelligence...');
     
     try {
-      setTimeout(() => setGenStep('Processing Market Data...'), 1200);
+      setTimeout(() => setGenStep('Processing Market Data...'), 800);
       const result = await runVeiraTool(activeTool.name, toolInput);
       setToolResult(result);
     } catch (err: any) {
       console.error(err);
-      setError("The AI service is temporarily busy. Please try again in a moment.");
+      setError("AI Engine is currently at capacity. Please refresh or try again in a moment.");
     } finally {
       setIsGenerating(false);
       setGenStep('');
@@ -164,7 +174,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               {TOOL_DETAILS.map((tool) => (
                 <button
                   key={tool.name}
-                  onClick={() => { setActiveTool(tool); setToolResult(null); setError(null); }}
+                  onClick={() => { setActiveTool(tool); setToolResult(null); setError(null); setToolInput(''); }}
                   className="px-4 py-3 bg-black/5 hover:bg-black hover:text-white text-[10px] font-bold uppercase tracking-wider text-left transition-all rounded-sm flex items-center gap-2 group"
                 >
                   <span className="text-base grayscale group-hover:grayscale-0 transition-all">{tool.icon}</span>
@@ -188,9 +198,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
       </div>
 
       {activeTool && (
-        <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm">
-          <div className="bg-white w-full max-w-2xl p-8 md:p-12 space-y-10 animate-in fade-in zoom-in duration-300 relative rounded-[2rem] shadow-2xl overflow-y-auto max-h-[90vh]">
-            <button onClick={() => setActiveTool(null)} className="absolute top-8 right-8 text-gray-300 hover:text-black transition-colors">✕</button>
+        <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm overflow-y-auto">
+          <div className="bg-white w-full max-w-2xl p-8 md:p-12 space-y-10 animate-in fade-in zoom-in duration-300 relative rounded-[2rem] shadow-2xl my-auto">
+            <button onClick={() => setActiveTool(null)} className="absolute top-8 right-8 text-gray-300 hover:text-black transition-colors p-2">✕</button>
             
             <div className="space-y-2">
               <div className="flex items-center gap-4">
@@ -203,7 +213,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             {!toolResult ? (
               <div className="space-y-8">
                 <div className="space-y-3">
-                  <label className="text-[10px] font-bold uppercase tracking-widest text-gray-400">Input Data</label>
+                  <label className="text-[10px] font-bold uppercase tracking-widest text-gray-400">Describe Situation or Provide Data</label>
                   <textarea
                     autoFocus
                     value={toolInput}
@@ -233,7 +243,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             ) : (
               <div className="space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-500">
                 <div className="p-1 bg-black/5 rounded-[2rem]">
-                  <div className="bg-white p-8 rounded-[1.8rem] border border-black/5">
+                  <div className="bg-white p-8 rounded-[1.8rem] border border-black/5 max-h-[400px] overflow-y-auto">
                     <ResultRenderer data={toolResult} />
                   </div>
                 </div>

@@ -4,29 +4,29 @@ import { BrandOutput } from "../types";
 
 /**
  * Universal Tool Prompt Library
- * Maps each of the 20 tools to its specific intelligence logic.
+ * Maps each of the 20 tools to its specific intelligence logic using the raw user input.
  */
-const TOOL_PROMPTS: Record<string, (input: any) => string> = {
-  "Daily Sales Tracker": (input) => `Calculate net profit for salesToday: ${input.salesToday || 0} and expenses: ${input.expenses || 0}. Return JSON: { "salesToday": number, "profit": number }`,
-  "Staff Theft Risk Calculator": (input) => `Evaluate staff theft risk based on: ${JSON.stringify(input)}. Return JSON: { "riskScore": 1-10 }`,
-  "ETIMS Compliance Checker": (input) => `Check ETIMS compliance for: ${JSON.stringify(input)}. Return JSON: { "compliant": boolean, "issues": string[] }`,
-  "Profit Margin Estimator": (input) => `Calculate profit margin based on sales: ${input.sales} and costs: ${input.costs}. JSON: { "profitMargin": number }`,
-  "Stock Alert Calculator": (input) => `Check stock levels: ${JSON.stringify(input)}. JSON: { "stockLow": string[] }`,
-  "Customer Visit Estimator": (input) => `Estimate daily customer visits based on location/hours: ${JSON.stringify(input)}. JSON: { "dailyVisits": number }`,
-  "Business Growth Analyzer": (input) => `Analyze business growth potential based on metrics: ${JSON.stringify(input)}. JSON: { "growthScore": number }`,
-  "Staff Scheduling Helper": (input) => `Generate weekly staff schedule: ${JSON.stringify(input)}. JSON: { "schedule": { "Monday": string[], "Tuesday": string[], "Wednesday": string[], "Thursday": string[], "Friday": string[], "Saturday": string[], "Sunday": string[] } }`,
-  "Quick Tax Calculator": (input) => `Estimate Turnover Tax for: ${JSON.stringify(input)}. JSON: { "taxDue": number }`,
-  "Expense Tracker": (input) => `Summarize expenses: ${JSON.stringify(input)}. JSON: { "totalExpenses": number }`,
-  "Free Logo Generator": (input) => `Suggest 5 logo visual ideas for: ${JSON.stringify(input)}. JSON: { "logoIdeas": string[] }`,
-  "Business Name Generator": (input) => `Generate 5 unique names for: ${JSON.stringify(input)}. JSON: { "names": string[] }`,
-  "Social Media Content Generator": (input) => `Generate a viral social media post for: ${JSON.stringify(input)}. JSON: { "post": string }`,
-  "Business Card Generator": (input) => `Suggest 3 business card layouts for: ${JSON.stringify(input)}. JSON: { "cards": string[] }`,
-  "Promo Poster / Flyer Generator": (input) => `Suggest 3 flyer/poster ideas for: ${JSON.stringify(input)}. JSON: { "flyers": string[] }`,
-  "QR Code Generator": (input) => `Generate QR content/URL for: ${JSON.stringify(input)}. JSON: { "qrCode": string }`,
-  "Customer Feedback Form Generator": (input) => `Suggest 5 feedback questions for: ${JSON.stringify(input)}. JSON: { "questions": string[] }`,
-  "Loyalty Program Calculator": (input) => `Suggest 3 rewards based on input: ${JSON.stringify(input)}. JSON: { "rewards": string[] }`,
-  "Simple Invoice Generator": (input) => `Generate invoice summary: ${JSON.stringify(input)}. JSON: { "invoiceTotal": number, "items": string[] }`,
-  "Discount & Promotion Planner": (input) => `Plan promotions for: ${JSON.stringify(input)}. JSON: { "promotions": string[] }`
+const TOOL_PROMPTS: Record<string, (input: string) => string> = {
+  "Daily Sales Tracker": (input) => `Analyze this sales data: "${input}". Calculate net sales and profit. Return JSON: { "salesToday": number, "profit": number }`,
+  "Staff Theft Risk Calculator": (input) => `Evaluate staff theft risk based on this operational context: "${input}". Return JSON: { "riskScore": number } (scale 1-10)`,
+  "ETIMS Compliance Checker": (input) => `Evaluate KRA/ETIMS compliance readiness for: "${input}". Return JSON: { "compliant": boolean, "issues": string[] }`,
+  "Profit Margin Estimator": (input) => `Calculate net profit margin percentage based on: "${input}". Return JSON: { "profitMargin": number }`,
+  "Stock Alert Calculator": (input) => `Identify low stock items and critical levels from: "${input}". Return JSON: { "stockLow": string[] }`,
+  "Customer Visit Estimator": (input) => `Estimate potential daily foot traffic and revenue impact for: "${input}". Return JSON: { "dailyVisits": number }`,
+  "Business Growth Analyzer": (input) => `Analyze business scaling potential based on: "${input}". Return JSON: { "growthScore": number } (scale 1-10)`,
+  "Staff Scheduling Helper": (input) => `Generate an optimized weekly staff schedule for: "${input}". Return JSON: { "schedule": { "Monday": string[], "Tuesday": string[], "Wednesday": string[], "Thursday": string[], "Friday": string[], "Saturday": string[], "Sunday": string[] } }`,
+  "Quick Tax Calculator": (input) => `Estimate monthly Turnover Tax (TOT) for: "${input}". Return JSON: { "taxDue": number }`,
+  "Expense Tracker": (input) => `Summarize and categorize business expenses from: "${input}". Return JSON: { "totalExpenses": number }`,
+  "Free Logo Generator": (input) => `Suggest 5 creative visual logo concepts for: "${input}". Return JSON: { "logoIdeas": string[] }`,
+  "Business Name Generator": (input) => `Generate 5 unique and catchy business names for: "${input}". Return JSON: { "names": string[] }`,
+  "Social Media Content Generator": (input) => `Create a high-engagement social media post for: "${input}". Return JSON: { "post": string }`,
+  "Business Card Generator": (input) => `Suggest 3 professional business card layouts for: "${input}". Return JSON: { "cards": string[] }`,
+  "Promo Poster / Flyer Generator": (input) => `Suggest 3 marketing poster or flyer ideas for: "${input}". Return JSON: { "flyers": string[] }`,
+  "QR Code Generator": (input) => `Create a QR code content strategy for: "${input}". Return JSON: { "qrCode": string }`,
+  "Customer Feedback Form Generator": (input) => `Suggest 5 key feedback questions to ask customers for: "${input}". Return JSON: { "questions": string[] }`,
+  "Loyalty Program Calculator": (input) => `Suggest 3 effective loyalty rewards for: "${input}". Return JSON: { "rewards": string[] }`,
+  "Simple Invoice Generator": (input) => `Create a professional invoice summary for: "${input}". Return JSON: { "invoiceTotal": number, "items": string[] }`,
+  "Discount & Promotion Planner": (input) => `Design a profitable promotional campaign for: "${input}". Return JSON: { "promotions": string[] }`
 };
 
 const withRetry = async <T>(fn: () => Promise<T>, maxRetries = 3): Promise<T> => {
@@ -60,29 +60,27 @@ export const runVeiraTool = async (toolName: string, userInput: string): Promise
   return withRetry(async () => {
     const ai = getAI();
     
-    // Check if tool exists in our logic map
     if (!TOOL_PROMPTS[toolName]) {
       throw new Error(`Tool "${toolName}" not recognized.`);
     }
 
-    // Prepare the prompt using the tool logic
-    // We treat userInput as a string, but the prompt expects it to be integrated into a scenario
-    const prompt = TOOL_PROMPTS[toolName]({ rawInput: userInput });
+    const promptText = TOOL_PROMPTS[toolName](userInput);
 
-    const systemInstruction = `You are the Veira AI Engine for Kenyan Retail. 
-      Respond ONLY in valid, minified JSON. 
-      Context: Nairobi retail market, KES currency.
-      Instructions: Be precise and actionable.`;
+    const systemInstruction = `You are the Veira Intelligence Engine, a world-class retail advisor for small businesses in Kenya.
+      Your task is to analyze the provided business data and return highly accurate, actionable insights.
+      CONTEXT: Kenyan market, Nairobi dynamics, KES currency.
+      STRICT REQUIREMENT: Respond ONLY with a single valid JSON object. No markdown, no pre-amble, no post-amble.
+      If the input is insufficient, provide reasonable estimates based on the provided context.`;
 
     const response = await ai.models.generateContent({
       model: 'gemini-3-flash-preview',
       contents: { 
-        parts: [{ text: `Task: ${toolName}\nData: ${userInput}\nPrompt: ${prompt}` }] 
+        parts: [{ text: `TASK: ${toolName}\nINPUT: ${userInput}\nINSTRUCTION: ${promptText}` }] 
       },
       config: {
         systemInstruction,
         responseMimeType: "application/json",
-        temperature: 0.1,
+        temperature: 0.2, // Low temperature for high precision in business tool tasks
       },
     });
 
