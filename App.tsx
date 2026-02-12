@@ -1,15 +1,16 @@
 import React from 'react';
 import { Header } from './components/Header.tsx';
 import { Hero } from './components/Hero.tsx';
+import { Problem } from './components/Problem.tsx';
 import { POS } from './components/POS.tsx';
+import { Transformation } from './components/Transformation.tsx';
 import { Agents } from './components/Agents.tsx';
 import { Cloud } from './components/Cloud.tsx';
 import { Enterprise } from './components/Enterprise.tsx';
+import { HowItWorks } from './components/HowItWorks.tsx';
 import { OurStory } from './components/OurStory.tsx';
 import { CaseStudies } from './components/CaseStudies.tsx';
 import { WaveBackground } from './components/WaveBackground.tsx';
-import { BrandArchitect } from './components/BrandArchitect.tsx';
-import { VisualStudio } from './components/VisualStudio.tsx';
 import { FAQ } from './components/FAQ.tsx';
 
 const App: React.FC = () => {
@@ -62,63 +63,51 @@ const App: React.FC = () => {
       <main className="overflow-x-hidden">
         <section id="hero">
           <Hero 
-            onStart={() => navigateTo('pos')} 
-            onViewCaseStudy={() => navigateTo('case-study')} 
+            onStart={() => navigateTo('how-it-works')} 
+            onViewDemo={() => navigateTo('pos')} 
           />
         </section>
 
         <div className="container mx-auto px-4 sm:px-6 space-y-32 md:space-y-48 lg:space-y-64 pb-24 md:pb-40">
+          <Problem />
+
           <section id="pos">
             <POS />
+          </section>
+
+          <Transformation />
+
+          <section id="cloud">
+            <Cloud />
           </section>
 
           <section id="agents">
             <Agents />
           </section>
 
-          <section id="case-study">
-            <CaseStudies />
-          </section>
-
-          <section id="studio" className="space-y-24">
-            <div className="max-w-3xl space-y-6">
-              <span className="section-label">AI Retail Studio</span>
-              <h2 className="text-4xl md:text-6xl font-bold serif text-black leading-tight">
-                AI Brand <br/><span className="italic text-gray-400">Architect.</span>
-              </h2>
-              <p className="text-lg text-gray-500 font-light leading-relaxed">
-                Use our built-in Gemini Intelligence to architect your retail brand and generate marketing assets in real-time.
-              </p>
-            </div>
-            <div className="space-y-12">
-              <BrandArchitect />
-              <VisualStudio />
-            </div>
-          </section>
-
-          <section id="cloud">
-            <Cloud />
-          </section>
-
           <section id="enterprise">
             <Enterprise />
+          </section>
+
+          <section id="how-it-works">
+            <HowItWorks />
           </section>
           
           <section className="text-center space-y-12 py-24 border-t border-black/5">
             <div className="space-y-6">
               <h2 className="text-4xl md:text-6xl font-bold serif text-black leading-tight">
-                Ready to run the <br className="hidden sm:block" />
-                <span className="italic text-gray-400">Best POS in Kenya?</span>
+                Run your business with <br className="hidden sm:block" />
+                <span className="italic text-gray-400">total confidence.</span>
               </h2>
               <p className="text-gray-500 max-w-xl mx-auto font-light">
-                Join hundreds of shops in Nairobi, Mombasa, and Kisumu who have upgraded to Veira.
+                If you are tired of running your business blindly, Veira is for you.
               </p>
             </div>
             <button 
               onClick={() => navigateTo('hero')}
               className="cta-primary px-16 py-6 text-xs font-bold uppercase tracking-widest"
             >
-              Get Started Now
+              Install Veira Today
             </button>
           </section>
 
@@ -131,98 +120,22 @@ const App: React.FC = () => {
       </main>
 
       <footer className="py-12 md:py-24 px-4 sm:px-6 border-t border-black/5 bg-white">
-        <div className="container mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 items-start">
-            
-            {/* Brand & Socials */}
-            <div className="space-y-8">
-              <div className="space-y-4">
-                <span className="text-3xl font-bold serif text-black">veira.</span>
-                <p className="text-gray-400 text-sm font-light max-w-xs leading-relaxed">
-                  The leading POS system for small business in Kenya. Empowering retail owners with intelligent tools and real-time visibility.
-                </p>
-              </div>
-              <div className="flex gap-4">
-                {socialLinks.map((social) => (
-                  <a 
-                    key={social.name}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 border border-black/5 rounded-full flex items-center justify-center text-gray-400 hover:text-black hover:border-black transition-all duration-300"
-                    aria-label={social.name}
-                  >
-                    {social.icon}
-                  </a>
-                ))}
-              </div>
-            </div>
-
-            {/* Product Links */}
-            <div className="space-y-6">
-              <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-black">Product</p>
-              <div className="flex flex-col space-y-4 text-[11px] uppercase tracking-widest font-bold text-gray-400">
-                <p className="hover:text-black cursor-pointer transition-colors" onClick={() => navigateTo('pos')}>Retail POS</p>
-                <p className="hover:text-black cursor-pointer transition-colors" onClick={() => navigateTo('cloud')}>Cloud Sync</p>
-                <p className="hover:text-black cursor-pointer transition-colors" onClick={() => navigateTo('studio')}>AI Studio</p>
-                <p className="hover:text-black cursor-pointer transition-colors" onClick={() => navigateTo('agents')}>AI Agents</p>
-                <p className="hover:text-black cursor-pointer transition-colors" onClick={() => navigateTo('enterprise')}>Enterprise Solutions</p>
-              </div>
-            </div>
-
-            {/* Connect */}
-            <div className="space-y-6">
-              <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-black">Connect</p>
-              <div className="space-y-4 text-sm font-light text-gray-400">
-                <p className="flex items-center gap-2">
-                  <span className="text-black font-bold">HQ:</span> Westlands, Nairobi, KE
-                </p>
-                <a href="mailto:hello@veira.co" className="block hover:text-black cursor-pointer transition-colors underline underline-offset-4 decoration-black/10">hello@veira.co</a>
-                <div className="pt-2">
-                  <p className="text-[10px] uppercase tracking-widest font-bold text-black mb-1">Support 24/7</p>
-                  <p className="text-gray-500">+254 700 000 000</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Google Business Map */}
-            <div className="space-y-6">
-              <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-black">Find Us</p>
-              <div className="relative group overflow-hidden border border-black/5 aspect-[4/3] w-full bg-gray-50">
-                {/* Embed a placeholder style map that looks premium */}
-                <iframe 
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127641.163312384!2d36.707308!3d-1.303204!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f1172d84d49a7%3A0xf7cf0254b2a89537!2sNairobi%2C%20Kenya!5e0!3m2!1sen!2ske!4v1704000000000!5m2!1sen!2ske" 
-                  className="w-full h-full grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-1000" 
-                  style={{ border: 0 }} 
-                  allowFullScreen={false} 
-                  loading="lazy" 
-                  referrerPolicy="no-referrer-when-downgrade"
-                ></iframe>
-                <a 
-                  href="https://share.google/VhjFjdxSAxsw4ATSn" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors flex items-center justify-center cursor-pointer"
-                >
-                  <span className="bg-white px-5 py-3 text-[9px] font-bold uppercase tracking-widest text-black shadow-2xl opacity-0 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 hover:bg-black hover:text-white">
-                    View Google Business Profile
-                  </span>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-20 pt-8 border-t border-black/5 flex flex-col sm:flex-row justify-between items-center gap-6 text-[9px] uppercase tracking-[0.2em] text-gray-400 font-bold">
-            <div className="space-y-1 text-center sm:text-left">
-              <p>© 2024 Veira Intelligence • POS Systems in Kenya – Prices, Features & eTIMS</p>
-              <p className="text-[8px] opacity-60">Architected for certainty in Nairobi.</p>
-            </div>
-            <div className="flex gap-8">
-              <p className="hover:text-black cursor-pointer transition-colors">Privacy Policy</p>
-              <p className="hover:text-black cursor-pointer transition-colors">Terms of Service</p>
-              <p className="hover:text-black cursor-pointer transition-colors" onClick={() => navigateTo('our-story')}>Compliance</p>
-            </div>
-          </div>
+        <div className="container mx-auto text-center space-y-12">
+           <div className="space-y-4">
+              <span className="text-4xl font-bold serif text-black">veira.</span>
+              <p className="text-gray-400 text-sm font-light max-w-md mx-auto leading-relaxed">
+                See every shilling. Stop revenue leakage. <br/>Architected for certainty in Nairobi.
+              </p>
+           </div>
+           <div className="flex justify-center gap-8 text-[10px] font-bold uppercase tracking-widest text-gray-400">
+             <p className="hover:text-black cursor-pointer" onClick={() => navigateTo('pos')}>POS</p>
+             <p className="hover:text-black cursor-pointer" onClick={() => navigateTo('agents')}>Agents</p>
+             <p className="hover:text-black cursor-pointer" onClick={() => navigateTo('cloud')}>Cloud</p>
+             <p className="hover:text-black cursor-pointer" onClick={() => navigateTo('our-story')}>Our Story</p>
+           </div>
+           <div className="pt-8 border-t border-black/5 text-[9px] text-gray-300 uppercase tracking-widest">
+              © 2024 Veira Intelligence • HQ: Westlands, Nairobi
+           </div>
         </div>
       </footer>
     </div>
