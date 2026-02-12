@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Orb } from './Orb.tsx';
 
@@ -51,7 +50,7 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
             onClick={(e) => handleLinkClick(e, 'hero')}
           >
             <Orb size="xs" className="group-hover:scale-110 transition-transform duration-500" />
-            <span className="text-2xl font-bold tracking-tighter serif text-black uppercase">veira.</span>
+            <span className="text-2xl font-bold tracking-tighter serif text-black lowercase">veira.</span>
           </a>
           
           <div className="hidden lg:flex items-center space-x-10 xl:space-x-12 text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400">
