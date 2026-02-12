@@ -46,7 +46,7 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
         <div className="container mx-auto px-6 flex justify-between items-center">
           <a 
             href="#" 
-            className="flex items-center gap-3 transition-opacity hover:opacity-70 group"
+            className="flex items-center gap-1.5 transition-opacity hover:opacity-70 group"
             onClick={(e) => handleLinkClick(e, 'hero')}
           >
             <Orb size="xs" className="group-hover:scale-110 transition-transform duration-500" />

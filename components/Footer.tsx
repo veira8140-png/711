@@ -31,7 +31,7 @@ const TOOL_DETAILS: ToolDetail[] = [
   { name: 'QR Code Generator', icon: '📱', desc: 'MPESA integrated payment links.', placeholder: "e.g. Paybill 123456, Acc 001" },
   { name: 'Customer Feedback Form Generator', icon: '📝', desc: 'Get better customer insights.', placeholder: "e.g. Questions for restaurant delivery satisfaction" },
   { name: 'Loyalty Program Calculator', icon: '🎁', desc: 'Design rewards that stick.', placeholder: "e.g. Points per KES spent, reward after 1000 points" },
-  { name: 'Simple Invoice Generator', icon: '🧾', desc: 'Professional invoice summaries.', placeholder: "e.g. 5 bags of pointer to cement at 800 KES each" },
+  { name: 'Simple Invoice Generator', icon: '🧾', desc: 'Professional invoice summaries.', placeholder: "e.g. 5 bags of cement at 800 KES each" },
   { name: 'Discount & Promotion Planner', icon: '💸', desc: 'Plan profitable flash sales.', placeholder: "e.g. Clear old stock of electronics" }
 ];
 
@@ -188,9 +188,11 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           <p className="text-[10px] font-bold uppercase tracking-widest text-gray-300">
             © {new Date().getFullYear()} Veira Intelligence. Westlands, Nairobi.
           </p>
-          <div className="flex gap-8 text-[10px] font-bold uppercase tracking-widest text-gray-300">
+          <div className="flex flex-wrap justify-center md:justify-end gap-6 md:gap-8 text-[10px] font-bold uppercase tracking-widest text-gray-300">
             <a href="#" className="hover:text-black transition-colors">KRA eTIMS</a>
             <a href="#" className="hover:text-black transition-colors">M-PESA Direct</a>
+            <a href="/sitemap.xml" className="hover:text-black transition-colors underline decoration-black/10 underline-offset-4">Sitemap</a>
+            <a href="/robots.txt" className="hover:text-black transition-colors underline decoration-black/10 underline-offset-4">Robots</a>
             <a href="#" className="hover:text-black transition-colors">Terms</a>
           </div>
         </div>
