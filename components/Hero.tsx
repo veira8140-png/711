@@ -37,18 +37,26 @@ export const Hero: React.FC<HeroProps> = ({ onStart, onViewDemo }) => {
         </button>
       </div>
 
-      <div className="mt-40 md:mt-64 grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-20 border-t border-black/5 pt-16 md:pt-24 w-full">
-        {[
-          ['eTIMS', 'Official Compliance'],
-          ['M-PESA', 'Direct Channel'],
-          ['OFFLINE', 'Resilient Core'],
-          ['SUPPORT', 'Dedicated Team']
-        ].map(([title, subtitle]) => (
-          <div key={title} className="flex flex-col items-center group">
-            <span className="text-2xl md:text-3xl font-black serif text-black group-hover:italic transition-all duration-500">{title}</span>
-            <span className="text-[9px] uppercase tracking-[0.4em] text-gray-400 font-bold mt-2">{subtitle}</span>
-          </div>
-        ))}
+      <div className="mt-40 md:mt-64 flex flex-col items-center border-t border-black/5 pt-16 md:pt-24 w-full space-y-8">
+        <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-gray-300">As Featured On</span>
+        <div className="flex flex-wrap justify-center items-center gap-12">
+          <a 
+            href="https://earlyhunt.com/project/veira" 
+            target="_blank" 
+            rel="noopener" 
+            className="transition-all duration-500 hover:scale-105 active:scale-95 group"
+          >
+            <img 
+              src="https://earlyhunt.com/badges/earlyhunt-badge-light.svg" 
+              alt="Featured on EarlyHunt" 
+              width="265" 
+              height="58" 
+              className="grayscale contrast-[1.1] opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 ease-out"
+            />
+          </a>
+          
+          {/* Add more badges here following the same pattern */}
+        </div>
       </div>
     </div>
   );
