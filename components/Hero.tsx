@@ -51,7 +51,7 @@ export const Hero: React.FC<HeroProps> = ({ onStart, onViewDemo }) => {
               alt="Featured on EarlyHunt" 
               width="265" 
               height="58" 
-              className="grayscale contrast-[1.1] opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 ease-out"
+              className="grayscale contrast-[1.1] opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 ease-out h-[54px] w-auto"
             />
           </a>
 
@@ -67,6 +67,20 @@ export const Hero: React.FC<HeroProps> = ({ onStart, onViewDemo }) => {
               width="250" 
               height="54" 
               className="grayscale contrast-[1.1] opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 ease-out h-[54px] w-auto"
+            />
+          </a>
+
+          <a 
+            href="https://kickproduct.com/products/698eddead0648bb45945cc8d" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="transition-all duration-500 hover:scale-105 active:scale-95 group"
+          >
+            <img 
+              src="https://www.kickproduct.com/listedbadge.png" 
+              alt="Listed on Kick Product" 
+              width="250" 
+              className="grayscale contrast-[1.1] opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 ease-out h-[48px] md:h-[50px] w-auto"
             />
           </a>
         </div>
