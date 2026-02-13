@@ -26,41 +26,41 @@ const BRAND_LOGOS = [
 
 export const Hero: React.FC<HeroProps> = ({ onStart, onViewDemo }) => {
   return (
-    <div className="relative pt-28 pb-12 md:pt-40 md:pb-24 px-4 sm:px-6 flex flex-col items-center text-center max-w-7xl mx-auto overflow-visible min-h-[90vh] justify-center">
-      <div className="space-y-6 md:space-y-10 animate-in fade-in slide-in-from-bottom-12 duration-[1.5s] relative z-10">
+    <div className="relative pt-24 pb-12 md:pt-32 md:pb-16 px-4 sm:px-6 flex flex-col items-center text-center max-w-7xl mx-auto overflow-visible min-h-[85vh] md:min-h-[80vh] justify-center">
+      <div className="space-y-4 md:space-y-6 animate-in fade-in slide-in-from-bottom-12 duration-[1.5s] relative z-10">
         <div className="flex flex-col items-center">
-          <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-[7.5rem] font-bold serif leading-[0.9] tracking-tight text-black max-w-6xl">
+          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[6.5rem] font-bold serif leading-[0.9] tracking-tight text-black max-w-6xl">
             See Every Shilling <br className="hidden sm:block" />
             <span className="italic text-transparent bg-clip-text bg-gradient-to-b from-black to-gray-400">In Your Business.</span>
           </h1>
         </div>
 
-        <p className="text-lg sm:text-xl md:text-2xl text-gray-500 max-w-3xl mx-auto font-light leading-relaxed mt-6 md:mt-8 px-4 border-l md:border-l-0 md:border-x border-black/5 py-2">
+        <p className="text-base sm:text-lg md:text-xl text-gray-500 max-w-2xl mx-auto font-light leading-relaxed mt-4 md:mt-6 px-4 border-l md:border-l-0 md:border-x border-black/5 py-1">
           Veira gives you total control, real time visibility, and built in compliance, 
           so your business runs smoothly whether you are in the shop or not.
         </p>
       </div>
       
-      <div className="mt-10 md:mt-12 flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-8 w-full sm:w-auto relative z-10 px-4 sm:px-0">
+      <div className="mt-8 md:mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6 w-full sm:w-auto relative z-10 px-4 sm:px-0">
         <button 
           onClick={onStart}
-          className="cta-primary w-full sm:w-auto px-12 md:px-16 py-5 md:py-6 text-[10px] font-bold uppercase tracking-[0.2em] min-h-[56px] md:min-h-[64px]"
+          className="cta-primary w-full sm:w-auto px-10 md:px-14 py-4 md:py-5 text-[10px] font-bold uppercase tracking-[0.2em] min-h-[52px] md:min-h-[60px]"
         >
           Get Free POS
         </button>
         <button 
           onClick={onViewDemo}
-          className="w-full sm:w-auto px-12 md:px-16 py-5 md:py-6 border border-black/10 backdrop-blur-md bg-white/30 hover:bg-[#2D9B9B] hover:text-white transition-all duration-500 text-[10px] font-bold uppercase tracking-[0.2em] text-black min-h-[56px] md:min-h-[64px]"
+          className="w-full sm:w-auto px-10 md:px-14 py-4 md:py-5 border border-black/10 backdrop-blur-md bg-white/30 hover:bg-[#2D9B9B] hover:text-white transition-all duration-500 text-[10px] font-bold uppercase tracking-[0.2em] text-black min-h-[52px] md:min-h-[60px]"
         >
           Case Study
         </button>
       </div>
 
-      <div className="mt-16 md:mt-24 flex flex-col items-center border-t border-black/5 pt-10 md:pt-16 w-full space-y-8">
-        <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-gray-300">Featured IN</span>
+      <div className="mt-12 md:mt-14 flex flex-col items-center border-t border-black/5 pt-8 md:pt-10 w-full space-y-6">
+        <span className="text-[10px] font-black uppercase tracking-[0.5em] text-black">Featured IN</span>
         
         <div className="w-full overflow-hidden fade-mask relative py-2">
-          <div className="flex w-max animate-scroll gap-12 md:gap-20 items-center hover:[animation-play-state:paused]">
+          <div className="flex w-max animate-scroll gap-10 md:gap-16 items-center hover:[animation-play-state:paused]">
             {/* First Set of Logos */}
             {BRAND_LOGOS.map((logo, idx) => (
               <a 
@@ -73,7 +73,7 @@ export const Hero: React.FC<HeroProps> = ({ onStart, onViewDemo }) => {
                 <img 
                   src={logo.src} 
                   alt={logo.alt} 
-                  className="grayscale contrast-[1.1] opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 ease-out h-[30px] md:h-[42px] w-auto object-contain"
+                  className="grayscale contrast-[1.1] opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 ease-out h-[24px] md:h-[32px] w-auto object-contain"
                 />
               </a>
             ))}
@@ -89,7 +89,7 @@ export const Hero: React.FC<HeroProps> = ({ onStart, onViewDemo }) => {
                 <img 
                   src={logo.src} 
                   alt={logo.alt} 
-                  className="grayscale contrast-[1.1] opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 ease-out h-[30px] md:h-[42px] w-auto object-contain"
+                  className="grayscale contrast-[1.1] opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 ease-out h-[24px] md:h-[32px] w-auto object-contain"
                 />
               </a>
             ))}
