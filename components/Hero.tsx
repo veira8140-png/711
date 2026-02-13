@@ -57,7 +57,7 @@ export const Hero: React.FC<HeroProps> = ({ onStart, onViewDemo }) => {
       </div>
 
       <div className="mt-40 md:mt-64 flex flex-col items-center border-t border-black/5 pt-16 md:pt-24 w-full space-y-12">
-        <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-gray-300">Recognized By Industry Leaders</span>
+        <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-gray-300">Featured IN</span>
         
         <div className="w-full overflow-hidden fade-mask relative py-4">
           <div className="flex w-max animate-scroll gap-16 md:gap-24 items-center hover:[animation-play-state:paused]">
