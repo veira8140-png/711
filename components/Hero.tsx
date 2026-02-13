@@ -39,7 +39,7 @@ export const Hero: React.FC<HeroProps> = ({ onStart, onViewDemo }) => {
 
       <div className="mt-40 md:mt-64 flex flex-col items-center border-t border-black/5 pt-16 md:pt-24 w-full space-y-8">
         <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-gray-300">As Featured On</span>
-        <div className="flex flex-wrap justify-center items-center gap-12">
+        <div className="flex flex-wrap justify-center items-center gap-12 md:gap-20">
           <a 
             href="https://earlyhunt.com/project/veira" 
             target="_blank" 
@@ -54,8 +54,21 @@ export const Hero: React.FC<HeroProps> = ({ onStart, onViewDemo }) => {
               className="grayscale contrast-[1.1] opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 ease-out"
             />
           </a>
-          
-          {/* Add more badges here following the same pattern */}
+
+          <a 
+            href="https://www.producthunt.com/products/veira-kenya/reviews/new?utm_source=badge-product_review&utm_medium=badge&utm_source=badge-veira-kenya" 
+            target="_blank" 
+            rel="noopener"
+            className="transition-all duration-500 hover:scale-105 active:scale-95 group"
+          >
+            <img 
+              src="https://api.producthunt.com/widgets/embed-image/v1/product_review.svg?product_id=1151101&theme=neutral" 
+              alt="Veira Kenya - Product Hunt Review" 
+              width="250" 
+              height="54" 
+              className="grayscale contrast-[1.1] opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 ease-out h-[54px] w-auto"
+            />
+          </a>
         </div>
       </div>
     </div>
