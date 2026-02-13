@@ -128,6 +128,19 @@ export const Hero: React.FC<HeroProps> = ({ onStart, onViewDemo }) => {
               className="grayscale contrast-[1.1] opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 ease-out h-[54px] w-auto"
             />
           </a>
+
+          <a 
+            href="https://www.aidirectori.es" 
+            target="_blank"
+            rel="noopener"
+            className="transition-all duration-500 hover:scale-105 active:scale-95 group"
+          >
+            <img 
+              src="https://cdn.aidirectori.es/ai-tools/badges/dark-mode.png" 
+              alt="AI Directories Badge" 
+              className="grayscale contrast-[1.1] opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 ease-out h-[44px] md:h-[48px] w-auto"
+            />
+          </a>
         </div>
       </div>
     </div>
