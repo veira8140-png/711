@@ -83,6 +83,21 @@ export const Hero: React.FC<HeroProps> = ({ onStart, onViewDemo }) => {
               className="grayscale contrast-[1.1] opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 ease-out h-[48px] md:h-[50px] w-auto"
             />
           </a>
+
+          <a 
+            href="https://twelve.tools" 
+            target="_blank"
+            rel="noopener"
+            className="transition-all duration-500 hover:scale-105 active:scale-95 group"
+          >
+            <img 
+              src="https://twelve.tools/badge0-light.svg" 
+              alt="Featured on Twelve Tools" 
+              width="200" 
+              height="54" 
+              className="grayscale contrast-[1.1] opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 ease-out h-[54px] w-auto"
+            />
+          </a>
         </div>
       </div>
     </div>
