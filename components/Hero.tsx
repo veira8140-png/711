@@ -183,6 +183,20 @@ export const Hero: React.FC<HeroProps> = ({ onStart, onViewDemo }) => {
               className="grayscale contrast-[1.1] opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 ease-out h-[54px] w-auto"
             />
           </a>
+
+          <a 
+            href="https://aigc160.com" 
+            target="_blank" 
+            rel="noopener"
+            className="transition-all duration-500 hover:scale-105 active:scale-95 group"
+          >
+            <img 
+              src="https://aigc160.com/assets/images/badge.png" 
+              alt="AIGC 160" 
+              height="54" 
+              className="grayscale contrast-[1.1] opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 ease-out h-[54px] w-auto"
+            />
+          </a>
         </div>
       </div>
     </div>
