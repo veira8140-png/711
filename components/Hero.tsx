@@ -116,7 +116,7 @@ export const Hero: React.FC<HeroProps> = ({ onStart, onViewDemo }) => {
 
           <a 
             href="https://frogdr.com/veirahq.com?utm_source=veirahq.com" 
-            target="_blank"
+            target="_blank" 
             rel="noopener"
             className="transition-all duration-500 hover:scale-105 active:scale-95 group"
           >
@@ -131,7 +131,7 @@ export const Hero: React.FC<HeroProps> = ({ onStart, onViewDemo }) => {
 
           <a 
             href="https://www.aidirectori.es" 
-            target="_blank"
+            target="_blank" 
             rel="noopener"
             className="transition-all duration-500 hover:scale-105 active:scale-95 group"
           >
@@ -144,7 +144,7 @@ export const Hero: React.FC<HeroProps> = ({ onStart, onViewDemo }) => {
 
           <a 
             href="https://aitechviral.com" 
-            target="_blank"
+            target="_blank" 
             rel="noopener"
             className="transition-all duration-500 hover:scale-105 active:scale-95 group"
           >
@@ -158,13 +158,27 @@ export const Hero: React.FC<HeroProps> = ({ onStart, onViewDemo }) => {
 
           <a 
             href="https://milliondothomepage.com" 
-            target="_blank"
+            target="_blank" 
             rel="noopener"
             className="transition-all duration-500 hover:scale-105 active:scale-95 group"
           >
             <img 
               src="https://milliondothomepage.com/assets/images/badge.png" 
               alt="Million Dot Homepage" 
+              height="54" 
+              className="grayscale contrast-[1.1] opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 ease-out h-[54px] w-auto"
+            />
+          </a>
+
+          <a 
+            href="https://acidtools.com" 
+            target="_blank" 
+            rel="noopener"
+            className="transition-all duration-500 hover:scale-105 active:scale-95 group"
+          >
+            <img 
+              src="https://acidtools.com/assets/images/badge.png" 
+              alt="Acid Tools" 
               height="54" 
               className="grayscale contrast-[1.1] opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 ease-out h-[54px] w-auto"
             />
