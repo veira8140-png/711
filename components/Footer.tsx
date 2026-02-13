@@ -139,42 +139,55 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   return (
     <footer className="bg-white border-t border-black/5 pt-32 pb-16">
       <div className="container mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-16 mb-24">
-          <div className="space-y-8">
+        {/* Main Footer Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-12 lg:gap-8 mb-24">
+          {/* Brand Info */}
+          <div className="sm:col-span-2 md:col-span-1 space-y-8">
             <h3 className="text-3xl font-black serif tracking-tighter text-black lowercase">veira.</h3>
-            <p className="text-sm text-gray-400 font-light leading-relaxed max-w-xs">
+            <p className="text-sm text-gray-400 font-light leading-relaxed max-w-[240px]">
               The premium retail intelligence engine for high-growth shops and pharmacies in Kenya.
             </p>
           </div>
           
-          <div className="flex flex-col sm:flex-row gap-12 md:gap-16">
-            <div className="space-y-8 min-w-[120px]">
-              <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-black">Platform</h4>
-              <ul className="space-y-4 text-sm font-light text-gray-500">
-                <li><button onClick={() => onNavigate('pos')} className="hover:text-[#2D9B9B] transition-colors">Cloud POS</button></li>
-                <li><button onClick={() => onNavigate('agents')} className="hover:text-[#2D9B9B] transition-colors">AI Agents</button></li>
-                <li><button onClick={() => onNavigate('cloud')} className="hover:text-[#2D9B9B] transition-colors">Inventory Hub</button></li>
-              </ul>
-            </div>
-
-            <div className="space-y-8 min-w-[120px]">
-              <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-black">Resources</h4>
-              <ul className="space-y-4 text-sm font-light text-gray-500">
-                <li><button onClick={() => onNavigate('hero')} className="hover:text-[#2D9B9B] transition-colors font-bold text-black underline underline-offset-4">Blog</button></li>
-                <li><button onClick={() => onNavigate('case-studies')} className="hover:text-[#2D9B9B] transition-colors">Success Stories</button></li>
-                <li><button onClick={() => onNavigate('faq')} className="hover:text-[#2D9B9B] transition-colors">Help Center</button></li>
-              </ul>
-            </div>
+          {/* Platform Links */}
+          <div className="space-y-8">
+            <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-black">Platform</h4>
+            <ul className="space-y-4 text-sm font-light text-gray-500">
+              <li><button onClick={() => onNavigate('pos')} className="hover:text-[#2D9B9B] transition-colors">Cloud POS</button></li>
+              <li><button onClick={() => onNavigate('agents')} className="hover:text-[#2D9B9B] transition-colors">AI Agents</button></li>
+              <li><button onClick={() => onNavigate('cloud')} className="hover:text-[#2D9B9B] transition-colors">Inventory Hub</button></li>
+            </ul>
           </div>
 
-          <div className="md:col-span-2 space-y-8">
-            <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-black">AI Power-Up Suite</h4>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-              {TOOL_DETAILS.map((tool) => (
+          {/* Resources Links */}
+          <div className="space-y-8">
+            <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-black">Resources</h4>
+            <ul className="space-y-4 text-sm font-light text-gray-500">
+              <li><button onClick={() => onNavigate('hero')} className="hover:text-[#2D9B9B] transition-colors font-bold text-black underline underline-offset-4">Blog</button></li>
+              <li><button onClick={() => onNavigate('case-studies')} className="hover:text-[#2D9B9B] transition-colors">Success Stories</button></li>
+              <li><button onClick={() => onNavigate('faq')} className="hover:text-[#2D9B9B] transition-colors">Help Center</button></li>
+            </ul>
+          </div>
+
+          {/* Compare Section */}
+          <div className="space-y-8">
+            <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-black">Compare</h4>
+            <ul className="space-y-4 text-sm font-light text-gray-500">
+              <li><a href="#" className="hover:text-[#2D9B9B] transition-colors block leading-snug">Veira vs Traditional POS</a></li>
+              <li><a href="#" className="hover:text-[#2D9B9B] transition-colors block leading-snug">Veira vs Spreadsheets</a></li>
+              <li><a href="#" className="hover:text-[#2D9B9B] transition-colors block leading-snug">ChatGPT vs Veira</a></li>
+            </ul>
+          </div>
+
+          {/* AI Suite Quick Actions */}
+          <div className="sm:col-span-2 md:col-span-1 lg:col-span-1 space-y-8">
+            <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-black">AI Power-Ups</h4>
+            <div className="grid grid-cols-1 gap-2">
+              {TOOL_DETAILS.slice(0, 4).map((tool) => (
                 <button
                   key={tool.name}
                   onClick={() => { setActiveTool(tool); setToolResult(null); setError(null); setToolInput(''); }}
-                  className="px-4 py-3 bg-black/5 hover:bg-black hover:text-white text-[10px] font-bold uppercase tracking-wider text-left transition-all rounded-sm flex items-center gap-2 group"
+                  className="px-4 py-3 bg-black/5 hover:bg-black hover:text-white text-[9px] font-bold uppercase tracking-wider text-left transition-all rounded-sm flex items-center gap-3 group whitespace-nowrap overflow-hidden"
                 >
                   <span className="text-base grayscale group-hover:grayscale-0 transition-all">{tool.icon}</span>
                   <span className="truncate">{tool.name}</span>
@@ -184,6 +197,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           </div>
         </div>
 
+        {/* Bottom Bar */}
         <div className="pt-12 border-t border-black/5 flex flex-col md:flex-row justify-between items-center gap-8">
           <p className="text-[10px] font-bold uppercase tracking-widest text-gray-300">
             © {new Date().getFullYear()} Veira Intelligence. Westlands, Nairobi.
@@ -198,14 +212,15 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         </div>
       </div>
 
+      {/* Tool Modal (Remains identical logic, ensuring accessibility) */}
       {activeTool && (
         <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm overflow-y-auto">
           <div className="bg-white w-full max-w-2xl p-8 md:p-12 space-y-10 animate-in fade-in zoom-in duration-300 relative rounded-[2rem] shadow-2xl my-auto">
-            <button onClick={() => setActiveTool(null)} className="absolute top-8 right-8 text-gray-300 hover:text-black transition-colors p-2">✕</button>
+            <button onClick={() => setActiveTool(null)} className="absolute top-8 right-8 text-gray-300 hover:text-black transition-colors p-2" aria-label="Close">✕</button>
             
             <div className="space-y-2">
               <div className="flex items-center gap-4">
-                <span className="text-4xl">{activeTool.icon}</span>
+                <span className="text-4xl" role="img" aria-label="icon">{activeTool.icon}</span>
                 <h3 className="text-3xl font-bold serif">{activeTool.name}</h3>
               </div>
               <p className="text-gray-400 font-light text-lg">{activeTool.desc}</p>

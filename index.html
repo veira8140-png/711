@@ -102,14 +102,22 @@
           40% { transform: translate(-5%, 25%); }
         }
         
-        /* Softer, more organic morphing animation */
         @keyframes orb-morph {
           0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; transform: scale(1) rotate(0deg); }
           33% { border-radius: 40% 60% 50% 50% / 40% 40% 60% 60%; transform: scale(1.05) rotate(5deg); }
           66% { border-radius: 50% 50% 70% 30% / 50% 70% 30% 50%; transform: scale(0.95) rotate(-5deg); }
           100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; transform: scale(1) rotate(0deg); }
         }
+
+        @keyframes infinite-scroll {
+          from { transform: translateX(0); }
+          to { transform: translateX(-50%); }
+        }
         
+        .animate-scroll {
+          animation: infinite-scroll 40s linear infinite;
+        }
+
         .animate-morph {
           animation: orb-morph 8s ease-in-out infinite;
         }
@@ -126,6 +134,11 @@
           animation: grain 8s steps(10) infinite;
           pointer-events: none;
           z-index: 9999;
+        }
+
+        .fade-mask {
+          mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+          -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
         }
     </style>
     <script type="importmap">
