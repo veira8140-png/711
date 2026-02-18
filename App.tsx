@@ -47,12 +47,14 @@ const App: React.FC = () => {
     if (id === 'our-story') {
       window.history.pushState({}, '', '/story');
       setCurrentView('story');
+      window.scrollTo(0, 0);
       return;
     }
 
     if (currentView !== 'landing') {
       window.history.pushState({}, '', '/');
       setCurrentView('landing');
+      window.scrollTo(0, 0);
       setTimeout(() => {
         const element = document.getElementById(id);
         if (element) {
@@ -73,11 +75,13 @@ const App: React.FC = () => {
   const handleShowBlogHome = () => {
     window.history.pushState({}, '', '/blog');
     setCurrentView('blog-home');
+    window.scrollTo(0, 0);
   };
 
   const handleShowHome = () => {
     window.history.pushState({}, '', '/');
     setCurrentView('landing');
+    window.scrollTo(0, 0);
   };
 
   const renderContent = () => {
