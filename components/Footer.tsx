@@ -62,7 +62,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onShowBlog }) => {
     }
   };
 
-  const navigateToBlogSubpath = (path: string) => {
+  const navigateToSubpath = (path: string) => {
     window.history.pushState({}, '', path);
     window.dispatchEvent(new Event('popstate'));
   };
@@ -91,8 +91,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onShowBlog }) => {
             <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-black">Resources</h4>
             <ul className="space-y-4 text-sm font-light text-gray-500">
               <li><button onClick={onShowBlog} className="hover:text-[#2D9B9B] font-bold text-black underline underline-offset-4">Blog</button></li>
-              <li><button onClick={() => navigateToBlogSubpath('/blog/best-pos-system-small-business-kenya')} className="hover:text-[#2D9B9B] text-left">Best POS Guide</button></li>
-              <li><button onClick={() => navigateToBlogSubpath('/blog/e-tims-explained')} className="hover:text-[#2D9B9B] text-left">e-TIMS Guide</button></li>
+              <li><button onClick={() => navigateToSubpath('/compare')} className="hover:text-[#2D9B9B] text-left">Compare Veira</button></li>
+              <li><button onClick={() => navigateToSubpath('/blog/best-pos-system-small-business-kenya')} className="hover:text-[#2D9B9B] text-left">Best POS Guide</button></li>
+              <li><button onClick={() => navigateToSubpath('/blog/pos-cost-guide')} className="hover:text-[#2D9B9B] text-left">Cost Guide</button></li>
+              <li><button onClick={() => navigateToSubpath('/blog/e-tims-explained')} className="hover:text-[#2D9B9B] text-left">e-TIMS Guide</button></li>
               <li><button onClick={() => onNavigate('our-story')} className="hover:text-[#2D9B9B]">Our Story</button></li>
             </ul>
           </div>
@@ -100,8 +102,8 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onShowBlog }) => {
           <div className="space-y-8">
             <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-black">Compare</h4>
             <ul className="space-y-4 text-sm font-light text-gray-500">
-              <li><a href="#" className="hover:text-[#2D9B9B]">Veira vs Traditional</a></li>
-              <li><a href="#" className="hover:text-[#2D9B9B]">Veira vs Spreadsheets</a></li>
+              <li><button onClick={() => navigateToSubpath('/compare')} className="hover:text-[#2D9B9B]">Veira vs Traditional</button></li>
+              <li><button onClick={() => navigateToSubpath('/compare')} className="hover:text-[#2D9B9B]">Veira vs ChatGPT</button></li>
             </ul>
           </div>
 
