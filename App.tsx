@@ -20,15 +20,39 @@ import { Footer } from './components/Footer.tsx';
 import { Testimonials } from './components/Testimonials.tsx';
 import { BlogPost } from './components/BlogPost.tsx';
 
-type View = 'landing' | 'blog';
+type View = 'landing' | 'blog' | 'story';
 
 const App: React.FC = () => {
   const [currentView, setCurrentView] = useState<View>('landing');
 
+  // Handle Initial Load and Back/Forward Buttons
+  useEffect(() => {
+    const handleLocationChange = () => {
+      const path = window.location.pathname;
+      if (path === '/blog') {
+        setCurrentView('blog');
+      } else if (path === '/story') {
+        setCurrentView('story');
+      } else {
+        setCurrentView('landing');
+      }
+      window.scrollTo(0, 0);
+    };
+
+    handleLocationChange();
+    window.addEventListener('popstate', handleLocationChange);
+    return () => window.removeEventListener('popstate', handleLocationChange);
+  }, []);
+
   const navigateTo = (id: string) => {
+    if (id === 'our-story') {
+      handleShowStory();
+      return;
+    }
+
     if (currentView !== 'landing') {
+      window.history.pushState({}, '', '/');
       setCurrentView('landing');
-      // Give React time to render the landing page before scrolling
       setTimeout(() => {
         const element = document.getElementById(id);
         if (element) {
@@ -53,22 +77,35 @@ const App: React.FC = () => {
   };
 
   const handleShowBlog = () => {
+    window.history.pushState({}, '', '/blog');
     setCurrentView('blog');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const handleShowStory = () => {
+    window.history.pushState({}, '', '/story');
+    setCurrentView('story');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const handleShowHome = () => {
+    window.history.pushState({}, '', '/');
     setCurrentView('landing');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  return (
-    <div className="min-h-screen relative selection:bg-[#7C3AED] selection:text-white">
-      <WaveBackground />
-      <Header onNavigate={navigateTo} onHome={handleShowHome} />
-      
-      <main className="overflow-x-hidden pt-20">
-        {currentView === 'landing' ? (
+  const renderContent = () => {
+    switch (currentView) {
+      case 'blog':
+        return <BlogPost />;
+      case 'story':
+        return (
+          <div className="bg-[#0f0720] min-h-screen">
+            <OurStory />
+          </div>
+        );
+      default:
+        return (
           <>
             <section id="hero">
               <Hero 
@@ -153,9 +190,17 @@ const App: React.FC = () => {
               <OurStory />
             </section>
           </>
-        ) : (
-          <BlogPost />
-        )}
+        );
+    }
+  };
+
+  return (
+    <div className="min-h-screen relative selection:bg-[#7C3AED] selection:text-white">
+      <WaveBackground />
+      <Header onNavigate={navigateTo} onHome={handleShowHome} />
+      
+      <main className={`overflow-x-hidden pt-20 ${currentView === 'story' ? 'bg-[#0f0720]' : ''}`}>
+        {renderContent()}
       </main>
 
       <Footer onNavigate={navigateTo} onShowBlog={handleShowBlog} />

@@ -1,4 +1,3 @@
-
 import { GoogleGenAI, Type } from "@google/genai";
 import { BrandOutput } from "../types";
 
@@ -49,7 +48,8 @@ const withRetry = async <T>(fn: () => Promise<T>, maxRetries = 3): Promise<T> =>
 };
 
 const getAI = () => {
-  const apiKey = process.env.API_KEY;
+  // Safe check for process.env.API_KEY to avoid Uncaught ReferenceError in browser environments
+  const apiKey = typeof process !== 'undefined' ? process.env.API_KEY : (window as any).process?.env?.API_KEY;
   if (!apiKey || apiKey === "undefined") {
     throw new Error("API_KEY_MISSING");
   }

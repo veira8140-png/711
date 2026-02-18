@@ -165,9 +165,24 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onShowBlog }) => {
           <div className="space-y-8">
             <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-black">Resources</h4>
             <ul className="space-y-4 text-sm font-light text-gray-500">
-              <li><button onClick={onShowBlog} className="hover:text-[#2D9B9B] transition-colors font-bold text-black underline underline-offset-4 text-left">Blog</button></li>
-              <li><button onClick={onShowBlog} className="hover:text-[#2D9B9B] transition-colors text-left">e-TIMS Guide</button></li>
+              <li>
+                <button 
+                  onClick={onShowBlog} 
+                  className="hover:text-[#2D9B9B] transition-colors font-bold text-black underline underline-offset-4 text-left"
+                >
+                  Blog
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={onShowBlog} 
+                  className="hover:text-[#2D9B9B] transition-colors text-left"
+                >
+                  e-TIMS Guide
+                </button>
+              </li>
               <li><button onClick={() => onNavigate('case-studies')} className="hover:text-[#2D9B9B] transition-colors">Success Stories</button></li>
+              <li><button onClick={() => onNavigate('our-story')} className="hover:text-[#2D9B9B] transition-colors">Our Story</button></li>
               <li><button onClick={() => onNavigate('faq')} className="hover:text-[#2D9B9B] transition-colors">Help Center</button></li>
             </ul>
           </div>
