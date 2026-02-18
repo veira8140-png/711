@@ -22,22 +22,23 @@ import { BlogHome } from './components/BlogHome.tsx';
 import { ETIMSPost } from './components/ETIMSPost.tsx';
 import { POSCostPost } from './components/POSCostPost.tsx';
 import { BestPOSPost } from './components/BestPOSPost.tsx';
+import { POSMachinePost } from './components/POSMachinePost.tsx';
 import { ComparisonPage } from './components/ComparisonPage.tsx';
 
-type View = 'landing' | 'blog-home' | 'blog-post-etims' | 'blog-post-cost' | 'blog-post-best' | 'compare' | 'story';
+type View = 'landing' | 'blog-home' | 'blog-post-etims' | 'blog-post-cost' | 'blog-post-best' | 'blog-post-machine' | 'compare' | 'story';
 
 const App: React.FC = () => {
   const [currentView, setCurrentView] = useState<View>('landing');
 
   useEffect(() => {
     const handleLocationChange = () => {
-      // Normalize path: remove trailing slash and convert to lowercase
       const path = window.location.pathname.replace(/\/$/, '') || '/';
       
       if (path === '/blog') setCurrentView('blog-home');
       else if (path === '/blog/e-tims-explained') setCurrentView('blog-post-etims');
       else if (path === '/blog/pos-cost-guide') setCurrentView('blog-post-cost');
       else if (path === '/blog/best-pos-system-small-business-kenya') setCurrentView('blog-post-best');
+      else if (path === '/blog/pos-machine-kenya') setCurrentView('blog-post-machine');
       else if (path === '/compare') setCurrentView('compare');
       else if (path === '/story') setCurrentView('story');
       else setCurrentView('landing');
@@ -50,7 +51,6 @@ const App: React.FC = () => {
   }, []);
 
   const navigateTo = (id: string) => {
-    // Handle SPA routes
     if (id === 'our-story') {
       window.history.pushState({}, '', '/story');
       setCurrentView('story');
@@ -65,7 +65,6 @@ const App: React.FC = () => {
       return;
     }
 
-    // Handle section scrolling on landing page
     if (currentView !== 'landing') {
       window.history.pushState({}, '', '/');
       setCurrentView('landing');
@@ -105,6 +104,7 @@ const App: React.FC = () => {
       case 'blog-post-etims': return <ETIMSPost />;
       case 'blog-post-cost': return <POSCostPost />;
       case 'blog-post-best': return <BestPOSPost />;
+      case 'blog-post-machine': return <POSMachinePost />;
       case 'compare': return <ComparisonPage />;
       case 'story': return <div className="bg-[#0f0720] min-h-screen"><OurStory /></div>;
       default:

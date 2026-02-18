@@ -3,12 +3,21 @@ import React from 'react';
 
 const POSTS = [
   {
+    id: 'pos-machine-kenya',
+    title: 'POS Machine Kenya: Types, Prices & Where to Buy in 2025',
+    excerpt: 'Detailed guide on every hardware type available in Kenya. From handheld Android terminals to i5 desktop systems.',
+    image: 'https://images.unsplash.com/photo-1556740758-90de374c12ad?q=80&w=1200&auto=format&fit=crop',
+    date: 'Feb 19, 2025',
+    readTime: '25 Min Read',
+    path: '/blog/pos-machine-kenya'
+  },
+  {
     id: 'best-pos-system',
     title: 'Best POS System for Small Business in Kenya: 2025 Guide',
     excerpt: 'Find the right fit for your shop, cafe, or retail store. SimbaPOS, PawaPOS, POSmart, and Uzapoint compared side by side.',
     image: 'https://images.unsplash.com/photo-1556740738-b6a63e27c4df?q=80&w=1200&auto=format&fit=crop',
     date: 'Feb 18, 2025',
-    readTime: '18 Min Read',
+    readTime: '22 Min Read',
     path: '/blog/best-pos-system-small-business-kenya'
   },
   {
@@ -17,7 +26,7 @@ const POSTS = [
     excerpt: 'A complete breakdown of hardware, software, M-Pesa integration, and e-TIMS compliance costs for retail shops and restaurants.',
     image: 'https://images.unsplash.com/photo-1556742049-02e53f8218bb?q=80&w=1200&auto=format&fit=crop',
     date: 'Feb 18, 2025',
-    readTime: '15 Min Read',
+    readTime: '19 Min Read',
     path: '/blog/pos-cost-guide'
   },
   {
@@ -26,7 +35,7 @@ const POSTS = [
     excerpt: 'The KRA requirement is now mandatory for all businesses. Learn how to stay compliant without the daily headache.',
     image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=1200&auto=format&fit=crop',
     date: 'Feb 12, 2025',
-    readTime: '12 Min Read',
+    readTime: '24 Min Read',
     path: '/blog/e-tims-explained'
   }
 ];
@@ -73,7 +82,7 @@ export const BlogHome: React.FC = () => {
               <h2 className="text-3xl font-bold serif text-black leading-tight group-hover:italic transition-all">
                 {post.title}
               </h2>
-              <p className="text-gray-500 font-light leading-relaxed">
+              <p className="text-gray-500 font-light leading-relaxed line-clamp-2">
                 {post.excerpt}
               </p>
               <div className="pt-4 flex items-center gap-4">
