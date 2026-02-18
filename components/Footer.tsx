@@ -91,8 +91,8 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onShowBlog }) => {
             <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-black">Resources</h4>
             <ul className="space-y-4 text-sm font-light text-gray-500">
               <li><button onClick={onShowBlog} className="hover:text-[#2D9B9B] font-bold text-black underline underline-offset-4">Blog</button></li>
+              <li><button onClick={() => navigateToBlogSubpath('/blog/best-pos-system-small-business-kenya')} className="hover:text-[#2D9B9B] text-left">Best POS Guide</button></li>
               <li><button onClick={() => navigateToBlogSubpath('/blog/e-tims-explained')} className="hover:text-[#2D9B9B] text-left">e-TIMS Guide</button></li>
-              <li><button onClick={() => navigateToBlogSubpath('/blog/pos-cost-guide')} className="hover:text-[#2D9B9B] text-left">POS Cost Guide</button></li>
               <li><button onClick={() => onNavigate('our-story')} className="hover:text-[#2D9B9B]">Our Story</button></li>
             </ul>
           </div>

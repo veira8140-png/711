@@ -3,6 +3,15 @@ import React from 'react';
 
 const POSTS = [
   {
+    id: 'best-pos-system',
+    title: 'Best POS System for Small Business in Kenya: 2025 Guide',
+    excerpt: 'Find the right fit for your shop, cafe, or retail store. SimbaPOS, PawaPOS, POSmart, and Uzapoint compared side by side.',
+    image: 'https://images.unsplash.com/photo-1556740738-b6a63e27c4df?q=80&w=1200&auto=format&fit=crop',
+    date: 'Feb 18, 2025',
+    readTime: '18 Min Read',
+    path: '/blog/best-pos-system-small-business-kenya'
+  },
+  {
     id: 'pos-cost-guide',
     title: 'How Much Does a POS System Cost in Kenya? 2025 Price Guide',
     excerpt: 'A complete breakdown of hardware, software, M-Pesa integration, and e-TIMS compliance costs for retail shops and restaurants.',

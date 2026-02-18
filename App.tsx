@@ -21,8 +21,9 @@ import { Testimonials } from './components/Testimonials.tsx';
 import { BlogHome } from './components/BlogHome.tsx';
 import { ETIMSPost } from './components/ETIMSPost.tsx';
 import { POSCostPost } from './components/POSCostPost.tsx';
+import { BestPOSPost } from './components/BestPOSPost.tsx';
 
-type View = 'landing' | 'blog-home' | 'blog-post-etims' | 'blog-post-cost' | 'story';
+type View = 'landing' | 'blog-home' | 'blog-post-etims' | 'blog-post-cost' | 'blog-post-best' | 'story';
 
 const App: React.FC = () => {
   const [currentView, setCurrentView] = useState<View>('landing');
@@ -33,6 +34,7 @@ const App: React.FC = () => {
       if (path === '/blog') setCurrentView('blog-home');
       else if (path === '/blog/e-tims-explained') setCurrentView('blog-post-etims');
       else if (path === '/blog/pos-cost-guide') setCurrentView('blog-post-cost');
+      else if (path === '/blog/best-pos-system-small-business-kenya') setCurrentView('blog-post-best');
       else if (path === '/story') setCurrentView('story');
       else setCurrentView('landing');
       window.scrollTo(0, 0);
@@ -89,6 +91,7 @@ const App: React.FC = () => {
       case 'blog-home': return <BlogHome />;
       case 'blog-post-etims': return <ETIMSPost />;
       case 'blog-post-cost': return <POSCostPost />;
+      case 'blog-post-best': return <BestPOSPost />;
       case 'story': return <div className="bg-[#0f0720] min-h-screen"><OurStory /></div>;
       default:
         return (
