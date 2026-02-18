@@ -18,24 +18,23 @@ import { BrandArchitect } from './components/BrandArchitect.tsx';
 import { VisualStudio } from './components/VisualStudio.tsx';
 import { Footer } from './components/Footer.tsx';
 import { Testimonials } from './components/Testimonials.tsx';
-import { BlogPost } from './components/BlogPost.tsx';
+import { BlogHome } from './components/BlogHome.tsx';
+import { ETIMSPost } from './components/ETIMSPost.tsx';
+import { POSCostPost } from './components/POSCostPost.tsx';
 
-type View = 'landing' | 'blog' | 'story';
+type View = 'landing' | 'blog-home' | 'blog-post-etims' | 'blog-post-cost' | 'story';
 
 const App: React.FC = () => {
   const [currentView, setCurrentView] = useState<View>('landing');
 
-  // Handle Initial Load and Back/Forward Buttons
   useEffect(() => {
     const handleLocationChange = () => {
       const path = window.location.pathname;
-      if (path === '/blog') {
-        setCurrentView('blog');
-      } else if (path === '/story') {
-        setCurrentView('story');
-      } else {
-        setCurrentView('landing');
-      }
+      if (path === '/blog') setCurrentView('blog-home');
+      else if (path === '/blog/e-tims-explained') setCurrentView('blog-post-etims');
+      else if (path === '/blog/pos-cost-guide') setCurrentView('blog-post-cost');
+      else if (path === '/story') setCurrentView('story');
+      else setCurrentView('landing');
       window.scrollTo(0, 0);
     };
 
@@ -46,7 +45,8 @@ const App: React.FC = () => {
 
   const navigateTo = (id: string) => {
     if (id === 'our-story') {
-      handleShowStory();
+      window.history.pushState({}, '', '/story');
+      setCurrentView('story');
       return;
     }
 
@@ -57,10 +57,7 @@ const App: React.FC = () => {
         const element = document.getElementById(id);
         if (element) {
           const offset = window.innerWidth < 768 ? 80 : 100;
-          window.scrollTo({
-            top: element.offsetTop - offset,
-            behavior: "smooth"
-          });
+          window.scrollTo({ top: element.offsetTop - offset, behavior: "smooth" });
         }
       }, 100);
       return;
@@ -69,123 +66,54 @@ const App: React.FC = () => {
     const element = document.getElementById(id);
     if (element) {
       const offset = window.innerWidth < 768 ? 80 : 100;
-      window.scrollTo({
-        top: element.offsetTop - offset,
-        behavior: "smooth"
-      });
+      window.scrollTo({ top: element.offsetTop - offset, behavior: "smooth" });
     }
   };
 
-  const handleShowBlog = () => {
+  const handleShowBlogHome = () => {
     window.history.pushState({}, '', '/blog');
-    setCurrentView('blog');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const handleShowStory = () => {
-    window.history.pushState({}, '', '/story');
-    setCurrentView('story');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setCurrentView('blog-home');
   };
 
   const handleShowHome = () => {
     window.history.pushState({}, '', '/');
     setCurrentView('landing');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const renderContent = () => {
     switch (currentView) {
-      case 'blog':
-        return <BlogPost />;
-      case 'story':
-        return (
-          <div className="bg-[#0f0720] min-h-screen">
-            <OurStory />
-          </div>
-        );
+      case 'blog-home': return <BlogHome />;
+      case 'blog-post-etims': return <ETIMSPost />;
+      case 'blog-post-cost': return <POSCostPost />;
+      case 'story': return <div className="bg-[#0f0720] min-h-screen"><OurStory /></div>;
       default:
         return (
           <>
             <section id="hero">
-              <Hero 
-                onStart={() => navigateTo('how-it-works')} 
-                onViewDemo={() => navigateTo('case-studies')} 
-              />
+              <Hero onStart={() => navigateTo('how-it-works')} onViewDemo={() => navigateTo('case-studies')} />
             </section>
-
             <div className="container mx-auto px-4 sm:px-6 space-y-32 md:space-y-48 lg:space-y-64 pb-24 md:pb-40">
               <Testimonials />
               <Problem />
-
-              <section id="pos">
-                <POS />
-              </section>
-
+              <section id="pos"><POS /></section>
               <Transformation />
-
-              <section id="cloud">
-                <Cloud />
-              </section>
-
-              <section id="agents">
-                <Agents />
-              </section>
-
+              <section id="cloud"><Cloud /></section>
+              <section id="agents"><Agents /></section>
               <section id="studio" className="space-y-24">
                 <div className="max-w-4xl space-y-6">
                   <span className="section-label">AI Intelligence Suite</span>
                   <h2 className="text-5xl md:text-8xl font-black serif text-black leading-[0.9] tracking-tighter">
                     Visual Commerce <br/><span className="italic text-gray-400">automated.</span>
                   </h2>
-                  <p className="text-xl md:text-2xl text-gray-500 font-light max-w-2xl">
-                    Deploy Veira's high-fidelity AI models to design assets specifically for the Kenyan market.
-                  </p>
                 </div>
-                
-                <div className="space-y-12">
-                  <BrandArchitect />
-                  <VisualStudio />
-                </div>
+                <div className="space-y-12"><BrandArchitect /><VisualStudio /></div>
               </section>
-
-              <section id="enterprise">
-                <Enterprise />
-              </section>
-
-              <section id="case-studies">
-                <CaseStudies />
-              </section>
-
-              <section id="pricing">
-                <Pricing />
-              </section>
-
-              <section id="how-it-works">
-                <HowItWorks />
-              </section>
-              
-              <section className="text-center space-y-12 py-24 border-t border-black/5">
-                <div className="space-y-6">
-                  <h2 className="text-4xl md:text-6xl font-bold serif text-black leading-tight">
-                    Run your business with <br className="hidden sm:block" />
-                    <span className="italic text-gray-400">total confidence.</span>
-                  </h2>
-                  <p className="text-gray-500 max-w-xl mx-auto font-light">
-                    If you are tired of running your business blindly, Veira is for you.
-                  </p>
-                </div>
-                <button 
-                  onClick={() => navigateTo('hero')}
-                  className="cta-primary px-16 py-6 text-xs font-bold uppercase tracking-widest"
-                >
-                  Install Veira Today
-                </button>
-              </section>
-
+              <section id="enterprise"><Enterprise /></section>
+              <section id="case-studies"><CaseStudies /></section>
+              <section id="pricing"><Pricing /></section>
+              <section id="how-it-works"><HowItWorks /></section>
               <FAQ />
             </div>
-
             <section id="our-story" className="bg-gradient-to-b from-[#2e1065] via-[#1e1b4b] to-[#0f0720] text-white">
               <OurStory />
             </section>
@@ -198,12 +126,10 @@ const App: React.FC = () => {
     <div className="min-h-screen relative selection:bg-[#7C3AED] selection:text-white">
       <WaveBackground />
       <Header onNavigate={navigateTo} onHome={handleShowHome} />
-      
       <main className={`overflow-x-hidden pt-20 ${currentView === 'story' ? 'bg-[#0f0720]' : ''}`}>
         {renderContent()}
       </main>
-
-      <Footer onNavigate={navigateTo} onShowBlog={handleShowBlog} />
+      <Footer onNavigate={navigateTo} onShowBlog={handleShowBlogHome} />
     </div>
   );
 };
