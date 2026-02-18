@@ -1,11 +1,13 @@
+
 import React, { useState, useEffect } from 'react';
 import { Orb } from './Orb.tsx';
 
 interface HeaderProps {
   onNavigate: (id: string) => void;
+  onHome: () => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
+export const Header: React.FC<HeaderProps> = ({ onNavigate, onHome }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -18,6 +20,12 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
   const handleLinkClick = (e: React.MouseEvent, id: string) => {
     e.preventDefault();
     onNavigate(id);
+    setIsMenuOpen(false);
+  };
+
+  const handleLogoClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    onHome();
     setIsMenuOpen(false);
   };
 
@@ -47,7 +55,7 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
           <a 
             href="#" 
             className="flex items-center gap-1.5 transition-opacity hover:opacity-70 group"
-            onClick={(e) => handleLinkClick(e, 'hero')}
+            onClick={handleLogoClick}
           >
             <Orb size="xs" className="group-hover:scale-110 transition-transform duration-500" />
             <span className="text-2xl font-bold tracking-tighter serif text-black lowercase">veira.</span>

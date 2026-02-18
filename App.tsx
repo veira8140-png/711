@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Header } from './components/Header.tsx';
 import { Hero } from './components/Hero.tsx';
 import { Problem } from './components/Problem.tsx';
@@ -18,9 +18,30 @@ import { BrandArchitect } from './components/BrandArchitect.tsx';
 import { VisualStudio } from './components/VisualStudio.tsx';
 import { Footer } from './components/Footer.tsx';
 import { Testimonials } from './components/Testimonials.tsx';
+import { BlogPost } from './components/BlogPost.tsx';
+
+type View = 'landing' | 'blog';
 
 const App: React.FC = () => {
+  const [currentView, setCurrentView] = useState<View>('landing');
+
   const navigateTo = (id: string) => {
+    if (currentView !== 'landing') {
+      setCurrentView('landing');
+      // Give React time to render the landing page before scrolling
+      setTimeout(() => {
+        const element = document.getElementById(id);
+        if (element) {
+          const offset = window.innerWidth < 768 ? 80 : 100;
+          window.scrollTo({
+            top: element.offsetTop - offset,
+            behavior: "smooth"
+          });
+        }
+      }, 100);
+      return;
+    }
+
     const element = document.getElementById(id);
     if (element) {
       const offset = window.innerWidth < 768 ? 80 : 100;
@@ -31,97 +52,113 @@ const App: React.FC = () => {
     }
   };
 
+  const handleShowBlog = () => {
+    setCurrentView('blog');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleShowHome = () => {
+    setCurrentView('landing');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <div className="min-h-screen relative selection:bg-[#7C3AED] selection:text-white">
       <WaveBackground />
-      <Header onNavigate={navigateTo} />
+      <Header onNavigate={navigateTo} onHome={handleShowHome} />
       
-      <main className="overflow-x-hidden">
-        <section id="hero">
-          <Hero 
-            onStart={() => navigateTo('how-it-works')} 
-            onViewDemo={() => navigateTo('case-studies')} 
-          />
-        </section>
+      <main className="overflow-x-hidden pt-20">
+        {currentView === 'landing' ? (
+          <>
+            <section id="hero">
+              <Hero 
+                onStart={() => navigateTo('how-it-works')} 
+                onViewDemo={() => navigateTo('case-studies')} 
+              />
+            </section>
 
-        <div className="container mx-auto px-4 sm:px-6 space-y-32 md:space-y-48 lg:space-y-64 pb-24 md:pb-40">
-          <Testimonials />
-          <Problem />
+            <div className="container mx-auto px-4 sm:px-6 space-y-32 md:space-y-48 lg:space-y-64 pb-24 md:pb-40">
+              <Testimonials />
+              <Problem />
 
-          <section id="pos">
-            <POS />
-          </section>
+              <section id="pos">
+                <POS />
+              </section>
 
-          <Transformation />
+              <Transformation />
 
-          <section id="cloud">
-            <Cloud />
-          </section>
+              <section id="cloud">
+                <Cloud />
+              </section>
 
-          <section id="agents">
-            <Agents />
-          </section>
+              <section id="agents">
+                <Agents />
+              </section>
 
-          <section id="studio" className="space-y-24">
-            <div className="max-w-4xl space-y-6">
-              <span className="section-label">AI Intelligence Suite</span>
-              <h2 className="text-5xl md:text-8xl font-black serif text-black leading-[0.9] tracking-tighter">
-                Visual Commerce <br/><span className="italic text-gray-400">automated.</span>
-              </h2>
-              <p className="text-xl md:text-2xl text-gray-500 font-light max-w-2xl">
-                Deploy Veira's high-fidelity AI models to design assets specifically for the Kenyan market.
-              </p>
+              <section id="studio" className="space-y-24">
+                <div className="max-w-4xl space-y-6">
+                  <span className="section-label">AI Intelligence Suite</span>
+                  <h2 className="text-5xl md:text-8xl font-black serif text-black leading-[0.9] tracking-tighter">
+                    Visual Commerce <br/><span className="italic text-gray-400">automated.</span>
+                  </h2>
+                  <p className="text-xl md:text-2xl text-gray-500 font-light max-w-2xl">
+                    Deploy Veira's high-fidelity AI models to design assets specifically for the Kenyan market.
+                  </p>
+                </div>
+                
+                <div className="space-y-12">
+                  <BrandArchitect />
+                  <VisualStudio />
+                </div>
+              </section>
+
+              <section id="enterprise">
+                <Enterprise />
+              </section>
+
+              <section id="case-studies">
+                <CaseStudies />
+              </section>
+
+              <section id="pricing">
+                <Pricing />
+              </section>
+
+              <section id="how-it-works">
+                <HowItWorks />
+              </section>
+              
+              <section className="text-center space-y-12 py-24 border-t border-black/5">
+                <div className="space-y-6">
+                  <h2 className="text-4xl md:text-6xl font-bold serif text-black leading-tight">
+                    Run your business with <br className="hidden sm:block" />
+                    <span className="italic text-gray-400">total confidence.</span>
+                  </h2>
+                  <p className="text-gray-500 max-w-xl mx-auto font-light">
+                    If you are tired of running your business blindly, Veira is for you.
+                  </p>
+                </div>
+                <button 
+                  onClick={() => navigateTo('hero')}
+                  className="cta-primary px-16 py-6 text-xs font-bold uppercase tracking-widest"
+                >
+                  Install Veira Today
+                </button>
+              </section>
+
+              <FAQ />
             </div>
-            
-            <div className="space-y-12">
-              <BrandArchitect />
-              <VisualStudio />
-            </div>
-          </section>
 
-          <section id="enterprise">
-            <Enterprise />
-          </section>
-
-          <section id="case-studies">
-            <CaseStudies />
-          </section>
-
-          <section id="pricing">
-            <Pricing />
-          </section>
-
-          <section id="how-it-works">
-            <HowItWorks />
-          </section>
-          
-          <section className="text-center space-y-12 py-24 border-t border-black/5">
-            <div className="space-y-6">
-              <h2 className="text-4xl md:text-6xl font-bold serif text-black leading-tight">
-                Run your business with <br className="hidden sm:block" />
-                <span className="italic text-gray-400">total confidence.</span>
-              </h2>
-              <p className="text-gray-500 max-w-xl mx-auto font-light">
-                If you are tired of running your business blindly, Veira is for you.
-              </p>
-            </div>
-            <button 
-              onClick={() => navigateTo('hero')}
-              className="cta-primary px-16 py-6 text-xs font-bold uppercase tracking-widest"
-            >
-              Install Veira Today
-            </button>
-          </section>
-
-          <FAQ />
-        </div>
-
-        <section id="our-story" className="bg-gradient-to-b from-[#2e1065] via-[#1e1b4b] to-[#0f0720] text-white">
-          <OurStory />
-        </section>
+            <section id="our-story" className="bg-gradient-to-b from-[#2e1065] via-[#1e1b4b] to-[#0f0720] text-white">
+              <OurStory />
+            </section>
+          </>
+        ) : (
+          <BlogPost />
+        )}
       </main>
 
-      <Footer onNavigate={navigateTo} />
+      <Footer onNavigate={navigateTo} onShowBlog={handleShowBlog} />
     </div>
   );
 };

@@ -1,8 +1,10 @@
+
 import React, { useState } from 'react';
 import { runVeiraTool } from '../services/gemini.ts';
 
 interface FooterProps {
   onNavigate: (id: string) => void;
+  onShowBlog: () => void;
 }
 
 interface ToolDetail {
@@ -108,7 +110,7 @@ const ResultRenderer: React.FC<{ data: any }> = ({ data }) => {
   );
 };
 
-export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
+export const Footer: React.FC<FooterProps> = ({ onNavigate, onShowBlog }) => {
   const [activeTool, setActiveTool] = useState<ToolDetail | null>(null);
   const [toolInput, setToolInput] = useState('');
   const [toolResult, setToolResult] = useState<any>(null);
@@ -163,7 +165,8 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           <div className="space-y-8">
             <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-black">Resources</h4>
             <ul className="space-y-4 text-sm font-light text-gray-500">
-              <li><button onClick={() => onNavigate('hero')} className="hover:text-[#2D9B9B] transition-colors font-bold text-black underline underline-offset-4">Blog</button></li>
+              <li><button onClick={onShowBlog} className="hover:text-[#2D9B9B] transition-colors font-bold text-black underline underline-offset-4 text-left">Blog</button></li>
+              <li><button onClick={onShowBlog} className="hover:text-[#2D9B9B] transition-colors text-left">e-TIMS Guide</button></li>
               <li><button onClick={() => onNavigate('case-studies')} className="hover:text-[#2D9B9B] transition-colors">Success Stories</button></li>
               <li><button onClick={() => onNavigate('faq')} className="hover:text-[#2D9B9B] transition-colors">Help Center</button></li>
             </ul>
@@ -212,7 +215,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         </div>
       </div>
 
-      {/* Tool Modal (Remains identical logic, ensuring accessibility) */}
+      {/* Tool Modal */}
       {activeTool && (
         <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm overflow-y-auto">
           <div className="bg-white w-full max-w-2xl p-8 md:p-12 space-y-10 animate-in fade-in zoom-in duration-300 relative rounded-[2rem] shadow-2xl my-auto">
