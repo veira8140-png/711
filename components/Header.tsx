@@ -36,7 +36,7 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate, onHome }) => {
   const navItems = [
     { label: 'POS', id: 'pos' },
     { label: 'Agents', id: 'agents' },
-    { label: 'Enterprise', id: 'enterprise' },
+    { label: 'Compare', id: 'compare' },
     { label: 'Pricing', id: 'pricing' },
     { label: 'Cloud', id: 'cloud' },
     { label: 'Our Story', id: 'our-story' }
@@ -61,7 +61,7 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate, onHome }) => {
             <span className="text-2xl font-bold tracking-tighter serif text-black lowercase">veira.</span>
           </a>
           
-          <div className="hidden lg:flex items-center space-x-10 xl:space-x-12 text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400">
+          <div className="hidden lg:flex items-center space-x-8 xl:space-x-10 text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400">
             {navItems.map((item) => (
               <a 
                 key={item.id}

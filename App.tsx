@@ -31,7 +31,9 @@ const App: React.FC = () => {
 
   useEffect(() => {
     const handleLocationChange = () => {
-      const path = window.location.pathname;
+      // Normalize path: remove trailing slash and convert to lowercase
+      const path = window.location.pathname.replace(/\/$/, '') || '/';
+      
       if (path === '/blog') setCurrentView('blog-home');
       else if (path === '/blog/e-tims-explained') setCurrentView('blog-post-etims');
       else if (path === '/blog/pos-cost-guide') setCurrentView('blog-post-cost');
@@ -48,6 +50,7 @@ const App: React.FC = () => {
   }, []);
 
   const navigateTo = (id: string) => {
+    // Handle SPA routes
     if (id === 'our-story') {
       window.history.pushState({}, '', '/story');
       setCurrentView('story');
@@ -55,6 +58,14 @@ const App: React.FC = () => {
       return;
     }
 
+    if (id === 'compare') {
+      window.history.pushState({}, '', '/compare');
+      setCurrentView('compare');
+      window.scrollTo(0, 0);
+      return;
+    }
+
+    // Handle section scrolling on landing page
     if (currentView !== 'landing') {
       window.history.pushState({}, '', '/');
       setCurrentView('landing');
