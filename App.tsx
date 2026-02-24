@@ -24,17 +24,30 @@ import { POSCostPost } from './components/POSCostPost.tsx';
 import { BestPOSPost } from './components/BestPOSPost.tsx';
 import { POSMachinePost } from './components/POSMachinePost.tsx';
 import { HardwarePOSPost } from './components/HardwarePOSPost.tsx';
+import { DynamicPSEOPage } from './components/DynamicPSEOPage.tsx';
 import { ComparisonPage } from './components/ComparisonPage.tsx';
+import pseoPagesData from './data/pseo_pages.json';
+import { PSEOPage } from './types/pseo';
 
-type View = 'landing' | 'blog-home' | 'blog-post-etims' | 'blog-post-cost' | 'blog-post-best' | 'blog-post-machine' | 'blog-post-hardware' | 'compare' | 'story';
+type View = 'landing' | 'blog-home' | 'blog-post-etims' | 'blog-post-cost' | 'blog-post-best' | 'blog-post-machine' | 'blog-post-hardware' | 'compare' | 'story' | 'pseo';
 
 const App: React.FC = () => {
   const [currentView, setCurrentView] = useState<View>('landing');
+  const [activePSEOPage, setActivePSEOPage] = useState<PSEOPage | null>(null);
 
   useEffect(() => {
     const handleLocationChange = () => {
       const path = window.location.pathname.replace(/\/$/, '') || '/';
       
+      // Check for pSEO pages first
+      const pseoPage = (pseoPagesData as PSEOPage[]).find(p => p.url === path);
+      if (pseoPage) {
+        setActivePSEOPage(pseoPage);
+        setCurrentView('pseo');
+        window.scrollTo(0, 0);
+        return;
+      }
+
       if (path === '/blog') setCurrentView('blog-home');
       else if (path === '/blog/e-tims-explained') setCurrentView('blog-post-etims');
       else if (path === '/blog/pos-cost-guide') setCurrentView('blog-post-cost');
@@ -108,6 +121,7 @@ const App: React.FC = () => {
       case 'blog-post-best': return <BestPOSPost />;
       case 'blog-post-machine': return <POSMachinePost />;
       case 'blog-post-hardware': return <HardwarePOSPost />;
+      case 'pseo': return activePSEOPage ? <DynamicPSEOPage page={activePSEOPage} /> : <BlogHome />;
       case 'compare': return <ComparisonPage />;
       case 'story': return <div className="bg-[#0f0720] min-h-screen"><OurStory /></div>;
       default:

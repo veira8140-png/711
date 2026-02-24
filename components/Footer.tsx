@@ -91,10 +91,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onShowBlog }) => {
             <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-black">Resources</h4>
             <ul className="space-y-4 text-sm font-light text-gray-500">
               <li><button onClick={onShowBlog} className="hover:text-[#2D9B9B] font-bold text-black underline underline-offset-4">Blog</button></li>
-              <li><button onClick={() => onNavigate('compare')} className="hover:text-[#2D9B9B] text-left">Compare Veira</button></li>
-              <li><button onClick={() => navigateToSubpath('/blog/best-pos-system-small-business-kenya')} className="hover:text-[#2D9B9B] text-left">Best POS Guide</button></li>
-              <li><button onClick={() => navigateToSubpath('/blog/pos-cost-guide')} className="hover:text-[#2D9B9B] text-left">Cost Guide</button></li>
-              <li><button onClick={() => navigateToSubpath('/blog/e-tims-explained')} className="hover:text-[#2D9B9B] text-left">e-TIMS Guide</button></li>
+              <li><button onClick={() => navigateToSubpath('/directory/retail-tech-providers-kenya')} className="hover:text-[#2D9B9B] text-left">Tech Directory</button></li>
+              <li><button onClick={() => navigateToSubpath('/locations/nairobi/best-pos-system-hardware-shops')} className="hover:text-[#2D9B9B] text-left">Nairobi Hardware Guide</button></li>
+              <li><button onClick={() => navigateToSubpath('/compare/veira-vs-traditional-etr-kenya')} className="hover:text-[#2D9B9B] text-left">Veira vs ETR</button></li>
+              <li><button onClick={() => navigateToSubpath('/glossary/what-is-vscu-kenya')} className="hover:text-[#2D9B9B] text-left">VSCU Explained</button></li>
               <li><button onClick={() => onNavigate('our-story')} className="hover:text-[#2D9B9B]">Our Story</button></li>
             </ul>
           </div>
