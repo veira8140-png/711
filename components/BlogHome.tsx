@@ -3,6 +3,15 @@ import React from 'react';
 
 const POSTS = [
   {
+    id: 'hardware-pos-guide',
+    title: 'How Modern POS Systems Help Hardware Shops in Kenya Stay in Business',
+    excerpt: 'Managing hundreds of items, from nails to cement, requires precision. Learn how offline-capable POS systems transform hardware retail.',
+    image: 'https://images.unsplash.com/photo-1581244277943-fe4a9c777189?q=80&w=1200&auto=format&fit=crop',
+    date: 'Feb 24, 2025',
+    readTime: '18 Min Read',
+    path: '/blog/hardware-pos-guide'
+  },
+  {
     id: 'pos-machine-kenya',
     title: 'POS Machine Kenya: Types, Prices & Where to Buy in 2025',
     excerpt: 'Detailed guide on every hardware type available in Kenya. From handheld Android terminals to i5 desktop systems.',

@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 const ValueItem: React.FC<{ title: string; desc: string }> = ({ title, desc }) => (
@@ -18,7 +19,7 @@ export const OurStory: React.FC = () => {
   ];
 
   return (
-    <div className="container mx-auto px-6 py-40 md:py-64 space-y-40 relative overflow-hidden">
+    <div className="container mx-auto px-6 pt-4 pb-40 md:pt-8 md:pb-64 space-y-40 relative overflow-hidden">
       {/* Decorative gradients */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-500 opacity-[0.05] blur-[160px] rounded-full -translate-y-1/2 translate-x-1/2"></div>
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-500 opacity-[0.05] blur-[160px] rounded-full translate-y-1/2 -translate-x-1/2"></div>

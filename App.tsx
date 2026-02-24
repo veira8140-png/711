@@ -23,9 +23,10 @@ import { ETIMSPost } from './components/ETIMSPost.tsx';
 import { POSCostPost } from './components/POSCostPost.tsx';
 import { BestPOSPost } from './components/BestPOSPost.tsx';
 import { POSMachinePost } from './components/POSMachinePost.tsx';
+import { HardwarePOSPost } from './components/HardwarePOSPost.tsx';
 import { ComparisonPage } from './components/ComparisonPage.tsx';
 
-type View = 'landing' | 'blog-home' | 'blog-post-etims' | 'blog-post-cost' | 'blog-post-best' | 'blog-post-machine' | 'compare' | 'story';
+type View = 'landing' | 'blog-home' | 'blog-post-etims' | 'blog-post-cost' | 'blog-post-best' | 'blog-post-machine' | 'blog-post-hardware' | 'compare' | 'story';
 
 const App: React.FC = () => {
   const [currentView, setCurrentView] = useState<View>('landing');
@@ -39,6 +40,7 @@ const App: React.FC = () => {
       else if (path === '/blog/pos-cost-guide') setCurrentView('blog-post-cost');
       else if (path === '/blog/best-pos-system-small-business-kenya') setCurrentView('blog-post-best');
       else if (path === '/blog/pos-machine-kenya') setCurrentView('blog-post-machine');
+      else if (path === '/blog/hardware-pos-guide') setCurrentView('blog-post-hardware');
       else if (path === '/compare') setCurrentView('compare');
       else if (path === '/story') setCurrentView('story');
       else setCurrentView('landing');
@@ -105,6 +107,7 @@ const App: React.FC = () => {
       case 'blog-post-cost': return <POSCostPost />;
       case 'blog-post-best': return <BestPOSPost />;
       case 'blog-post-machine': return <POSMachinePost />;
+      case 'blog-post-hardware': return <HardwarePOSPost />;
       case 'compare': return <ComparisonPage />;
       case 'story': return <div className="bg-[#0f0720] min-h-screen"><OurStory /></div>;
       default:

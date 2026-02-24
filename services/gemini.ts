@@ -1,9 +1,9 @@
+
 import { GoogleGenAI, Type } from "@google/genai";
 import { BrandOutput } from "../types";
 
 /**
  * Universal Tool Prompt Library
- * Maps each of the 20 tools to its specific intelligence logic using the raw user input.
  */
 const TOOL_PROMPTS: Record<string, (input: string) => string> = {
   "Daily Sales Tracker": (input) => `Analyze this sales data: "${input}". Calculate net sales and profit. Return JSON: { "salesToday": number, "profit": number }`,
@@ -47,18 +47,10 @@ const withRetry = async <T>(fn: () => Promise<T>, maxRetries = 3): Promise<T> =>
   throw lastError;
 };
 
-const getAI = () => {
-  // Safe check for process.env.API_KEY to avoid Uncaught ReferenceError in browser environments
-  const apiKey = typeof process !== 'undefined' ? process.env.API_KEY : (window as any).process?.env?.API_KEY;
-  if (!apiKey || apiKey === "undefined") {
-    throw new Error("API_KEY_MISSING");
-  }
-  return new GoogleGenAI({ apiKey });
-};
-
 export const runVeiraTool = async (toolName: string, userInput: string): Promise<any> => {
   return withRetry(async () => {
-    const ai = getAI();
+    // Strictly adhere to API key guideline
+    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
     
     if (!TOOL_PROMPTS[toolName]) {
       throw new Error(`Tool "${toolName}" not recognized.`);
@@ -80,11 +72,11 @@ export const runVeiraTool = async (toolName: string, userInput: string): Promise
       config: {
         systemInstruction,
         responseMimeType: "application/json",
-        temperature: 0.2, // Low temperature for high precision in business tool tasks
+        temperature: 0.2,
       },
     });
 
-    const text = response.text;
+    const text = response.text?.trim();
     if (!text) throw new Error("EMPTY_AI_RESPONSE");
     
     try {
@@ -98,7 +90,7 @@ export const runVeiraTool = async (toolName: string, userInput: string): Promise
 
 export const generateBrandIdentity = async (industry: string, vibe: string): Promise<BrandOutput> => {
   return withRetry(async () => {
-    const ai = getAI();
+    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
     const response = await ai.models.generateContent({
       model: "gemini-3-flash-preview",
       contents: `Generate a brand identity for a ${industry} business in Kenya with a ${vibe} vibe.`,
@@ -116,13 +108,16 @@ export const generateBrandIdentity = async (industry: string, vibe: string): Pro
         }
       }
     });
-    return JSON.parse(response.text || "{}");
+
+    const text = response.text?.trim();
+    if (!text) throw new Error("EMPTY_AI_RESPONSE");
+    return JSON.parse(text);
   });
 };
 
 export const generateImage = async (prompt: string): Promise<string> => {
   return withRetry(async () => {
-    const ai = getAI();
+    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
     const response = await ai.models.generateContent({
       model: 'gemini-2.5-flash-image',
       contents: { parts: [{ text: prompt }] },
