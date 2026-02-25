@@ -42,10 +42,14 @@ export const Hero: React.FC<HeroProps> = ({ onStart, onViewDemo }) => {
           Get Free POS
         </button>
         <button 
-          onClick={onViewDemo}
-          className="w-full sm:w-auto px-10 md:px-14 py-4 md:py-5 border border-black/10 backdrop-blur-md bg-white/30 hover:bg-[#2D9B9B] hover:text-white transition-all duration-500 text-[10px] font-bold uppercase tracking-[0.2em] text-black min-h-[52px] md:min-h-[60px]"
+          onClick={() => {
+            window.history.pushState({}, '', '/directory/retail-tech-providers-kenya');
+            window.dispatchEvent(new Event('popstate'));
+          }}
+          className="w-full sm:w-auto px-10 md:px-14 py-4 md:py-5 border border-black/10 backdrop-blur-md bg-white/30 hover:bg-black hover:text-white transition-all duration-500 text-[10px] font-bold uppercase tracking-[0.2em] text-black min-h-[52px] md:min-h-[60px] flex items-center justify-center gap-3 group"
         >
-          Case Study
+          <span>Browse 100k+ Local Guides</span>
+          <span className="text-gray-300 group-hover:text-white transition-colors">→</span>
         </button>
       </div>
 

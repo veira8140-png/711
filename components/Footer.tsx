@@ -124,6 +124,17 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onShowBlog }) => {
           </div>
         </div>
 
+        <div className="mb-24 h-[450px] w-full rounded-[3rem] overflow-hidden border border-black/5 shadow-sm bg-gray-50">
+          <iframe 
+            src="https://storage.googleapis.com/maps-solutions-063q5qpfgl/locator-plus/5znx/locator-plus.html"
+            width="100%" 
+            height="100%"
+            style={{ border: 0 }}
+            loading="lazy"
+            title="Veira Store Locator"
+          />
+        </div>
+
         <div className="pt-12 border-t border-black/5 flex flex-col md:flex-row justify-between items-center gap-8">
           <p className="text-[10px] font-bold uppercase tracking-widest text-gray-300">© {new Date().getFullYear()} Veira Intelligence.</p>
           <div className="flex gap-8 text-[10px] font-bold uppercase tracking-widest text-gray-300">

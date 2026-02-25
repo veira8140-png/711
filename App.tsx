@@ -26,10 +26,12 @@ import { POSMachinePost } from './components/POSMachinePost.tsx';
 import { HardwarePOSPost } from './components/HardwarePOSPost.tsx';
 import { DynamicPSEOPage } from './components/DynamicPSEOPage.tsx';
 import { ComparisonPage } from './components/ComparisonPage.tsx';
+import { DirectoryHub } from './components/DirectoryHub.tsx';
 import pseoPagesData from './data/pseo_pages.json';
 import { PSEOPage } from './types/pseo';
+import { generateDynamicPSEOPage } from './services/pseoEngine.ts';
 
-type View = 'landing' | 'blog-home' | 'blog-post-etims' | 'blog-post-cost' | 'blog-post-best' | 'blog-post-machine' | 'blog-post-hardware' | 'compare' | 'story' | 'pseo';
+type View = 'landing' | 'blog-home' | 'blog-post-etims' | 'blog-post-cost' | 'blog-post-best' | 'blog-post-machine' | 'blog-post-hardware' | 'compare' | 'story' | 'pseo' | 'directory';
 
 const App: React.FC = () => {
   const [currentView, setCurrentView] = useState<View>('landing');
@@ -40,7 +42,7 @@ const App: React.FC = () => {
       const path = window.location.pathname.replace(/\/$/, '') || '/';
       
       // Check for pSEO pages first
-      const pseoPage = (pseoPagesData as PSEOPage[]).find(p => p.url === path);
+      const pseoPage = (pseoPagesData as PSEOPage[]).find(p => p.url === path) || generateDynamicPSEOPage(path);
       if (pseoPage) {
         setActivePSEOPage(pseoPage);
         setCurrentView('pseo');
@@ -49,6 +51,7 @@ const App: React.FC = () => {
       }
 
       if (path === '/blog') setCurrentView('blog-home');
+      else if (path === '/directory/retail-tech-providers-kenya') setCurrentView('directory');
       else if (path === '/blog/e-tims-explained') setCurrentView('blog-post-etims');
       else if (path === '/blog/pos-cost-guide') setCurrentView('blog-post-cost');
       else if (path === '/blog/best-pos-system-small-business-kenya') setCurrentView('blog-post-best');
@@ -121,6 +124,7 @@ const App: React.FC = () => {
       case 'blog-post-best': return <BestPOSPost />;
       case 'blog-post-machine': return <POSMachinePost />;
       case 'blog-post-hardware': return <HardwarePOSPost />;
+      case 'directory': return <DirectoryHub />;
       case 'pseo': return activePSEOPage ? <DynamicPSEOPage page={activePSEOPage} /> : <BlogHome />;
       case 'compare': return <ComparisonPage />;
       case 'story': return <div className="bg-[#0f0720] min-h-screen"><OurStory /></div>;
