@@ -1,0 +1,148 @@
+[
+  {
+    "url": "/templates/inventory-management-excel-hardware-kenya",
+    "playbook_type": "Templates",
+    "seo": {
+      "title": "Free Inventory Management Excel Template for Hardware Shops in Kenya",
+      "meta_description": "Download our professional hardware inventory Excel template designed for Kenyan retailers. Track SKUs, reorder levels, and prepare for e-TIMS compliance.",
+      "primary_keyword": "hardware inventory excel template kenya",
+      "secondary_keywords": ["hardware stock management", "retail inventory spreadsheet", "KRA e-TIMS preparation"],
+      "search_intent": "Transactional / Utility"
+    },
+    "content": {
+      "h1": "The Professional Inventory Management Template for Kenyan Hardware Retailers",
+      "introduction": "Managing a hardware shop in Kenya—whether in the heart of Kamukunji or a growing town like Kitengela—is a logistical challenge. With thousands of SKUs ranging from tiny nails to heavy cement bags, tracking stock manually is a recipe for loss. This guide provides a professional-grade Excel template designed specifically for the Kenyan hardware context, including VAT and e-TIMS preparation columns.",
+      "sections": [
+        {
+          "heading": "Why Hardware Shops Need Structured Inventory",
+          "body": "Hardware retail is unique because of 'break-bulk' sales (selling items from a larger pack) and high-frequency transactions. Without a template, you face stockouts of fast-movers like D12 rebars or overstocking slow-movers. In the Kenyan market, price fluctuations for items like cement and steel require a system that can update margins instantly. Our template includes columns for 'Last Purchase Price' and 'Target Margin' to ensure you never sell at a loss during inflation."
+        },
+        {
+          "heading": "How to Use the Kenyan Hardware Inventory Template",
+          "body": "1. **Item Categorization:** Group items into Plumbing, Electrical, Masonry, and Tools. \n2. **Unit of Measure (UoM):** Crucial for hardware. Track by 'Piece', 'Bag', 'Kilogram', or 'Meter'. \n3. **Reorder Levels:** Set a minimum threshold for essentials like 32.5N cement so the template flags when it's time to restock. \n4. **Supplier Directory:** Link each item to a preferred supplier in Nairobi or local distributors for faster turnaround."
+        },
+        {
+          "heading": "Transitioning from Excel to AI-Driven POS",
+          "body": "While Excel is a great starting point for a new shop, it lacks real-time e-TIMS integration and staff theft prevention. As your hardware business grows to handle more than 50 transactions a day, manual entry becomes a bottleneck. We recommend using this template to clean your data before importing it into a robust system like Veira Intelligence, which automates the stock-taking process using AI."
+        }
+      ],
+      "faq": [
+        { "question": "Is this template e-TIMS compliant?", "answer": "No spreadsheet is natively e-TIMS compliant as KRA requires real-time transmission. However, this template organizes your data perfectly for a seamless transition to a compliant POS." },
+        { "question": "Can I use this on my smartphone?", "answer": "Yes, this template is fully compatible with Google Sheets and Microsoft Excel Mobile, allowing you to check stock levels while in the warehouse." },
+        { "question": "How do I handle 'broken' sales like half-bags of sand?", "answer": "The template includes a 'Fractional Sale' column to help you track items sold in smaller units than they were purchased." }
+      ],
+      "call_to_action": "Download the Hardware Inventory Template"
+    },
+    "schema": {
+      "type": "Dataset",
+      "structured_data": {
+        "@context": "https://schema.org",
+        "@type": "Dataset",
+        "name": "Kenyan Hardware Inventory Template",
+        "description": "A professional Excel template for managing hardware store stock in Kenya.",
+        "license": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    },
+    "internal_links": ["/blog/pos-cost-guide", "/locations/nairobi/best-pos-system-hardware-shops"],
+    "related_pages": ["/templates/pharmacy-inventory-excel-kenya", "/glossary/what-is-vscu-kenya"],
+    "data_requirements_used": ["categories: Hardware", "locations: Kenya", "file_formats: Excel"]
+  },
+  {
+    "url": "/curation/best-pos-systems-pharmacies-mombasa",
+    "playbook_type": "Curation",
+    "seo": {
+      "title": "Top 7 POS Systems for Pharmacies in Mombasa | 2025 Rankings",
+      "meta_description": "Compare the best pharmacy POS systems in Mombasa. Ranked by e-TIMS compliance, expiry tracking, and M-Pesa integration. Find the right fit for your chemist.",
+      "primary_keyword": "best pharmacy POS Mombasa",
+      "secondary_keywords": ["chemist software Kenya", "pharmacy management system Mombasa", "e-TIMS pharmacy software"],
+      "search_intent": "Commercial / Curation"
+    },
+    "content": {
+      "h1": "Ranked: The Best Pharmacy Management Systems in Mombasa (2025)",
+      "introduction": "Pharmacies in Mombasa face unique challenges—from the high humidity affecting hardware to the strict regulatory requirements of the Pharmacy and Poisons Board (PPB). Finding a POS that tracks batch numbers and expiry dates while staying KRA compliant is essential for survival in the coastal retail market.",
+      "sections": [
+        {
+          "heading": "Ranking Criteria for Coastal Chemists",
+          "body": "Our ranking is based on four critical pillars: \n1. **e-TIMS Integration:** Does it transmit data to KRA without extra hardware? \n2. **Expiry Management:** Does it provide 90-day alerts for slow-moving medicine? \n3. **M-Pesa Reconciliation:** Does it eliminate manual entry errors? \n4. **Offline Capability:** Can it handle the occasional power fluctuations in Mombasa?"
+        },
+        {
+          "heading": "Comparison Table: Top 3 Contenders",
+          "body": "| Feature | Veira Intelligence | Legacy ETR | Generic Software |\n|---------|--------------------|------------|------------------|\n| e-TIMS  | Native/Auto        | Manual     | Plugin Required  |\n| Expiry  | AI-Driven          | None       | Basic Date Field |\n| M-Pesa  | Direct Sync        | None       | Manual Entry     |"
+        },
+        {
+          "heading": "Pros and Cons of Leading Systems",
+          "body": "**Veira Intelligence:** Best for modern pharmacies needing AI expiry tracking and native e-TIMS. *Pro:* Zero hardware cost. *Con:* Requires stable 4G/Fiber. \n**Legacy Systems:** Good for very small chemists with low volume. *Pro:* Works without internet. *Con:* High risk of KRA non-compliance fines."
+        }
+      ],
+      "faq": [
+        { "question": "Do these systems track PPB regulated drugs?", "answer": "The top-ranked systems like Veira include a 'Controlled Substances' module to help you maintain the required digital registers for PPB audits." },
+        { "question": "Can I manage multiple branches in Mombasa?", "answer": "Yes, cloud-based systems allow you to see stock levels in Nyali, Bamburi, and CBD from a single dashboard." }
+      ],
+      "call_to_action": "View the Full Pharmacy Ranking"
+    },
+    "schema": {
+      "type": "ItemList",
+      "structured_data": {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Veira Intelligence" },
+          { "@type": "ListItem", "position": 2, "name": "Legacy ETR Systems" }
+        ]
+      }
+    },
+    "internal_links": ["/locations/mombasa/best-pos-system-pharmacies", "/compare/veira-vs-traditional-etr-kenya"],
+    "related_pages": ["/curation/best-pos-systems-supermarkets-nairobi", "/blog/e-tims-explained"],
+    "data_requirements_used": ["categories: Pharmacy", "locations: Mombasa"]
+  },
+  {
+    "url": "/integrations/mpesa-till-to-pos-setup-guide",
+    "playbook_type": "Integrations",
+    "seo": {
+      "title": "How to Integrate M-Pesa Till/Paybill with Your Retail POS | Step-by-Step",
+      "meta_description": "Stop manual reconciliation. Learn how to connect your Safaricom M-Pesa Till directly to your POS system for automated sales tracking and theft prevention.",
+      "primary_keyword": "M-Pesa POS integration",
+      "secondary_keywords": ["Safaricom Daraja API setup", "M-Pesa till automation", "retail payment integration Kenya"],
+      "search_intent": "Informational / Technical"
+    },
+    "content": {
+      "h1": "The Complete Guide to M-Pesa POS Integration for Kenyan Retailers",
+      "introduction": "In Kenya, M-Pesa is the king of payments. However, many retailers still manually type 'Amount Paid' into their POS, leading to human error and reconciliation nightmares. This guide explains how to automate the flow from the customer's phone directly to your sales report using the Daraja API.",
+      "sections": [
+        {
+          "heading": "Step 1: Securing Your Daraja API Credentials",
+          "body": "To start, you need a developer account on the Safaricom Daraja Portal. You will need to create an app to receive your Consumer Key and Consumer Secret. For Lipa Na M-Pesa Online (STK Push), you will also need your Shortcode and Passkey. This is the 'handshake' that allows your POS to talk to Safaricom's servers."
+        },
+        {
+          "heading": "Step 2: Configuring the Callback URL",
+          "body": "The Callback URL is a specific address on your POS server where Safaricom sends a 'Success' or 'Fail' message after a customer enters their PIN. Without a correctly configured callback, your POS will never know if the payment actually went through, forcing you back to manual verification."
+        },
+        {
+          "heading": "Workflow Example: The Seamless Checkout",
+          "body": "1. Cashier selects 'M-Pesa' on the POS. \n2. Customer receives an STK Push on their phone. \n3. Customer enters PIN. \n4. POS receives instant confirmation and prints the receipt. \n5. Transaction is automatically filed under 'M-Pesa Sales' in the daily report."
+        }
+      ],
+      "faq": [
+        { "question": "Does this work with both Till and Paybill?", "answer": "Yes, the integration can be configured for Buy Goods Tills or Paybill numbers depending on your business structure." },
+        { "question": "Is there a transaction fee for the integration?", "answer": "Safaricom charges standard Lipa Na M-Pesa fees, but the integration itself usually saves more money by preventing staff fraud and errors." }
+      ],
+      "call_to_action": "Connect Your M-Pesa Now"
+    },
+    "schema": {
+      "type": "HowTo",
+      "structured_data": {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "M-Pesa POS Integration Guide",
+        "step": [
+          { "@type": "HowToStep", "text": "Register on Daraja Portal" },
+          { "@type": "HowToStep", "text": "Obtain API Keys" },
+          { "@type": "HowToStep", "text": "Configure Callback URL" }
+        ]
+      }
+    },
+    "internal_links": ["/blog/mpesa-reconciliation-tips", "/pricing"],
+    "related_pages": ["/integrations/etims-vscu-setup-guide", "/personas/the-busy-pharmacy-owner"],
+    "data_requirements_used": ["integrations: M-Pesa", "tools: Daraja API"]
+  }
+]
